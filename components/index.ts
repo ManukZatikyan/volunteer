@@ -10,3 +10,4 @@ export { Footer, type FooterProps } from "./Footer";
 export { Icon, type IconProps } from "./Icon";
 export { LanguagePopup, type LanguagePopupProps } from "./LanguagePopup";
 export { Header, type HeaderProps } from "./Header";
+export { ThemeToggle, type ThemeToggleProps } from "./ThemeToggle";
