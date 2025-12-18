@@ -1,25 +1,30 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
+import Link from "next/link";
 import { Icon } from "./Icon";
 import { LanguagePopup } from "./LanguagePopup";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { ThemeToggle } from ".";
 
 export interface HeaderProps {
   className?: string;
 }
 
-const menuItems = ["About Us", "Our Team", "Programs", "Contact Us"];
+const menuItems = [
+  { label: "About Us", href: "/aboutUs" },
+  { label: "Our Team", href: "/ourTeam" },
+  { label: "Programs", href: "/programs" },
+  { label: "Contact Us", href: "/contactUs" },
+];
 
 export const Header: React.FC<HeaderProps> = ({ className }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
   const [isLanguagePopupOpen, setIsLanguagePopupOpen] = useState(false);
   const languagePopupRef = useRef<HTMLDivElement>(null);
   const globeButtonRef = useRef<HTMLButtonElement>(null);
 
-  // Close language popup when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -41,11 +46,6 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
     };
   }, [isLanguagePopupOpen]);
 
-  const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-    // You can add theme switching logic here if needed
-  };
-
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -54,24 +54,19 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
     setIsLanguagePopupOpen(!isLanguagePopupOpen);
   };
 
-  const handleMenuItemClick = (item: string) => {
-    // Handle menu item click
-    console.log(`Clicked: ${item}`);
+  const handleMenuItemClick = () => {
     setIsMenuOpen(false);
   };
 
   return (
     <header
       className={cn(
-        "w-full relative z-50 p-6",
+        "w-full relative z-50 p-6 bg-primary-default",
         className
       )}
-      style={{ backgroundColor: "#050927" }}
     >
-      <div className="container mx-auto px-4">
-        {/* Main Header Bar */}
+      <div className="container mx-auto">
         <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo Section */}
           <div className="flex items-center gap-2">
           <Image
             src="/svg/logoMobile.svg"
@@ -81,123 +76,36 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
             className="mb-2"
           />
           </div>
-
-          {/* Right Side Icons */}
-          <div className="flex items-center gap-4 md:gap-6">
-            {/* Theme Toggle */}
-            <button
-              onClick={toggleTheme}
-              className="relative w-15 h-7 rounded-full flex items-center transition-all duration-300 hover:scale-105 active:scale-95"
-              style={{
-                backgroundColor: "#1C2440",
-                padding: "4px",
-                boxShadow: "0 2px 8px rgba(0, 0, 0, 0.2)",
-              }}
-              aria-label="Toggle theme"
-            >
-              {/* Inactive sun icon on left (when dark mode) */}
-              {isDarkMode && (
-                <div 
-                  className="absolute left-2 top-1/2 -translate-y-1/2 z-0 transition-opacity duration-300"
-                  style={{ opacity: 0.5 }}
-                >
-                  <Icon
-                    name="sun"
-                    size={22}
-                    color="#999999"
-                    className="shrink-0"
-                  />
-                </div>
-              )}
-
-              {/* Inactive moon icon on right (when light mode) */}
-              {!isDarkMode && (
-                <div 
-                  className="absolute top-1/2 -translate-y-1/2 z-0 transition-opacity duration-300"
-                  style={{ 
-                    left: "calc(2px + 24px + 14px)",
-                    opacity: 0.5,
-                  }}
-                >
-                  <Icon
-                    name="moon"
-                    size={22}
-                    color="#999999"
-                    className="shrink-0"
-                  />
-                </div>
-              )}
-
-              {/* Sliding white circular handle with active icon */}
-              <div
-                className="absolute top-0.5 w-6 h-6 rounded-full flex items-center justify-center transition-all duration-300 ease-in-out z-10"
-                style={{
-                  backgroundColor: "#FFFFFF",
-                  boxShadow: "0 2px 6px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.1)",
-                  // Light mode: 2px from left, Dark mode: 2px (left) + 22px (icon width) + 14px (gap) = 38px
-                  transform: isDarkMode ? "translateX(38px)" : "translateX(2px)",
-                }}
-              >
-                {!isDarkMode ? (
-                  // Light mode: Orange sun with white center inside white circle
-                  <div className="relative flex items-center justify-center">
-                    <Icon
-                      name="sun"
-                      size={22}
-                      color="#FFA008"
-                      className="shrink-0 relative z-10 transition-transform duration-300"
-                    />
-                    {/* White center overlay */}
-                    <div 
-                      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full z-20 transition-opacity duration-300"
-                      style={{ backgroundColor: "#FFFFFF" }}
-                    />
-                  </div>
-                ) : (
-                  // Dark mode: Moon icon in dark blue inside white circle
-                  <Icon
-                    name="moon"
-                    size={22}
-                    color="#1C2440"
-                    className="shrink-0 transition-transform duration-300"
-                  />
-                )}
-              </div>
-            </button>
-
-            {/* Globe Icon with Language Popup */}
-            <div className="relative">
+          <div className="flex items-center gap-4">
+             <ThemeToggle/>
+            <div className="relative h-8 w-8 flex items-center justify-center">
               <button
                 ref={globeButtonRef}
                 onClick={toggleLanguagePopup}
-                className="p-2 hover:opacity-80 transition-opacity"
+                className="hover:opacity-80 transition-opacity"
                 aria-label="Change language"
               >
-                <Icon name="globe" size={24} color="#FFFFFF" />
+                <Icon name="globe" size={26} color="#FFFFFF" />
               </button>
               {isLanguagePopupOpen && (
                 <div
                   ref={languagePopupRef}
-                  className="absolute top-full -right-8 mt-2 z-50 animate-fade-in-down"
+                  className="absolute top-9.5 -right-9.5 mt-2 z-50 animate-fade-in-down"
                 >
                   <LanguagePopup />
                 </div>
               )}
             </div>
-
-            {/* Hamburger Menu */}
             <button
               onClick={toggleMenu}
-              className="p-2 hover:opacity-80 transition-opacity"
+              className="hover:opacity-80 transition-opacity"
               aria-label="Toggle menu"
               aria-expanded={isMenuOpen}
             >
-              <Icon name="linesHoriz" size={24} color="#FFFFFF" />
+              <Icon name="linesHoriz" size={36} color="#FFFFFF" />
             </button>
           </div>
         </div>
-
-        {/* Animated Menu Dropdown */}
         <div
           className={cn(
             "overflow-hidden transition-all duration-300 ease-in-out",
@@ -205,23 +113,22 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
           )}
         >
           <div
-            className="py-4"
-            style={{ backgroundColor: "#050927" }}
+            className="bg-primary-default"
           >
             {menuItems.map((item, index) => (
-              <React.Fragment key={item}>
+              <React.Fragment key={item.href}>
                 {index > 0 && (
                   <div
-                    className="w-full h-px my-2"
-                    style={{ backgroundColor: "rgba(255, 255, 255, 0.2)" }}
+                    className="w-full h-px my-2 bg-white"
                   />
                 )}
-                <button
-                  onClick={() => handleMenuItemClick(item)}
-                  className="w-full py-3 px-4 text-white font-montserrat text-center font-bold text-lg md:text-xl hover:opacity-80 transition-opacity"
+                <Link
+                  href={item.href}
+                  onClick={handleMenuItemClick}
+                  className="w-full py-3 px-4 text-white font-montserrat text-center font-bold text-lg md:text-xl hover:opacity-80 transition-opacity block"
                 >
-                  {item}
-                </button>
+                  {item.label}
+                </Link>
               </React.Fragment>
             ))}
           </div>

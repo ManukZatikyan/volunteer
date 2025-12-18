@@ -10,7 +10,9 @@ import Linkedin from "./linkedin.svg";
 import Facebook from "./facebook.svg";
 import LinesHoriz from "./linesHoriz.svg";
 import Location from "./location.svg";
-
+import Handshake from "./handShake.svg";
+import PeopleTeam from "./peopleTeam.svg";
+import Triangle from "./triangle.svg";
 
 export const icons = {
   logo: LogoMobile,
@@ -25,4 +27,7 @@ export const icons = {
   facebook: Facebook,
   linesHoriz: LinesHoriz,
   location: Location,
+  handshake: Handshake,
+  peopleTeam: PeopleTeam,
+  triangle: Triangle,
 };
