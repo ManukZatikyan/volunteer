@@ -1,0 +1,113 @@
+// Font Families
+$font-montserrat: 'Montserrat', sans-serif;
+$font-noto-sans: 'Noto Sans', sans-serif;
+
+// Font Weights
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// Desktop Typography
+$typography-desktop: (
+  'hero': (
+    font-family: $font-montserrat,
+    font-size: 64px,
+    font-weight: $font-weight-bold,
+    line-height: 72px,
+  ),
+  'title': (
+    font-family: $font-montserrat,
+    font-size: 48px,
+    font-weight: $font-weight-bold,
+    line-height: 56px,
+  ),
+  'headline': (
+    font-family: $font-montserrat,
+    font-size: 32px,
+    font-weight: $font-weight-bold,
+    line-height: 40px,
+  ),
+  'subtitle': (
+    font-family: $font-montserrat,
+    font-size: 24px,
+    font-weight: $font-weight-medium,
+    line-height: 32px,
+  ),
+  'body': (
+    font-family: $font-noto-sans,
+    font-size: 18px,
+    font-weight: $font-weight-regular,
+    line-height: 28px,
+  ),
+  'body-sm': (
+    font-family: $font-noto-sans,
+    font-size: 16px,
+    font-weight: $font-weight-regular,
+    line-height: 24px,
+  ),
+  'label': (
+    font-family: $font-noto-sans,
+    font-size: 14px,
+    font-weight: $font-weight-medium,
+    line-height: 20px,
+  ),
+  'button': (
+    font-family: $font-montserrat,
+    font-size: 20px,
+    font-weight: $font-weight-bold,
+    line-height: 28px,
+  ),
+  'tag': (
+    font-family: $font-noto-sans,
+    font-size: 12px,
+    font-weight: $font-weight-semibold,
+    line-height: 16px,
+  ),
+);
+
+// Mobile Typography
+$typography-mobile: (
+  'hero-sm': (
+    font-family: $font-montserrat,
+    font-size: 40px,
+    font-weight: $font-weight-bold,
+    line-height: 48px,
+  ),
+  'title-sm': (
+    font-family: $font-montserrat,
+    font-size: 32px,
+    font-weight: $font-weight-bold,
+    line-height: 38px,
+  ),
+  'subtitle-sm': (
+    font-family: $font-montserrat,
+    font-size: 20px,
+    font-weight: $font-weight-medium,
+    line-height: 30px,
+  ),
+  'body-sm-mobile': (
+    font-family: $font-noto-sans,
+    font-size: 16px,
+    font-weight: $font-weight-regular,
+    line-height: 24px,
+  ),
+  'body-xs': (
+    font-family: $font-noto-sans,
+    font-size: 14px,
+    font-weight: $font-weight-regular,
+    line-height: 20px,
+  ),
+  'button-sm': (
+    font-family: $font-montserrat,
+    font-size: 16px,
+    font-weight: $font-weight-bold,
+    line-height: 20px,
+  ),
+  'tag-sm': (
+    font-family: $font-noto-sans,
+    font-size: 12px,
+    font-weight: $font-weight-semibold,
+    line-height: 16px,
+  ),
+);
