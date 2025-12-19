@@ -3,59 +3,57 @@
 import React from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { Button } from "./Button";
+import { Button } from "../atom/Button";
 
-export interface ProfileCardHorizontalProps {
+export interface EventCardProps {
   imageSrc: string;
   imageAlt?: string;
-  name: string;
-  biography: string;
+  title: string;
+  description: string;
   buttonText?: string;
   className?: string;
   onClick?: () => void;
 }
 
-export const ProfileCardHorizontal: React.FC<ProfileCardHorizontalProps> = ({
+export const EventCard: React.FC<EventCardProps> = ({
   imageSrc,
   imageAlt = "",
-  name,
-  biography,
-  buttonText = "Read more",
+  title,
+  description,
+  buttonText = "Learn more",
   className,
   onClick,
 }) => {
   return (
     <div
       className={cn(
-        "relative flex flex-row gap-3 rounded-3xl w-full max-w-[400px] p-4",
+        "relative flex flex-row gap-4 rounded-3xl w-full max-w-[400px] p-5",
         "shadow-lg overflow-hidden",
         "bg-primary-light",
         className
       )}
     >
-      {/* Image Section - Left Side */}
-      <div className="relative w-1/2 min-w-[180px] h-full min-h-[243px] rounded-xl">
+      <div className="relative w-1/2 min-w-[160px] h-full min-h-[238px] rounded-xl">
         <Image
           src={imageSrc}
-          alt={imageAlt || name}
+          alt={imageAlt || title}
           fill
           className="object-cover rounded-xl"
-          sizes="(max-width: 768px) 50vw, 180px max-h-[243px]"
+          sizes="(max-width: 768px) 50vw, 160px max-h-[238px]"
           priority
         />
       </div>
       <div className="flex flex-col flex-1">
-        <h3 className="text-white text-2xl font-bold leading-7.5 font-montserrat mb-3">
-          {name}
+        <h3 className="text-white subtitle font-montserrat mb-1.5">
+          {title}
         </h3>
-        <div className="w-full h-1 bg-secondary-orange-bright mb-3 rounded-full" />
         <div className="flex-1 mb-3">
           <p className="text-white text-sm leading-5 font-noto-sans">
-            {biography}
+            {description}
           </p>
         </div>
         <div className="flex justify-start">
-          <Button variant="white" onClick={onClick} className="px-6 py-2">
+          <Button variant="orange" onClick={onClick} className="px-8! py-3!">
             {buttonText}
           </Button>
         </div>

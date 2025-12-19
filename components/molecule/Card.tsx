@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { Button } from "./Button";
+import { Button } from "../atom/Button";
 
 export interface CardProps {
   title: string;

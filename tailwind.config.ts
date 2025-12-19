@@ -19,6 +19,7 @@ const config: Config = {
           light: "#111947",
           dark: "#000418",
           gray: "#CACACA",
+          purple: "#1F043E",
         },
         // Secondary Colors
         secondary: {
