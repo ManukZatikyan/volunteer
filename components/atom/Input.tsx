@@ -24,7 +24,7 @@ export const Input: React.FC<InputProps> = ({
       {label && (
         <label
           htmlFor={inputId}
-          className="block mb-1.5 text-body-sm-mobile"
+          className="block mb-1.5 text-body-sm-mobile font-noto-sans!"
           style={{ color: "#FFFFFF" }}
         >
           {label}

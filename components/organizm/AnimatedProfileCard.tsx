@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { ProfileCardHorizontal } from "./ProfileCardHorizontal";
-import { ProfileCard } from "./ProfileCard";
+import { ProfileCardHorizontal } from "../molecule/ProfileCardHorizontal";
+import { ProfileCard } from "../molecule/ProfileCard";
 import { cn } from "@/lib/utils";
 
 export interface AnimatedProfileCardProps {
@@ -42,7 +42,6 @@ export const AnimatedProfileCard: React.FC<AnimatedProfileCardProps> = ({
     handleCollapseProp?.();
   };
 
-  // Use expanded biography if provided, otherwise use regular biography
   const displayBiography = isExpanded && expandedBiography 
     ? expandedBiography 
     : biography;

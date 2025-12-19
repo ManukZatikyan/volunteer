@@ -20,6 +20,7 @@
   --color-primary-light: #111947;
   --color-primary-dark: #000418;
   --color-primary-gray: #CACACA;
+  --color-primary-purple: #1F043E;
   
   /* Secondary Colors */
   --color-secondary-orange-bright: #FFA008;
@@ -104,10 +105,22 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-montserrat), var(--font-noto-sans);
+}
+
+/* Desktop Typography Classes */
+.title {
+  font-family: var(--font-montserrat);
+  font-size: var(--text-title);
+  font-weight: 700;
+  line-height: var(--leading-title);
 }
 
 /* Mobile Typography Classes (from $typography-mobile) */
@@ -124,7 +137,12 @@ body {
   font-weight: 700;
   line-height: var(--leading-title-sm);
 }
-
+.subtitle {
+  font-family: var(--font-montserrat);
+  font-size: var(--text-subtitle);
+  font-weight: 600;
+  line-height: var(--leading-subtitle);
+}
 .subtitle-sm {
   font-family: var(--font-montserrat);
   font-size: var(--text-subtitle-sm);
@@ -172,6 +190,27 @@ body {
   }
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .animate-fade-in-down {
-  animation: fadeInDown 0.2s ease-out;
+  animation: fadeInDown 0.5s ease-out;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+body[data-page="centerUpJunior"] footer {
+  background-color: #1F043E !important;
+}
+
+body[data-page="futureUp"] footer {
+  background-color: #000000 !important;
 }

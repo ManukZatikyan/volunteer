@@ -22,7 +22,7 @@ export const MembershipCard: React.FC<MembershipCardProps> = ({
   return (
     <div
       className={cn(
-        "relative flex flex-col rounded-3xl p-4 w-full max-w-[188px] max-h-[164px]",
+        "relative flex flex-col rounded-3xl p-3 w-full min-w-[188px] max-w-[250px] max-h-[164px]",
         "shadow-lg",
         "bg-primary-light",
         onClick && "cursor-pointer",
@@ -47,7 +47,7 @@ export const MembershipCard: React.FC<MembershipCardProps> = ({
           }}
         />
         <div className="absolute inset-0 flex flex-col items-center justify-end">
-          <h3 className="text-white text-center mb-1.5 text-xl! font-bold! leading-6.5! font-montserrat!">
+          <h3 className="text-white text-start mb-1.5 text-xl! font-bold! leading-6.5! font-montserrat! px-3">
             {title}
           </h3>
           <div className="w-[93%] max-w-[152px] h-[4px] rounded-full bg-secondary-orange-bright" />

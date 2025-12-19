@@ -25,7 +25,7 @@ export const Textarea: React.FC<TextareaProps> = ({
       {label && (
         <label
           htmlFor={textareaId}
-          className="block mb-1.5 text-body-sm-mobile"
+          className="block mb-1.5 text-body-sm-mobile font-noto-sans!"
           style={{ color: "#FFFFFF" }}
         >
           {label}

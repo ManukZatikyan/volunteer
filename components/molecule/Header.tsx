@@ -2,11 +2,11 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import { Icon } from "./Icon";
-import { LanguagePopup } from "./LanguagePopup";
+import { Icon } from "../atom/Icon";
+import { LanguagePopup } from "../atom/LanguagePopup";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import { ThemeToggle } from ".";
+import { ThemeToggle } from "..";
 
 export interface HeaderProps {
   className?: string;

@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Montserrat, Noto_Sans } from "next/font/google";
+import { Geist, Geist_Mono, Montserrat, Noto_Sans_Armenian } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components";
+import { ConditionalFooter } from "@/components/ConditionalFooter";
+import { FooterThemeScript } from "../components/FooterThemeScript";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,9 +21,9 @@ const montserrat = Montserrat({
   weight: ["400", "500", "600", "700"],
 });
 
-const notoSans = Noto_Sans({
+const notoSans = Noto_Sans_Armenian({
   variable: "--font-noto-sans",
-  subsets: ["latin"],
+  subsets: ["armenian"],
   weight: ["400", "500", "600", "700"],
 });
 
@@ -40,8 +42,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} ${notoSans.variable} antialiased`}
       >
+        <FooterThemeScript />
         <Header/>
         {children}
+        <ConditionalFooter/>
       </body>
     </html>
   );
