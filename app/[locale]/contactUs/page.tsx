@@ -2,17 +2,14 @@
 
 import { useState } from "react";
 import { Button, Input, Textarea, Icon } from "@/components";
-import {
-  headerSection,
-  formFields,
-  formButton,
-  socialMediaSection,
-  contactInfo,
-  socialMediaLinks,
-  mapEmbed,
-} from "@/data/contactUs";
+import { useTranslations, useMessages } from "next-intl";
+import { socialMediaLinks, mapEmbed } from "@/data/contactUs";
 
 export default function ContactUs() {
+  const t = useTranslations("contactUs");
+  const messages = useMessages();
+  const contactUsMessages = messages.contactUs as any;
+
   const [formData, setFormData] = useState({
     email: "",
     fullName: "",
@@ -65,22 +62,22 @@ export default function ContactUs() {
       <div className="w-full max-w-7xl mx-auto">
         <div className="mb-12 text-center">
           <h1 className="hero-sm text-center mb-3">
-            <span className="text-white">{headerSection.title.line1}</span>{" "}
-            <span className="text-[#FFA62B]">{headerSection.title.line2}</span>
+            <span className="text-white">{t("headerSection.title.line1")}</span>{" "}
+            <span className="text-[#FFA62B]">{t("headerSection.title.line2")}</span>
           </h1>
           <p className="body-sm-mobile text-start font-montserrat! font-semibold!">
-            {headerSection.description}
+            {t("headerSection.description")}
           </p>
         </div>
 
         <div className="mb-16">
           <form onSubmit={handleSubmit} className="max-w-2xl mx-auto space-y-5">
             <Input
-              type={formFields.email.type}
+              type="email"
               name="email"
-              label={formFields.email.label}
-              required={formFields.email.required}
-              placeholder={formFields.email.placeholder}
+              label={t("formFields.email.label")}
+              required
+              placeholder={t("formFields.email.placeholder")}
               value={formData.email}
               onChange={handleChange}
               error={errors.email}
@@ -88,11 +85,11 @@ export default function ContactUs() {
             />
 
             <Input
-              type={formFields.fullName.type}
+              type="text"
               name="fullName"
-              label={formFields.fullName.label}
-              required={formFields.fullName.required}
-              placeholder={formFields.fullName.placeholder}
+              label={t("formFields.fullName.label")}
+              required
+              placeholder={t("formFields.fullName.placeholder")}
               value={formData.fullName}
               onChange={handleChange}
               error={errors.fullName}
@@ -100,11 +97,11 @@ export default function ContactUs() {
             />
 
             <Input
-              type={formFields.phone.type}
+              type="tel"
               name="phone"
-              label={formFields.phone.label}
-              required={formFields.phone.required}
-              placeholder={formFields.phone.placeholder}
+              label={t("formFields.phone.label")}
+              required
+              placeholder={t("formFields.phone.placeholder")}
               value={formData.phone}
               onChange={handleChange}
               error={errors.phone}
@@ -113,16 +110,16 @@ export default function ContactUs() {
 
             <Textarea
               name="message"
-              label={formFields.message.label}
-              placeholder={formFields.message.placeholder}
+              label={t("formFields.message.label")}
+              placeholder={t("formFields.message.placeholder")}
               value={formData.message}
               onChange={handleChange}
-              rows={formFields.message.rows}
+              rows={5}
               className=""
             />
             <div className="flex items-center justify-center">
               <Button variant="orange" className="px-[73px]">
-                {formButton.text}
+                {t("formButton.text")}
               </Button>
             </div>
           </form>
@@ -130,8 +127,8 @@ export default function ContactUs() {
 
         <div className="p-6">
           <h2 className="hero-sm text-center mb-6">
-            <span className="text-white">{socialMediaSection.title.line1}</span>{" "}
-            <span className="text-[#FFA62B]">{socialMediaSection.title.line2}</span>
+            <span className="text-white">{t("socialMediaSection.title.line1")}</span>{" "}
+            <span className="text-[#FFA62B]">{t("socialMediaSection.title.line2")}</span>
           </h2>
 
           <div className="flex justify-between">
@@ -143,7 +140,7 @@ export default function ContactUs() {
                   className="text-white shrink-0"
                   color="#FFFFFF"
                 />
-                <span className="body-sm-mobile font-semibold!">{contactInfo.phone}</span>
+                <span className="body-sm-mobile font-semibold!">{contactUsMessages?.contactInfo?.phone}</span>
               </div>
               <div className="flex items-center gap-4 text-white">
                 <Icon
@@ -152,7 +149,7 @@ export default function ContactUs() {
                   className="text-white shrink-0"
                   color="#FFFFFF"
                 />
-                <span className="body-sm-mobile font-semibold!">{contactInfo.email}</span>
+                <span className="body-sm-mobile font-semibold!">{contactUsMessages?.contactInfo?.email}</span>
               </div>
               <div className="flex items-center gap-4 text-white">
                 <Icon
@@ -161,7 +158,7 @@ export default function ContactUs() {
                   className="text-white shrink-0"
                   color="#FFFFFF"
                 />
-                <span className="body-sm-mobile font-semibold!">{contactInfo.location}</span>
+                <span className="body-sm-mobile font-semibold!">{contactUsMessages?.contactInfo?.location}</span>
               </div>
             </div>
 

@@ -1,24 +1,22 @@
 "use client";
 
 import { Button, ContentCard, Carousel, TestimonialCard } from "@/components";
-import {
-  description,
-  heroSection,
-  descriptionItems,
-  testimonialsSection,
-  registrationButton,
-} from "@/data/futureUp";
+import { useTranslations, useMessages } from "next-intl";
 import { futureUpTestimonials, type Testimonial } from "@/data/testimonials";
 import Image from "next/image";
 
 export default function FutureUp() {
+  const t = useTranslations("futureUp");
+  const messages = useMessages();
+  const futureUpMessages = messages.futureUp as any;
+
   return (
     <div className="flex flex-col bg-black">
       <section className="relative w-full h-[246px] sm:h-[400px] flex items-end">
         <div className="absolute inset-0">
           <Image
-            src={heroSection.imageSrc}
-            alt={heroSection.imageAlt}
+            src="/image.png"
+            alt="Future Up"
             fill
             className="object-cover"
             priority
@@ -27,19 +25,19 @@ export default function FutureUp() {
         </div>
 
         <div className="relative z-10 w-full px-6">
-          <h1 className="text-white title-sm mb-3">{heroSection.title}</h1>
+          <h1 className="text-white title-sm mb-3">{t("heroSection.title")}</h1>
           <div className="h-1.5 md:h-2 bg-secondary-orange-bright w-full rounded"></div>
         </div>
       </section>
       <div className="px-6 pt-3">
         <h2 className="text-white body-sm-mobile font-semibold! font-montserrat! mb-3">
-          {description.heading}
+          {t("description.heading")}
         </h2>
-        <p className="text-white body-xs">{description.text}</p>
+        <p className="text-white body-xs">{t("description.text")}</p>
       </div>
       <div className="container mx-auto px-6 pt-12 pb-12">
         <div className="flex flex-col gap-6">
-          {descriptionItems.map((item, index) => (
+          {(futureUpMessages?.descriptionItems || []).map((item: any, index: number) => (
             <ContentCard
               key={index}
               title={item.heading}
@@ -53,7 +51,7 @@ export default function FutureUp() {
         <section className="w-full py-12 md:py-16 flex flex-col gap-6">
           <div className="relative z-10 w-full px-6">
             <h2 className="text-white subtitle font-bold mb-3">
-              {testimonialsSection.title}
+              {t("testimonialsSection.title")}
             </h2>
             <div className="h-1.5 md:h-2 bg-secondary-orange-bright w-full rounded"></div>
           </div>
@@ -78,7 +76,7 @@ export default function FutureUp() {
         </section>
       )}
       <div className="container mx-auto px-6 pb-12 flex justify-center">
-        <Button variant="orange">{registrationButton.text}</Button>
+        <Button variant="orange">{t("registrationButton.text")}</Button>
       </div>
     </div>
   );

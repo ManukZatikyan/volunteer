@@ -21,3 +21,5 @@ export { Carousel, type CarouselProps } from "./organizm/Carousel.dynamic";
 export { CampTab, type CampTabProps, type CampTabItem } from "./molecule/CampTab";
 export { CampArmenianContent } from "./organizm/CampArmenianContent";
 export { EventCard, type EventCardProps } from "./molecule/EventCard";
+export { ProcessPhases, type ProcessPhasesProps, type ProcessPhase } from "./molecule/ProcessPhases";
+export { WorldMap, type WorldMapProps } from "./molecule/WorldMap";

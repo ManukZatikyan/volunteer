@@ -1,6 +1,6 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { usePathname } from "@/i18n/routing";
 import { Footer } from "@/components";
 
 export function ConditionalFooter() {

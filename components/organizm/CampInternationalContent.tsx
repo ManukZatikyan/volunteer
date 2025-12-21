@@ -3,26 +3,27 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import { ContentCard } from "../molecule/ContentCard";
-import {
-  descriptionItemsInternationalCamp,
-  internationalCampContent,
-} from "@/data/camp";
+import { useTranslations, useMessages } from "next-intl";
 import { Button } from "../atom/Button";
 
 export const CampInternationalContent: React.FC = ({}) => {
+  const t = useTranslations("camp.internationalCamp");
+  const messages = useMessages();
+  const campMessages = messages.camp as any;
+
   return (
     <div className={cn("w-full py-12 px-6 bg-primary-light rounded-t-3xl")}>
       {/* Benefits Section */}
       <div className="px-6">
         <h2 className="text-center title-sm mb-3">
-          {internationalCampContent.title}
+          {t("title")}
         </h2>
         <p className="text-white body-xs">
-          {internationalCampContent.description}
+          {t("description")}
         </p>
       </div>
       <div className="flex flex-col gap-6">
-        {descriptionItemsInternationalCamp.map((item, index) => (
+        {(campMessages?.internationalCamp?.descriptionItems || []).map((item: any, index: number) => (
           <ContentCard
             key={index}
             title={item.heading}
@@ -32,7 +33,7 @@ export const CampInternationalContent: React.FC = ({}) => {
         ))}
       </div>
       <div className="container mx-auto flex justify-center">
-        <Button variant="orange">{internationalCampContent.buttonText}</Button>
+        <Button variant="orange">{t("buttonText")}</Button>
       </div>
     </div>
   );

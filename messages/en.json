@@ -1,0 +1,536 @@
+{
+  "common": {
+    "logo": "ENTER UP Logo"
+  },
+  "header": {
+    "aboutUs": "About Us",
+    "ourTeam": "Our Team",
+    "programs": "Programs",
+    "contactUs": "Contact Us"
+  },
+  "home": {
+    "heroSection": {
+      "title": {
+        "line1": "Welcome",
+        "line2": "to our big",
+        "line3": "family"
+      },
+      "description": "Through Center Up's programs, young people are given the opportunity to explore different career paths, gain valuable experience, acquire new knowledge, make connections, and develop skills across various fields.",
+      "buttonText": "Discover more"
+    },
+    "upcomingEvents": {
+      "title": "Upcoming Events",
+      "events": [
+        {
+          "title": "International Universities",
+          "description": "A comprehensive program designed to guide students through the process of applying to international universities, including application preparation, visa assistance, and scholarship opportunities."
+        },
+        {
+          "title": "Summer Camp 2024",
+          "description": "Join us for an exciting summer camp experience where young people can explore new interests, make friends, and develop essential life skills in a fun and supportive environment."
+        },
+        {
+          "title": "Career Development Workshop",
+          "description": "A hands-on workshop series focused on helping participants discover their career path, develop professional skills, and build confidence for their future endeavors."
+        },
+        {
+          "title": "Leadership Program",
+          "description": "An intensive program designed to develop leadership skills, critical thinking, and teamwork abilities through interactive activities and real-world projects."
+        }
+      ]
+    },
+    "mission": {
+      "title": "Why Center Up",
+      "openingStatement": "Center Up's mission is to create a dynamic, inclusive, and wide-ranging educational environment where every child and young person has the opportunity to unlock their full potential.",
+      "beliefStatement": "We believe that early access to quality education, hands-on experiences, and personal development tools can shape confident, capable, and socially responsible individuals.",
+      "bullets": [
+        "Discover their skills and interests",
+        "Find direction in choosing their future profession",
+        "Develop essential skills such as communication, teamwork, critical thinking, and leadership",
+        "Gain new experiences, knowledge, and friendships"
+      ],
+      "concludingStatement": "At Center Up, we aim not only to educate but to inspire—empowering every young person with the knowledge, tools, confidence, and community support needed to dream boldly and act decisively. Through our mission, we are committed to shaping a generation that leads with values, vision, and purpose."
+    },
+    "programs": {
+      "title": "Our Programs",
+      "items": [
+        {
+          "title": "International Universities",
+          "description": "A comprehensive program designed to guide students through the process of applying to international universities."
+        },
+        {
+          "title": "Center Up Junior",
+          "description": "Educational programs designed specifically for younger participants to explore their interests and develop foundational skills."
+        },
+        {
+          "title": "Future Up",
+          "description": "A forward-thinking program focused on preparing young people for future careers and personal development."
+        },
+        {
+          "title": "International Camp",
+          "description": "An immersive camp experience that brings together young people from different backgrounds to learn and grow together."
+        }
+      ]
+    }
+  },
+  "aboutUs": {
+    "heroSection": {
+      "title": "About Us"
+    },
+    "description": {
+      "text": "Center Up is an educational organization that offers diverse and innovative programs for individuals aged 8 to 24. Through Center Up's programs, young people are given the opportunity to explore different career paths, gain valuable experience, acquire new knowledge, make connections, and develop skills across various fields."
+    },
+    "programsSection": {
+      "title": "Our Main Programs"
+    },
+    "partnersSection": {
+      "title": "Partners"
+    },
+    "missionVision": {
+      "title": "Mission/Vision",
+      "mission": {
+        "heading": "Mission",
+        "paragraphs": [
+          "Center Up's mission is to create a dynamic, inclusive, and wide-ranging educational environment where every child and young person has the opportunity to unlock their full potential. We believe that early access to quality education, hands-on experiences, and personal development tools can shape confident, capable, and socially responsible individuals.",
+          "At Center Up, we aim not only to educate but to inspire—empowering every young person with the knowledge, tools, confidence, and community support needed to dream boldly and act decisively. Through our mission, we are committed to shaping a generation that leads with values, vision, and purpose."
+        ],
+        "bullets": [
+          "Discover their skills and interests",
+          "Find direction in choosing their future profession",
+          "Develop essential skills such as communication, teamwork, critical thinking, and leadership",
+          "Gain new experiences, knowledge, and friendships"
+        ]
+      },
+      "vision": {
+        "heading": "Vision",
+        "paragraphs": [
+          "We strive to become one of the most impactful and trusted educational platforms in the region.",
+          "Our goal is to create an educational platform and environment where every young person can discover the fields they are passionate about, participate in relevant programs, and have the opportunity for self-development and lifelong learning. We aspire to become the organization where every young individual can unlock their full potential, develop professional and personal skills, and step-by-step reach their dreams."
+        ],
+        "bullets": [
+          "Confident and equipped with strong knowledge",
+          "Able to navigate the modern job market",
+          "Willing and capable of investing in their personal development",
+          "Building a future where values matter more than just outcomes"
+        ]
+      }
+    },
+    "stats": [
+      {
+        "label": "Partners",
+        "value": "400+"
+      },
+      {
+        "label": "Participants",
+        "value": "6000+"
+      },
+      {
+        "label": "Experience",
+        "value": "4+"
+      }
+    ],
+    "programs": [
+      {
+        "title": "International camp"
+      },
+      {
+        "title": "Membership"
+      },
+      {
+        "title": "Center Up junior"
+      },
+      {
+        "title": "international universities"
+      },
+      {
+        "title": "international universities"
+      },
+      {
+        "title": "International camp"
+      },
+      {
+        "title": "International camp"
+      },
+      {
+        "title": "international universities"
+      }
+    ]
+  },
+  "contactUs": {
+    "headerSection": {
+      "title": {
+        "line1": "Get in",
+        "line2": "Touch"
+      },
+      "description": "For collaboration or other proposals, feel free to contact us."
+    },
+    "formFields": {
+      "email": {
+        "label": "Email",
+        "placeholder": "ex. example@gmail.com"
+      },
+      "fullName": {
+        "label": "Your Full Name",
+        "placeholder": "Name Surname"
+      },
+      "phone": {
+        "label": "Phone number",
+        "placeholder": "ex.091008372"
+      },
+      "message": {
+        "label": "Message",
+        "placeholder": "Please share your oppinion"
+      }
+    },
+    "formButton": {
+      "text": "Send"
+    },
+    "socialMediaSection": {
+      "title": {
+        "line1": "Social",
+        "line2": "Media"
+      }
+    },
+    "contactInfo": {
+      "phone": "+37477800031",
+      "email": "info@centerup.org",
+      "location": "Sayat-Nova 11/2"
+    }
+  },
+  "footer": {
+    "contentLinks": [
+      {
+        "label": "About Us"
+      },
+      {
+        "label": "Our Team"
+      },
+      {
+        "label": "Programs"
+      },
+      {
+        "label": "Contact Us"
+      }
+    ],
+    "programLinks": {
+      "column1": [
+        {
+          "label": "Membership"
+        },
+        {
+          "label": "Center Up Junior"
+        },
+        {
+          "label": "International Universities"
+        },
+        {
+          "label": "Courses & Activities"
+        }
+      ],
+      "column2": [
+        {
+          "label": "Conferences"
+        },
+        {
+          "label": "Future Up"
+        },
+        {
+          "label": "Summer Camp"
+        },
+        {
+          "label": "Event Organization"
+        }
+      ]
+    },
+    "contactInfo": {
+      "phone": "+37477800031",
+      "email": "info@centerup.org",
+      "location": "Sayat-Nova 11/2"
+    },
+    "description": "Center Up is an educational organization that offers diverse and innovative programs for individuals.",
+    "copyright": "© 2021-2025 Center Up Organization. This is my home...",
+    "sectionTitles": {
+      "content": "Content",
+      "programs": "Programs",
+      "getInTouch": "Get in Touch"
+    }
+  },
+  "ourTeam": {
+    "heroSection": {
+      "title": "Our Team"
+    },
+    "description": {
+      "text": "Center Up is an educational organization that offers diverse and innovative programs for individuals aged 8 to 24. Through Center Up's programs, young people are given the opportunity to explore different career paths, gain valuable experience, acquire new knowledge, make connections, and develop skills across various fields."
+    },
+    "founder": {
+      "title": "Founder",
+      "name": "Inna Azizyan",
+      "biography": "I founded the organization when I was just 19 years old. The journey has had its challenges—many of them—but I've always had a clear goal",
+      "buttonText": "Read more"
+    },
+    "departments": {
+      "title": "Departments",
+      "items": [
+        {
+          "name": "Marketing",
+          "biography": "I founded the organization when I was just 19 years old. The journey has had its challenges—many of them—but I've always had a clear goal: to help young people reach their dreams.\nOver the past 4 years of Center UP, we've created—and continue to create—programs that truly change lives for us and our participants. In the beginning, I did everything on my own—I was both the head of every department and the only employee. Year by year, month by month, we build and share new things with you."
+        },
+        {
+          "name": "PR and Partnership",
+          "biography": "I founded the organization when I was just 19 years old. The journey has had its challenges—many of them—but I've always had a clear goal: to help young people reach their dreams.\nOver the past 4 years of Center UP, we've created—and continue to create—programs that truly change lives for us and our participants. In the beginning, I did everything on my own—I was both the head of every department and the only employee. Year by year, month by month, we build and share new things with you."
+        },
+        {
+          "name": "Event Management & Data Analytics",
+          "biography": "I founded the organization when I was just 19 years old. The journey has had its challenges—many of them—but I've always had a clear goal: to help young people reach their dreams.\nOver the past 4 years of Center UP, we've created—and continue to create—programs that truly change lives for us and our participants. In the beginning, I did everything on my own—I was both the head of every department and the only employee. Year by year, month by month, we build and share new things with you."
+        },
+        {
+          "name": "Project Management",
+          "biography": "I founded the organization when I was just 19 years old. The journey has had its challenges—many of them—but I've always had a clear goal: to help young people reach their dreams.\nOver the past 4 years of Center UP, we've created—and continue to create—programs that truly change lives for us and our participants. In the beginning, I did everything on my own—I was both the head of every department and the only employee. Year by year, month by month, we build and share new things with you."
+        }
+      ]
+    }
+  },
+  "programs": {
+    "title": "Choose Your Program",
+    "items": [
+      "Membership",
+      "Center Up Junior",
+      "International Universities",
+      "Courses & Activities",
+      "Conferences",
+      "Future Up",
+      "Camps",
+      "Event Organization"
+    ]
+  },
+  "internationalUniversities": {
+    "heroSection": {
+      "title": "International Universities"
+    },
+    "description": {
+      "text": "Center Up provides comprehensive guidance for students pursuing higher education abroad. From selecting the right university to securing a student visa, we support every step of the journey. Our personalized approach includes strategic planning, document preparation, application submission, interview training, and visa assistance. With expert support and a proven process, we help students gain admission to top universities in over 40 countries worldwide."
+    },
+    "phases": [
+      {
+        "number": 1,
+        "title": "Research & University Selection Phase",
+        "description": "During this phase, we conduct an in-depth analysis based on the student's academic goals, professional interests and financial capabilities."
+      },
+      {
+        "number": 2,
+        "title": "Document Preparation Phase",
+        "description": "Center Up provides a comprehensive checklist tailored to the specific requirements of each university and assists in the accurate preparation of all required documents, including:"
+      },
+      {
+        "number": 3,
+        "title": "Application Submission Phase",
+        "description": "In this stage, we launch the official submission of applications. Our specialists oversee the entire process, including:"
+      },
+      {
+        "number": 4,
+        "title": "Interview Preparation Phase",
+        "description": "If the student is invited to an interview, a targeted preparation process begins, which includes:"
+      },
+      {
+        "number": 5,
+        "title": "Visa Support",
+        "description": "The final stage of the process includes full assistance with student visa applications, such as:"
+      }
+    ]
+  },
+  "membership": {
+    "heroSection": {
+      "title": "Membership"
+    },
+    "description": {
+      "heading": "A 4-Month Journey of Education, Volunteering, and Personal Growth",
+      "text": "Center Up offers a structured four-month membership program designed for young individuals eager to grow academically, professionally, and personally. Throughout the program, members participate in a variety of enriching activities and events, including:"
+    },
+    "descriptionItems": [
+      {
+        "heading": "Educational Seminars",
+        "text": "<p>Members take part in seven or more practical educational seminars, each ending with a certificate of participation. These seminars aim to provide hands-on knowledge and skill development in relevant areas. Topics include:</p><ul className=\"list-disc! list-inside\"><li>How to Get Admitted to American University of Armenia</li><li>How to Apply to International Universities</li><li>How to Write a Professional CV/Resume</li><li>How to Prepare for Job/University Interviews</li><li>Unlock the World: Erasmus & FLEX</li><li>Mastering Google Tools</li><li>The final seminar topic is selected based on group interest</li></ul>"
+      },
+      {
+        "heading": "Volunteering Opportunities",
+        "text": "<p>Members are given the chance to engage in various volunteer initiatives, actively supporting the organization of events such as exhibitions, conferences, concerts, and educational programs.This is an excellent opportunity to: develop both personal and professional skills, gain hands-on experience and contribute to exciting, real-world projects and events</p>"
+      },
+      {
+        "heading": "Entertainment & Social Events",
+        "text": "<p>The program includes eight fun and interactive social events that create space for bonding, collaboration, and creativity. Highlights include:</p><ul><li>Welcome/Introduction Day</li><li>Mafia Championship</li><li>\"The Smartest\" Academic & Entertainment Game</li><li>What? Where? When?</li><li>Mystery Night</li><li>3 OFF</li><li>Sports Day</li><li>Graduation Party</li></ul><p>These events are designed not only for fun, but also to enhance teamwork, communication, and create unforgettable memories.</p>"
+      },
+      {
+        "heading": "What Participants Receive Upon Completion",
+        "text": "<p>Members who successfully complete the 4-month program receive:</p><ul><li>A Certificate of Completion from Center Up</li><li>Individual Certificates for Each Seminar Attended</li><li>Individual Certificates for Each Volunteer Participation</li><li>New knowledge and practical skills</li><li>Lifelong friendships and unforgettable experiences</li></ul>"
+      },
+      {
+        "heading": "Membership Fees",
+        "text": "<ul style=\"list-style-type: none!important;padding-left: 0!important;\"><li>Age Group: 14+ years</li><li>Program Duration: 4 months</li><li>Individual Certificates for Each Volunteer Participation</li></ul>"
+      }
+    ],
+    "registrationButton": {
+      "text": "Registration"
+    }
+  },
+  "junior": {
+    "heroSection": {
+      "title": "Center Up Junior"
+    },
+    "description": {
+      "heading": "An Interactive Career Orientation and Skills Development Program for Children",
+      "text": "Center Up Junior is a four-month educational and interactive program designed to introduce children to a variety of professions, enhance their thinking and communication skills, and help them start shaping their future career paths. The program combines theoretical learning, hands-on project work, and educational excursions, ensuring a rich and memorable experience for every participant."
+    },
+    "descriptionItems": [
+      {
+        "heading": "Program Goals",
+        "text": "<ul className=\"list-disc! list-inside\"><li>Introduce children to a wide range of professional fields</li><li>Help them discover their personal interests and abilities</li><li>Develop analytical thinking, creativity, and communication skills</li><li>Promote teamwork, initiative, and a sense of responsibility</li></ul>"
+      },
+      {
+        "heading": "Educational Content",
+        "text": "<p>Children participate in age-appropriate thematic seminars on topics such as:</p><ul className=\"list-disc! list-inside\"><li>What is a profession?</li><li>Computer knowledge</li><li>What are essential communication skills?</li></ul>"
+      },
+      {
+        "heading": "Individual Projects Based on Interests",
+        "text": "<p>Starting from the third month of the program, each child, guided by mentors, selects a professional area of interest and begins working on their own individual project. For example, if a child chooses robotics, they will complete the program having designed and created their own robot. This approach fosters: independent working skills, creative thinking and motivation through real, tangible outcomes.</p>"
+      },
+      {
+        "heading": "Professional Visits and Educational Excursions",
+        "text": "<p>The program includes visits to various organizations to help children gain real-world insight into different fields. These visits aim to introduce them to actual work environments and clarify their understanding of how different industries function.</p><p>Destinations include:</p><ul className=\"list-disc! list-inside\"><li>Central Bank of Armenia</li><li>Pink Berry Production Facility</li><li>Apache Factory</li></ul><p>These excursions allow children to interact with professionals, observe working processes, and expand their perspective on career possibilities.</p>"
+      },
+      {
+        "heading": "What Children Gain",
+        "text": "<ul className=\"list-disc! list-inside\"><li>Knowledge across multiple fields</li><li>Communication and teamwork skills</li><li>Creative and analytical thinking</li><li>A personal project built from their own ideas</li><li>New friendships and valuable memories</li><li>A certificate of participation</li></ul>"
+      },
+      {
+        "heading": "Duration and Cost",
+        "text": "<ul><li>Age Group: 8–13 years</li><li>Program Duration: 4 months</li><li>Fee: 20,000 AMD per month</li></ul>"
+      }
+    ],
+    "registrationButton": {
+      "text": "Registration"
+    }
+  },
+  "futureUp": {
+    "heroSection": {
+      "title": "Future Up"
+    },
+    "description": {
+      "heading": "Educational Guidance Support for Applicants: Smart Choices for a Confident Future",
+      "text": "Future Up is designed for high school students and applicants who are facing crucial educational decisions and want to be confident in their choices. This program is not just about delivering information—it offers practical guidance and real-life experiences to help participants understand their interests, goals, and potential, turning them into a clear and achievable academic path."
+    },
+    "descriptionItems": [
+      {
+        "heading": "\"From Applicant to Student\" Conference",
+        "text": "<p>The highlight of the Future Up program is the \"From Applicant to Student\" conference, which gathers student councils from leading Armenian and international universities, along with dozens of education-minded young people. It's a unique opportunity to meet university representatives, hear their stories, ask questions, and build your own understanding.</p>"
+      },
+      {
+        "heading": "Why Join Future Up?",
+        "text": "<p>Expert Talks – Over 20 speakers, including current students, alumni, and educational system representatives University Showcases – Student councils from local, regional, and international universities share real insights about academic life, faculties, campus environment, and opportunities Q&A Sessions – Direct opportunities to ask your questions to university representatives Non-formal Education Booths – Explore exchange programs, scholarships, and personal development opportunities presented by leading educational organizations</p>"
+      },
+      {
+        "heading": "What to expect:",
+        "text": "<ul className=\"list-disc list-inside\"><li>Gain a realistic understanding of different universities</li><li>Discover not only academic life but also the social and professional aspects of university experience</li><li>Receive practical insights to help shape your educational journey</li><li>Build valuable connections and open the door to new collaborations with universities and organizations</li></ul><p>Future Up is not only an informational platform but also a motivational experience that opens a clear path toward confident, well-founded, and purpose-driven educational decisions.</p><p>Join us to take one step closer to your successful student future.</p>"
+      }
+    ],
+    "testimonialsSection": {
+      "title": "In Participants' Words"
+    },
+    "registrationButton": {
+      "text": "Registration"
+    }
+  },
+  "camp": {
+    "tabs": [
+      {
+        "id": "armenian",
+        "label": "Armenian Camp",
+        "imageSrc": "/image.png",
+        "imageAlt": "Armenian Camp"
+      },
+      {
+        "id": "international",
+        "label": "International Camp",
+        "imageSrc": "/image.png",
+        "imageAlt": "International Camp"
+      }
+    ],
+    "armenianCamp": {
+      "title": "Winter Camp",
+      "description": "Are you interested in our 5-day Winter Camp? Let us tell you about the unforgettable and wonderful holiday that awaits you. Center Up's camp programs offer a unique opportunity for personal growth, confidence building, communication skills enhancement, and creating international friendships.",
+      "buttonText": "Registration",
+      "descriptionItems": [
+        {
+          "heading": "Program Goals",
+          "text": "<ul className=\"space-y-4 pl-6 text-white text-lg leading-relaxed\"><li>Two delicious and healthy meals per day</li><li>24/7 supervision and safety</li><li>Perfect cleanliness throughout the camp area</li><li>Experienced and caring group leaders</li><li>Fun and interactive programs - quests, games, and team challenges</li><li>Academic certificates awarded at the end of the program</li></ul>"
+        },
+        {
+          "heading": "What Awaits You in This Exclusive Camp",
+          "text": "<p>Expert Talks – Over 20 speakers, including current students, alumni, and educational system representativesUniversity Showcases – Student councils from local, regional, and international universities share real insights about academic life, faculties, campus environment, and opportunitiesQ&A Sessions – Direct opportunities to ask your questions to university representativesNon-formal Education Booths – Explore exchange programs, scholarships, and personal development opportunities presented by leading educational organizations</p>"
+        },
+        {
+          "heading": "Duration and Cost",
+          "text": "<ul style=\"list-style-type: none!important;padding-left: 0!important;\"><li>Location: Tsaghkadzor, Multi Rest House</li><li>Program Duration: December 22–27</li><li>Total fee: 69,000 AMD</li></ul>"
+        }
+      ]
+    },
+    "internationalCamp": {
+      "title": "International Camps",
+      "description": "International Winter Camp with Center Up January 3 - January 12! Get ready for the most unforgettable 10 days of winter in Europe!",
+      "buttonText": "Registration",
+      "descriptionItems": [
+        {
+          "heading": "What Awaits You?",
+          "text": "<ul style=\"list-style-type: disc; padding-left: 24px; color: #FFFFFF; font-size: 18px; line-height: 28px;\"><li>10 days full of new opportunities</li><li>English language courses to boost your skills</li><li>Exciting adventures, cultural visits &amp; lifelong friendships</li><li>International certificate – valuable for applications to American &amp; international universities!</li><li>Explore 5 amazing European countries<ul style=\"list-style-type: disc; padding-left: 24px; margin-top: 8px;\"><li style=\"margin-bottom: 8px;\">Czech Republic – Prague</li><li style=\"margin-bottom: 8px;\">Austria – Vienna</li><li style=\"margin-bottom: 8px;\">Germany – Dresden</li><li style=\"margin-bottom: 8px;\">Slovakia – Bratislava</li><li style=\"margin-bottom: 8px;\">Hungary – Budapest</li></ul></li></ul>"
+        },
+        {
+          "heading": "Competition & Big Discounts!",
+          "text": "<p>We're launching a competition where the winners can receive up to 50% OFF! The exact discount will be determined based on your application test results and interview performance. This means the more effort and creativity you put into your application, the higher your chances of receiving a bigger discount!</p>"
+        },
+        {
+          "heading": "Competition Process",
+          "text": "<ul style=\"list-style-type: disc; padding-left: 24px; color: #FFFFFF; font-size: 18px; line-height: 28px;\"><li>Application Phase – Submit your application and answer all required questions.</li><li>Test Phase – Complete the English language test.</li><li>Interview Phase – If you're invited to the interview, it means you've successfully passed the first two stages!</li></ul>"
+        },
+        {
+          "heading": "What's Included?",
+          "text": "<ul style=\"list-style-type: disc; padding-left: 24px; color: #FFFFFF; font-size: 18px; line-height: 28px;\"><li>Comfortable 10-day accommodation in Europe</li><li>Guided city tours &amp; cultural programs</li><li>Two meals per day</li><li>Books &amp; all study materials</li><li>Airport transfers (to and from the camp)</li><li>Official international certificate</li></ul>"
+        },
+        {
+          "heading": "Duration and Cost",
+          "text": "<div style=\"color: #FFFFFF; font-size: 18px; line-height: 28px;\"><div><strong>Program Duration:</strong> January 10-20</div><div><strong>Regular Price:</strong> €3200</div><div><div style=\"font-weight: bold; margin-bottom: 8px;\">Discounted Prices:</div><ul style=\"list-style-type: disc; padding-left: 24px;\"><li style=\"margin-bottom: 8px;\">25% OFF → €2400</li><li style=\"margin-bottom: 8px;\">35% OFF → €2080</li><li style=\"margin-bottom: 8px;\">50% OFF → €1600</li></ul></div></div>"
+        }
+      ]
+    }
+  },
+  "marketing": {
+    "heroSection": {
+      "title": "Marketing Department"
+    },
+    "description": {
+      "heading": "A 4-Month Journey of Education, Volunteering, and Personal Growth",
+      "text": "Center Up offers a structured four-month membership program designed for young individuals eager to grow academically, professionally, and personally. Throughout the program, members participate in a variety of enriching activities and events, including:"
+    },
+    "headOfMarketing": {
+      "title": "Head of marketing",
+      "name": "Anna Hakobyan",
+      "description": "Members take part in seven or more practical educational seminars, each ending with a certificate of participation. These seminars aim to provide hands-on knowledge and skill"
+    },
+    "members": {
+      "title": "Members",
+      "items": [
+        {
+          "name": "Madlena Nazaryan",
+          "description": "Members take part in seven or more practical educational seminars, each ending with a certificate of participation. These seminars aim to provide hands-on knowledge and skill"
+        },
+        {
+          "name": "Narek Barseghyan",
+          "description": "Members take part in seven or more practical educational seminars, each ending with a certificate of participation. These seminars aim to provide hands-on knowledge and skill"
+        },
+        {
+          "name": "Madlena Nazaryan",
+          "description": "Members take part in seven or more practical educational seminars, each ending with a certificate of participation. These seminars aim to provide hands-on knowledge and skill"
+        }
+      ]
+    }
+  }
+}
+

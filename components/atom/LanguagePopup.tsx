@@ -1,29 +1,48 @@
 "use client";
 
 import React, { useState } from "react";
+import { useLocale } from "next-intl";
+import { useRouter } from "@/i18n/routing";
+import { usePathname } from "next/navigation";
+import { locales } from "@/i18n/request";
 import { cn } from "@/lib/utils";
 
 export interface LanguagePopupProps {
   className?: string;
-  onLanguageChange?: (language: "en" | "hy") => void;
-  defaultLanguage?: "en" | "hy";
+  onLanguageChange?: () => void;
 }
 
 export const LanguagePopup: React.FC<LanguagePopupProps> = ({
   className,
   onLanguageChange,
-  defaultLanguage = "en",
 }) => {
+  const locale = useLocale() as "en" | "hy";
+  const router = useRouter();
+  const fullPathname = usePathname(); // Full pathname from Next.js (includes locale)
   const [hoveredLanguage, setHoveredLanguage] = useState<"en" | "hy" | null>(
     null
   );
-  const [selectedLanguage, setSelectedLanguage] = useState<"en" | "hy">(
-    defaultLanguage
-  );
 
-  const handleLanguageClick = (language: "en" | "hy") => {
-    setSelectedLanguage(language);
-    onLanguageChange?.(language);
+  const handleLanguageClick = (newLocale: "en" | "hy") => {
+    if (newLocale === locale) {
+      // If clicking the same language, just close the popup
+      onLanguageChange?.();
+      return;
+    }
+    
+    // Strip locale prefix from the full pathname
+    let cleanPathname = fullPathname || "/";
+    for (const loc of locales) {
+      if (cleanPathname.startsWith(`/${loc}`)) {
+        cleanPathname = cleanPathname.replace(`/${loc}`, "") || "/";
+        break;
+      }
+    }
+    
+    // Use next-intl's router to navigate with clean pathname and new locale
+    router.push(cleanPathname, { locale: newLocale });
+    // Close the popup after navigation
+    onLanguageChange?.();
   };
 
   const topSectionColor = "#1C2440";
@@ -49,11 +68,11 @@ export const LanguagePopup: React.FC<LanguagePopupProps> = ({
           )}
           style={{
             backgroundColor:
-              hoveredLanguage === "en" || selectedLanguage === "en"
+              hoveredLanguage === "en" || locale === "en"
                 ? "#F8A517"
                 : "#1C2440",
             borderBottom:
-              hoveredLanguage === "en" || selectedLanguage === "en"
+              hoveredLanguage === "en" || locale === "en"
                 ? "1px solid rgba(28, 36, 64, 0.3)"
                 : "1px solid rgba(255, 255, 255, 0.1)",
           }}
@@ -70,7 +89,7 @@ export const LanguagePopup: React.FC<LanguagePopupProps> = ({
           )}
           style={{
             backgroundColor:
-              hoveredLanguage === "hy" || selectedLanguage === "hy"
+              hoveredLanguage === "hy" || locale === "hy"
                 ? "#F8A517"
                 : "#1C2440",
           }}

@@ -1,0 +1,216 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  
+  /* Font Families */
+  --font-montserrat: var(--font-montserrat);
+  --font-noto-sans: var(--font-noto-sans);
+  
+  /* Primary Colors */
+  --color-primary-default: #050927;
+  --color-primary-light: #111947;
+  --color-primary-dark: #000418;
+  --color-primary-gray: #CACACA;
+  --color-primary-purple: #1F043E;
+  
+  /* Secondary Colors */
+  --color-secondary-orange-bright: #FFA008;
+  --color-secondary-orange-light: #FFBF48;
+  --color-secondary-orange-dark: #CB8100;
+  --color-secondary-gray: #CACACA;
+  
+  /* Background Colors */
+  --color-background-white: #FFFFFF;
+  --color-background-light-1: #F6F6F6;
+  --color-background-light-2: #E0E0E0;
+  --color-background-dark: #666666;
+  
+  /* Text Colors */
+  --color-text-dark-blue: #050927;
+  --color-text-gray-1: #666666;
+  --color-text-white: #FFFFFF;
+  --color-text-gray-2: #999999;
+  --color-text-green: #27AE60;
+  --color-text-red: #E53935;
+  --color-text-yellow: #FFD600;
+  --color-text-blue: #2F80ED;
+  
+  /* Semantic Colors */
+  --color-success: #27AE60;
+  --color-error: #E53935;
+  --color-warning: #FFD600;
+  --color-info: #2F80ED;
+  
+  /* Button Variant Colors */
+  --color-button-orange: #F29C1B;
+  --color-button-orange-light: #F9D37A;
+  --color-button-orange-dark: #8D5E1E;
+  --color-button-white: #FFFFFF;
+  --color-button-grey-light: #B8B8B8;
+  --color-button-grey-medium: #8C8C8C;
+  --color-button-grey-dark: #5B5B5B;
+  --color-button-grey-disabled: #D0D0D0;
+  --color-button-text-disabled: #808080;
+  
+  /* Typography - Desktop */
+  --text-hero: 64px;
+  --leading-hero: 72px;
+  --text-title: 48px;
+  --leading-title: 56px;
+  --text-headline: 32px;
+  --leading-headline: 40px;
+  --text-subtitle: 24px;
+  --leading-subtitle: 32px;
+  --text-body: 18px;
+  --leading-body: 28px;
+  --text-body-sm: 16px;
+  --leading-body-sm: 24px;
+  --text-label: 14px;
+  --leading-label: 20px;
+  --text-button: 20px;
+  --leading-button: 28px;
+  --text-tag: 12px;
+  --leading-tag: 16px;
+  
+  /* Typography - Mobile */
+  --text-hero-sm: 40px;
+  --leading-hero-sm: 48px;
+  --text-title-sm: 32px;
+  --leading-title-sm: 38px;
+  --text-subtitle-sm: 20px;
+  --leading-subtitle-sm: 30px;
+  --text-body-sm-mobile: 16px;
+  --leading-body-sm-mobile: 24px;
+  --text-body-xs: 14px;
+  --leading-body-xs: 20px;
+  --text-button-sm: 16px;
+  --leading-button-sm: 20px;
+  --text-tag-sm: 12px;
+  --leading-tag-sm: 16px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #050927;
+    --foreground: #ededed;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-montserrat), var(--font-noto-sans);
+}
+
+/* Desktop Typography Classes */
+.title {
+  font-family: var(--font-montserrat);
+  font-size: var(--text-title);
+  font-weight: 700;
+  line-height: var(--leading-title);
+}
+
+/* Mobile Typography Classes (from $typography-mobile) */
+.hero-sm {
+  font-family: var(--font-montserrat);
+  font-size: var(--text-hero-sm);
+  font-weight: 700;
+  line-height: var(--leading-hero-sm);
+}
+
+.title-sm {
+  font-family: var(--font-montserrat);
+  font-size: var(--text-title-sm);
+  font-weight: 700;
+  line-height: var(--leading-title-sm);
+}
+.subtitle {
+  font-family: var(--font-montserrat);
+  font-size: var(--text-subtitle);
+  font-weight: 600;
+  line-height: var(--leading-subtitle);
+}
+.subtitle-sm {
+  font-family: var(--font-montserrat);
+  font-size: var(--text-subtitle-sm);
+  font-weight: 500;
+  line-height: var(--leading-subtitle-sm);
+}
+
+.body-sm-mobile {
+  font-family: var(--font-noto-sans);
+  font-size: var(--text-body-sm-mobile);
+  font-weight: 400;
+  line-height: var(--leading-body-sm-mobile);
+}
+
+.body-xs {
+  font-family: var(--font-noto-sans);
+  font-size: var(--text-body-xs);
+  font-weight: 400;
+  line-height: var(--leading-body-xs);
+}
+
+.button-sm {
+  font-family: var(--font-montserrat);
+  font-size: var(--text-button-sm);
+  font-weight: 700;
+  line-height: var(--leading-button-sm);
+}
+
+.tag-sm {
+  font-family: var(--font-noto-sans);
+  font-size: var(--text-tag-sm);
+  font-weight: 600;
+  line-height: var(--leading-tag-sm);
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in-down {
+  animation: fadeInDown 0.5s ease-out;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+body[data-page="centerUpJunior"] footer {
+  background-color: #1F043E !important;
+}
+
+body[data-page="futureUp"] footer {
+  background-color: #000000 !important;
+}

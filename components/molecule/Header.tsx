@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
+import { useTranslations, useLocale } from "next-intl";
 import { Icon } from "../atom/Icon";
 import { LanguagePopup } from "../atom/LanguagePopup";
 import { cn } from "@/lib/utils";
@@ -12,18 +13,20 @@ export interface HeaderProps {
   className?: string;
 }
 
-const menuItems = [
-  { label: "About Us", href: "/aboutUs" },
-  { label: "Our Team", href: "/ourTeam" },
-  { label: "Programs", href: "/programs" },
-  { label: "Contact Us", href: "/contactUs" },
-];
-
 export const Header: React.FC<HeaderProps> = ({ className }) => {
+  const t = useTranslations("header");
+  const locale = useLocale();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLanguagePopupOpen, setIsLanguagePopupOpen] = useState(false);
   const languagePopupRef = useRef<HTMLDivElement>(null);
   const globeButtonRef = useRef<HTMLButtonElement>(null);
+
+  const menuItems = [
+    { label: t("aboutUs"), href: "/aboutUs" },
+    { label: t("ourTeam"), href: "/ourTeam" },
+    { label: t("programs"), href: "/programs" },
+    { label: t("contactUs"), href: "/contactUs" },
+  ];
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -92,7 +95,7 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
                   ref={languagePopupRef}
                   className="absolute top-9.5 -right-9.5 mt-2 z-50 animate-fade-in-down"
                 >
-                  <LanguagePopup />
+                  <LanguagePopup onLanguageChange={() => setIsLanguagePopupOpen(false)} />
                 </div>
               )}
             </div>

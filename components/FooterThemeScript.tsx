@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
+import { locales } from "@/i18n/request";
 
 export function FooterThemeScript() {
   const pathname = usePathname();
@@ -9,13 +10,23 @@ export function FooterThemeScript() {
   useEffect(() => {
     document.body.classList.remove("footer-purple", "footer-black");
     
-    if (pathname?.includes("/centerUpJunior")) {
+    // Remove locale prefix from pathname for checking
+    let pathWithoutLocale = pathname || "";
+    for (const locale of locales) {
+      if (pathWithoutLocale.startsWith(`/${locale}`)) {
+        pathWithoutLocale = pathWithoutLocale.replace(`/${locale}`, "") || "/";
+        break;
+      }
+    }
+    
+    if (pathWithoutLocale.includes("/centerUpJunior")) {
       document.body.classList.add("footer-purple");
-    } else if (pathname?.includes("/futureUp")) {
+    } else if (pathWithoutLocale.includes("/futureUp")) {
       document.body.classList.add("footer-black");
     }
     
-    const pageName = pathname?.split("/").filter(Boolean).pop() || "home";
+    // Get page name from pathname (with locale prefix for data attribute)
+    const pageName = pathname?.split("/").filter(Boolean).slice(1).pop() || "home";
     document.body.setAttribute("data-page", pageName);
   }, [pathname]);
 
