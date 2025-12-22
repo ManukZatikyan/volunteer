@@ -66,12 +66,13 @@ export function WorldMap({
       strokeWidth: 1,
       strokeOpacity: 1, // Remove opacity, make borders fully visible
       cursor: "pointer",
+      width: "100%",
     };
   };
 
   return (
-    <div className="relative w-full h-full flex items-center justify-center">
-      <div className="w-full h-full">
+    <div className="relative w-full flex items-center justify-center" style={{ minHeight: '400px' }}>
+      <div className="w-full worldmap-container flex justify-center items-center">
         <WorldMapComponent
           color="#050927" // Default color (will be overridden by styleFunction)
           size="responsive"

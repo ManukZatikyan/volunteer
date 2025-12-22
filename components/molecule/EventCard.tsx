@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Button } from "../atom/Button";
+import { useTranslations } from "next-intl";
 
 export interface EventCardProps {
   imageSrc: string;
@@ -20,10 +21,12 @@ export const EventCard: React.FC<EventCardProps> = ({
   imageAlt = "",
   title,
   description,
-  buttonText = "Learn more",
+  buttonText,
   className,
   onClick,
 }) => {
+  const t = useTranslations("common.buttons");
+  const defaultButtonText = buttonText || t("learnMore");
   return (
     <div
       className={cn(
@@ -54,7 +57,7 @@ export const EventCard: React.FC<EventCardProps> = ({
         </div>
         <div className="flex justify-start">
           <Button variant="orange" onClick={onClick} className="px-8! py-3!">
-            {buttonText}
+            {defaultButtonText}
           </Button>
         </div>
       </div>

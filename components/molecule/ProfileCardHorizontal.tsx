@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Button } from "../atom/Button";
+import { useTranslations } from "next-intl";
 
 export interface ProfileCardHorizontalProps {
   imageSrc: string;
@@ -20,10 +21,12 @@ export const ProfileCardHorizontal: React.FC<ProfileCardHorizontalProps> = ({
   imageAlt = "",
   name,
   biography,
-  buttonText = "Read more",
+  buttonText,
   className,
   onClick,
 }) => {
+  const t = useTranslations("common.buttons");
+  const defaultButtonText = buttonText || t("readMore");
   return (
     <div
       className={cn(
@@ -55,7 +58,7 @@ export const ProfileCardHorizontal: React.FC<ProfileCardHorizontalProps> = ({
         </div>
         <div className="flex justify-start">
           <Button variant="white" onClick={onClick} className="px-6 py-2">
-            {buttonText}
+            {defaultButtonText}
           </Button>
         </div>
       </div>

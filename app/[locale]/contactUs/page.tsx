@@ -33,17 +33,17 @@ export default function ContactUs() {
     const newErrors: Record<string, string> = {};
 
     if (!formData.email) {
-      newErrors.email = "Email is required";
+      newErrors.email = t("formErrors.emailRequired");
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = "Please enter a valid email address";
+      newErrors.email = t("formErrors.emailInvalid");
     }
 
     if (!formData.fullName) {
-      newErrors.fullName = "Full name is required";
+      newErrors.fullName = t("formErrors.fullNameRequired");
     }
 
     if (!formData.phone) {
-      newErrors.phone = "Phone number is required";
+      newErrors.phone = t("formErrors.phoneRequired");
     }
 
     setErrors(newErrors);

@@ -1,6 +1,11 @@
 {
   "common": {
-    "logo": "ENTER UP Լոգո"
+    "logo": "ENTER UP Լոգո",
+    "buttons": {
+      "discoverMore": "Իմանալ ավելին",
+      "readMore": "Կարդալ ավելին",
+      "learnMore": "Սովորել ավելին"
+    }
   },
   "header": {
     "aboutUs": "Մեր մասին",
@@ -117,42 +122,53 @@
     },
     "stats": [
       {
+        "icon": "handshake",
         "label": "Գործընկերներ",
         "value": "400+"
       },
       {
+        "icon": "peopleTeam",
         "label": "Մասնակիցներ",
         "value": "6000+"
       },
       {
+        "icon": "triangle",
         "label": "Փորձ",
         "value": "4+"
       }
     ],
     "programs": [
       {
-        "title": "Միջազգային ճամբար"
+        "title": "Միջազգային ճամբար",
+        "imageSrc": "/image.png"
       },
       {
-        "title": "Անդամակցություն"
+        "title": "Անդամակցություն",
+        "imageSrc": "/image.png"
       },
       {
-        "title": "Center Up junior"
+        "title": "Center Up junior",
+        "imageSrc": "/image.png"
       },
       {
-        "title": "միջազգային համալսարաններ"
+        "title": "միջազգային համալսարաններ",
+        "imageSrc": "/image.png"
       },
       {
-        "title": "միջազգային համալսարաններ"
+        "title": "միջազգային համալսարաններ",
+        "imageSrc": "/image.png"
       },
       {
-        "title": "Միջազգային ճամբար"
+        "title": "Միջազգային ճամբար",
+        "imageSrc": "/image.png"
       },
       {
-        "title": "Միջազգային ճամբար"
+        "title": "Միջազգային ճամբար",
+        "imageSrc": "/image.png"
       },
       {
-        "title": "միջազգային համալսարաններ"
+        "title": "միջազգային համալսարաններ",
+        "imageSrc": "/image.png"
       }
     ]
   },
@@ -185,6 +201,12 @@
     "formButton": {
       "text": "Ուղարկել"
     },
+    "formErrors": {
+      "emailRequired": "Էլփոստը պարտադիր է",
+      "emailInvalid": "Խնդրում ենք մուտքագրել վավեր էլփոստի հասցե",
+      "fullNameRequired": "Անվանումը պարտադիր է",
+      "phoneRequired": "Հեռախոսահամարը պարտադիր է"
+    },
     "socialMediaSection": {
       "title": {
         "line1": "Սոցիալական",
@@ -200,52 +222,95 @@
   "footer": {
     "contentLinks": [
       {
-        "label": "Մեր մասին"
+        "label": "Մեր մասին",
+        "href": "/aboutUs"
       },
       {
-        "label": "Մեր թիմը"
+        "label": "Մեր թիմը",
+        "href": "/ourTeam"
       },
       {
-        "label": "Ծրագրեր"
+        "label": "Ծրագրեր",
+        "href": "/programs"
       },
       {
-        "label": "Կապ մեզ հետ"
+        "label": "Կապ մեզ հետ",
+        "href": "/contactUs"
       }
     ],
     "programLinks": {
       "column1": [
         {
-          "label": "Անդամակցություն"
+          "label": "Անդամակցություն",
+          "href": "/programs/membership"
         },
         {
-          "label": "Center Up Junior"
+          "label": "Center Up Junior",
+          "href": "/programs/centerUpJunior"
         },
         {
-          "label": "Միջազգային համալսարաններ"
+          "label": "Միջազգային համալսարաններ",
+          "href": "/programs/internationalUniversities"
         },
         {
-          "label": "Դասընթացներ և գործունեություն"
+          "label": "Դասընթացներ և գործունեություն",
+          "href": "#"
         }
       ],
       "column2": [
         {
-          "label": "Համաժողովներ"
+          "label": "Համաժողովներ",
+          "href": "#"
         },
         {
-          "label": "Future Up"
+          "label": "Future Up",
+          "href": "/programs/futureUp"
         },
         {
-          "label": "Ամառային ճամբար"
+          "label": "Ամառային ճամբար",
+          "href": "/camp"
         },
         {
-          "label": "Իրադարձությունների կազմակերպում"
+          "label": "Իրադարձությունների կազմակերպում",
+          "href": "#"
         }
       ]
     },
     "contactInfo": {
       "phone": "+37477800031",
-      "email": "info@centerup.org",
+      "email": {
+        "text": "info@centerup.org",
+        "href": "mailto:info@centerup.org"
+      },
       "location": "Սայաթ-Նովա 11/2"
+    },
+    "socialMediaLinks": [
+      {
+        "name": "instagram",
+        "href": "#",
+        "ariaLabel": "Instagram"
+      },
+      {
+        "name": "facebook",
+        "href": "#",
+        "ariaLabel": "Facebook"
+      },
+      {
+        "name": "linkedin",
+        "href": "#",
+        "ariaLabel": "LinkedIn"
+      },
+      {
+        "name": "telegram",
+        "href": "#",
+        "ariaLabel": "Telegram"
+      }
+    ],
+    "logo": {
+      "src": "/svg/logoMobile.svg",
+      "alt": "ENTER UP Logo",
+      "width": 96,
+      "height": 52
     },
     "description": "Center Up-ը կրթական կազմակերպություն է, որը առաջարկում է բազմազան և նորարարական ծրագրեր անհատների համար:",
     "copyright": "© 2021-2025 Center Up Կազմակերպություն: Սա իմ տունն է...",
@@ -336,7 +401,14 @@
         "title": "Վիզայի աջակցություն",
         "description": "Գործընթացի վերջնական փուլը ներառում է լիարժեք օգնություն ուսանողական վիզայի դիմումների հետ, ինչպիսիք են:"
       }
-    ]
+    ],
+    "studentsAroundWorld": {
+      "title": "Մեր ուսանողները ամբողջ աշխարհում",
+      "description": "Մեր դիմորդները ընդունվում են աշխարհի 40-ից ավելի երկրների լավագույն համալսարաններ, ներառյալ Միացյալ Նահանգները, Կանադան, Միացյալ Թագավորությունը, Նիդերլանդները, Գերմանիան, Ավստրալիան, Ֆրանսիան և շատ ուրիշներ:"
+    },
+    "registrationButton": {
+      "text": "Գրանցում"
+    }
   },
   "membership": {
     "heroSection": {

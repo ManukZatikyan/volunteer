@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Button } from "../atom/Button";
+import { useTranslations } from "next-intl";
 
 export interface CardProps {
   title: string;
@@ -20,10 +21,12 @@ export const Card: React.FC<CardProps> = ({
   description,
   imageSrc,
   imageAlt = "",
-  buttonText = "Learn more",
+  buttonText,
   onButtonClick,
   className,
 }) => {
+  const t = useTranslations("common.buttons");
+  const defaultButtonText = buttonText || t("learnMore");
   return (
     <div
       className={cn(
@@ -53,7 +56,7 @@ export const Card: React.FC<CardProps> = ({
         </p>
         <div className="pt-2">
           <Button variant="orange" onClick={onButtonClick}>
-            {buttonText}
+            {defaultButtonText}
           </Button>
         </div>
       </div>

@@ -1,6 +1,11 @@
 {
   "common": {
-    "logo": "ENTER UP Logo"
+    "logo": "ENTER UP Logo",
+    "buttons": {
+      "discoverMore": "Discover more",
+      "readMore": "Read more",
+      "learnMore": "Learn more"
+    }
   },
   "header": {
     "aboutUs": "About Us",
@@ -117,42 +122,53 @@
     },
     "stats": [
       {
+        "icon": "handshake",
         "label": "Partners",
         "value": "400+"
       },
       {
+        "icon": "peopleTeam",
         "label": "Participants",
         "value": "6000+"
       },
       {
+        "icon": "triangle",
         "label": "Experience",
         "value": "4+"
       }
     ],
     "programs": [
       {
-        "title": "International camp"
+        "title": "International camp",
+        "imageSrc": "/image.png"
       },
       {
-        "title": "Membership"
+        "title": "Membership",
+        "imageSrc": "/image.png"
       },
       {
-        "title": "Center Up junior"
+        "title": "Center Up junior",
+        "imageSrc": "/image.png"
       },
       {
-        "title": "international universities"
+        "title": "international universities",
+        "imageSrc": "/image.png"
       },
       {
-        "title": "international universities"
+        "title": "international universities",
+        "imageSrc": "/image.png"
       },
       {
-        "title": "International camp"
+        "title": "International camp",
+        "imageSrc": "/image.png"
       },
       {
-        "title": "International camp"
+        "title": "International camp",
+        "imageSrc": "/image.png"
       },
       {
-        "title": "international universities"
+        "title": "international universities",
+        "imageSrc": "/image.png"
       }
     ]
   },
@@ -185,6 +201,12 @@
     "formButton": {
       "text": "Send"
     },
+    "formErrors": {
+      "emailRequired": "Email is required",
+      "emailInvalid": "Please enter a valid email address",
+      "fullNameRequired": "Full name is required",
+      "phoneRequired": "Phone number is required"
+    },
     "socialMediaSection": {
       "title": {
         "line1": "Social",
@@ -200,52 +222,95 @@
   "footer": {
     "contentLinks": [
       {
-        "label": "About Us"
+        "label": "About Us",
+        "href": "/aboutUs"
       },
       {
-        "label": "Our Team"
+        "label": "Our Team",
+        "href": "/ourTeam"
       },
       {
-        "label": "Programs"
+        "label": "Programs",
+        "href": "/programs"
       },
       {
-        "label": "Contact Us"
+        "label": "Contact Us",
+        "href": "/contactUs"
       }
     ],
     "programLinks": {
       "column1": [
         {
-          "label": "Membership"
+          "label": "Membership",
+          "href": "/programs/membership"
         },
         {
-          "label": "Center Up Junior"
+          "label": "Center Up Junior",
+          "href": "/programs/centerUpJunior"
         },
         {
-          "label": "International Universities"
+          "label": "International Universities",
+          "href": "/programs/internationalUniversities"
         },
         {
-          "label": "Courses & Activities"
+          "label": "Courses & Activities",
+          "href": "#"
         }
       ],
       "column2": [
         {
-          "label": "Conferences"
+          "label": "Conferences",
+          "href": "#"
         },
         {
-          "label": "Future Up"
+          "label": "Future Up",
+          "href": "/programs/futureUp"
         },
         {
-          "label": "Summer Camp"
+          "label": "Summer Camp",
+          "href": "/camp"
         },
         {
-          "label": "Event Organization"
+          "label": "Event Organization",
+          "href": "#"
         }
       ]
     },
     "contactInfo": {
       "phone": "+37477800031",
-      "email": "info@centerup.org",
+      "email": {
+        "text": "info@centerup.org",
+        "href": "mailto:info@centerup.org"
+      },
       "location": "Sayat-Nova 11/2"
+    },
+    "socialMediaLinks": [
+      {
+        "name": "instagram",
+        "href": "#",
+        "ariaLabel": "Instagram"
+      },
+      {
+        "name": "facebook",
+        "href": "#",
+        "ariaLabel": "Facebook"
+      },
+      {
+        "name": "linkedin",
+        "href": "#",
+        "ariaLabel": "LinkedIn"
+      },
+      {
+        "name": "telegram",
+        "href": "#",
+        "ariaLabel": "Telegram"
+      }
+    ],
+    "logo": {
+      "src": "/svg/logoMobile.svg",
+      "alt": "ENTER UP Logo",
+      "width": 96,
+      "height": 52
     },
     "description": "Center Up is an educational organization that offers diverse and innovative programs for individuals.",
     "copyright": "© 2021-2025 Center Up Organization. This is my home...",
@@ -336,7 +401,14 @@
         "title": "Visa Support",
         "description": "The final stage of the process includes full assistance with student visa applications, such as:"
       }
-    ]
+    ],
+    "studentsAroundWorld": {
+      "title": "Our Students Around the World",
+      "description": "Our applicants are accepted to top universities in over 40 countries around the world, including the United States, Canada, the United Kingdom, the Netherlands, Germany, Australia, France, and many more."
+    },
+    "registrationButton": {
+      "text": "Registration"
+    }
   },
   "membership": {
     "heroSection": {
