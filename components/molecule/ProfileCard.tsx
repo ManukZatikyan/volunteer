@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Button } from "../atom/Button";
+import { useTranslations } from "next-intl";
 
 export interface ProfileCardProps {
   imageSrc: string;
@@ -20,10 +21,12 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
   imageAlt = "",
   name,
   biography,
-  buttonText = "Discover more",
+  buttonText,
   className,
   onClick,
 }) => {
+  const t = useTranslations("common.buttons");
+  const defaultButtonText = buttonText || t("discoverMore");
   return (
     <div
       className={cn(
@@ -66,7 +69,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
           onClick={onClick}
           className="w-full max-w-[200px]"
         >
-          {buttonText}
+          {defaultButtonText}
         </Button>
       </div>
     </div>

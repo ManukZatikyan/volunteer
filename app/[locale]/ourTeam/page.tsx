@@ -59,7 +59,7 @@ export default function OurTeam() {
               key={index}
               name={department.name}
               biography={department.biography}
-              imageSrc={department.imageSrc}
+              imageSrc={'/department.png'}
               imageAlt={department.imageAlt}
               onClick={() => {}}
               className="w-full max-w-[400px]"

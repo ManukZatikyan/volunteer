@@ -23,7 +23,7 @@ export const CampArmenianContent: React.FC = ({}) => {
           <ContentCard
             key={index}
             title={item.heading}
-            imageSrc={item.imageSrc}
+            imageSrc={'/image.png'}
             content={item.text}
           />
         ))}

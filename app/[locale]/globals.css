@@ -214,3 +214,16 @@ body[data-page="centerUpJunior"] footer {
 body[data-page="futureUp"] footer {
   background-color: #000000 !important;
 }
+
+/* WorldMap centering */
+.worldmap-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.worldmap-container svg {
+  display: block;
+  margin: 0 auto;
+}

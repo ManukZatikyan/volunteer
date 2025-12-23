@@ -28,7 +28,7 @@ export const ProgramCard: React.FC<ProgramCardProps> = ({
       )}
       onClick={onClick}
     >
-      <div className="absolute">
+      <div className="absolute inset-0">
         <Image
           src={imageSrc}
           alt={imageAlt || title}

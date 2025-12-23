@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { ProfileCardHorizontal } from "../molecule/ProfileCardHorizontal";
 import { ProfileCard } from "../molecule/ProfileCard";
 import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
 export interface AnimatedProfileCardProps {
   imageSrc: string;
@@ -24,12 +25,15 @@ export const AnimatedProfileCard: React.FC<AnimatedProfileCardProps> = ({
   name,
   biography,
   expandedBiography,
-  buttonText = "Read more",
-  expandedButtonText = "Discover more",
+  buttonText,
+  expandedButtonText,
   className,
   onExpand,
   handleCollapse: handleCollapseProp,
 }) => {
+  const t = useTranslations("common.buttons");
+  const defaultButtonText = buttonText || t("readMore");
+  const defaultExpandedButtonText = expandedButtonText || t("discoverMore");
   const [isExpanded, setIsExpanded] = useState(false);
 
   const handleExpand = () => {
@@ -66,7 +70,7 @@ export const AnimatedProfileCard: React.FC<AnimatedProfileCardProps> = ({
           imageAlt={imageAlt}
           name={name}
           biography={biography}
-          buttonText={buttonText}
+          buttonText={defaultButtonText}
           onClick={handleExpand}
         />
       </div>
@@ -84,7 +88,7 @@ export const AnimatedProfileCard: React.FC<AnimatedProfileCardProps> = ({
           imageAlt={imageAlt}
           name={name}
           biography={displayBiography}
-          buttonText={expandedButtonText}
+          buttonText={defaultExpandedButtonText}
           onClick={handleCollapse}
         />
       </div>
