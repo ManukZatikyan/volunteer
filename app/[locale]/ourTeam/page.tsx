@@ -10,7 +10,7 @@ export default function OurTeam() {
   const ourTeamMessages = messages.ourTeam as any;
 
   return (
-    <div className="flex flex-col font-sans relative">
+    <div className="flex flex-col font-sans relative pb-12">
       <section className="relative w-full  h-[246px] sm:h-[400px]  flex items-end">
         <div className="absolute inset-0">
           <Image
@@ -20,12 +20,12 @@ export default function OurTeam() {
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-primary-default/95 via-primary-default/40 to-primary-default"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-primary-default/60 via-transparent to-white dark:from-primary-default/95 dark:via-primary-default/40 dark:to-primary-default"></div>
         </div>
 
         <div className="relative z-10 w-full px-6 ">
           <h1 className="text-white title-sm mb-3">{t("heroSection.title")}</h1>
-          <div className="h-1.5 md:h-2 bg-secondary-orange-bright w-full rounded"></div>
+          <div className="h-1 md:h-2 bg-secondary-orange-bright w-full rounded"></div>
         </div>
       </section>
       <section className="w-full flex flex-col items-center justify-center gap-6 px-6 mb-12">
@@ -39,7 +39,7 @@ export default function OurTeam() {
       <section className="w-full p-6 pb-3!">
         <div className="mb-6">
           <h2 className="text-white title-sm mb-3">{t("founder.title")}</h2>
-          <div className="h-1.5 md:h-2 bg-secondary-orange-bright w-full rounded"></div>
+          <div className="h-1 md:h-2 bg-secondary-orange-bright w-full rounded"></div>
         </div>
         <ProfileCardHorizontal
           name={ourTeamMessages?.founder?.name || ""}

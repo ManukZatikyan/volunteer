@@ -36,10 +36,10 @@ export const ProgramCard: React.FC<ProgramCardProps> = ({
           className="object-cover"
           sizes="(max-width: 768px) 50vw, 33vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-primary-default/50 via-primary-default/50 to-primary-default"></div>
+        <div className="absolute inset-0 program-card-gradient dark:from-primary-default/50 dark:via-primary-default/50 dark:to-primary-default"></div>
       </div>
       <div className="absolute inset-0 flex items-center justify-center p-4">
-        <h3 className="text-white body-sm-mobile text-center">
+        <h3 className="text-primary-default dark:text-white body-sm-mobile text-center font-semibold!">
           {title}
         </h3>
       </div>

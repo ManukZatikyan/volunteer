@@ -13,6 +13,11 @@ import Location from "./location.svg";
 import Handshake from "./handShake.svg";
 import PeopleTeam from "./peopleTeam.svg";
 import Triangle from "./triangle.svg";
+import CenterUpLogo from "./center_up_logo.svg";
+import Line1Partner1 from "./partners/line1partner1.svg";
+import Line1Partner2 from "./partners/line1partner2.svg";
+
+
 
 export const icons = {
   logo: LogoMobile,
@@ -30,4 +35,7 @@ export const icons = {
   handshake: Handshake,
   peopleTeam: PeopleTeam,
   triangle: Triangle,
+  centerUpLogo: CenterUpLogo,
+  line1Partner1: Line1Partner1,
+  line1Partner2: Line1Partner2,
 };

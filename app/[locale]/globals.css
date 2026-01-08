@@ -3,6 +3,10 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --color-primary-light: #E9ECFF; /* Default to light mode color */
+  --color-text-white: #050927; /* Default to light mode color */
+  --color-button-orange: #FFA008; /* Default to light mode color */
+  --color-button-white: #050927; /* Default to light mode color */
 }
 
 @theme inline {
@@ -17,7 +21,7 @@
   
   /* Primary Colors */
   --color-primary-default: #050927;
-  --color-primary-light: #111947;
+  --color-primary-light: var(--color-primary-light);
   --color-primary-dark: #000418;
   --color-primary-gray: #CACACA;
   --color-primary-purple: #1F043E;
@@ -37,7 +41,7 @@
   /* Text Colors */
   --color-text-dark-blue: #050927;
   --color-text-gray-1: #666666;
-  --color-text-white: #FFFFFF;
+  --color-text-white: var(--color-text-white);
   --color-text-gray-2: #999999;
   --color-text-green: #27AE60;
   --color-text-red: #E53935;
@@ -51,10 +55,10 @@
   --color-info: #2F80ED;
   
   /* Button Variant Colors */
-  --color-button-orange: #F29C1B;
+  --color-button-orange: var(--color-button-orange);
   --color-button-orange-light: #F9D37A;
   --color-button-orange-dark: #8D5E1E;
-  --color-button-white: #FFFFFF;
+  --color-button-white: var(--color-button-white);
   --color-button-grey-light: #B8B8B8;
   --color-button-grey-medium: #8C8C8C;
   --color-button-grey-dark: #5B5B5B;
@@ -98,11 +102,26 @@
   --leading-tag-sm: 16px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #050927;
-    --foreground: #ededed;
-  }
+/* Light mode - explicit white background */
+html:not(.dark) {
+  --background: #ffffff;
+  --foreground: #171717;
+  --footer-background: #ffffff;
+  --color-primary-light: #E9ECFF;
+  --color-text-white: #050927;
+  --color-button-orange: #FFA008;
+  --color-button-white: #050927;
+}
+
+/* Dark mode - when .dark class is present */
+.dark {
+  --background: #050927;
+  --foreground: #ededed;
+  --footer-background: #050927;
+  --color-primary-light: #111947;
+  --color-text-white: #FFFFFF;
+  --color-button-orange: #F29C1B;
+  --color-button-white: #FFFFFF;
 }
 
 html {
@@ -113,6 +132,169 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-montserrat), var(--font-noto-sans);
+}
+
+/* Ensure text-white uses the theme-aware color */
+html:not(.dark) .text-white {
+  color: var(--color-text-white) !important;
+}
+
+.dark .text-white {
+  color: var(--color-text-white) !important;
+}
+
+/* Hero title colors - theme aware */
+html:not(.dark) .hero-title-line1,
+html:not(.dark) .hero-title-line3 {
+  color: #050927 !important;
+}
+
+.dark .hero-title-line1,
+.dark .hero-title-line3 {
+  color: #FFA008 !important;
+}
+
+html:not(.dark) .hero-title-line2 {
+  color: #FFA008 !important;
+}
+
+.dark .hero-title-line2 {
+  color: #FFFFFF !important;
+}
+
+/* Button text colors - theme aware */
+html:not(.dark) .bg-button-orange:not(.text-text-gray-2) {
+  color: #FFFFFF !important;
+}
+
+.dark .bg-button-orange:not(.text-text-gray-2) {
+  color: #050927 !important;
+}
+
+/* Marquee section - theme aware */
+html:not(.dark) section.bg-primary-default.dark\:bg-white {
+  background-color: #050927 !important;
+}
+
+.dark section.bg-primary-default.dark\:bg-white {
+  background-color: #FFFFFF !important;
+}
+
+html:not(.dark) section .text-white.dark\:text-primary-default {
+  color: #FFFFFF !important;
+}
+
+.dark section .text-white.dark\:text-primary-default {
+  color: #050927 !important;
+}
+
+html:not(.dark) section .bg-white.dark\:bg-primary-default {
+  background-color: #FFFFFF !important;
+}
+
+.dark section .bg-white.dark\:bg-primary-default {
+  background-color: #050927 !important;
+}
+
+/* Hero gradient - theme aware */
+html:not(.dark) .bg-gradient-to-b.from-primary-default.via-white\/40.to-white {
+  background: linear-gradient(to bottom, #050927 0%, rgba(255, 255, 255, 0.4) 40%, #FFFFFF 100%) !important;
+}
+
+.dark .bg-gradient-to-b.from-primary-default.via-white\/40.to-white {
+  background: linear-gradient(to bottom, rgba(5, 9, 39, 0.95) 0%, rgba(5, 9, 39, 0.4) 50%, #050927 100%) !important;
+}
+
+/* Hero section gradients - theme aware */
+html:not(.dark) .bg-gradient-to-b.from-primary-default\/60.via-transparent.to-white {
+  background: linear-gradient(to bottom, rgba(5, 9, 39, 0.6) 0%, transparent 30%, #FFFFFF 100%) !important;
+}
+
+.dark .bg-gradient-to-b.from-primary-default.via-transparent.to-white {
+  background: linear-gradient(to bottom, rgba(5, 9, 39, 0.95) 0%, rgba(5, 9, 39, 0.4) 50%, #050927 100%) !important;
+}
+
+/* ProgramCard gradient - theme aware */
+.program-card-gradient {
+  background: linear-gradient(to bottom, #FFFFFF60 0%, #FFFFFF90 50%, #FFFFFF99 60%, #FFFFFF 100%) !important;
+}
+
+.dark .program-card-gradient {
+  background: linear-gradient(to bottom, rgba(5, 9, 39, 0.5) 0%, rgba(5, 9, 39, 0.5) 50%, #050927 100%) !important;
+}
+
+/* Partner logos - theme aware */
+html:not(.dark) .partner-logo {
+  filter: brightness(0) saturate(100%) invert(8%) sepia(15%) saturate(2000%) hue-rotate(200deg) brightness(0.95) contrast(1.1);
+}
+
+.dark .partner-logo {
+  filter: brightness(0) invert(1);
+}
+
+.dark .bg-gradient-to-b.from-primary-default\/60.via-transparent.to-white {
+  background: linear-gradient(to bottom, rgba(5, 9, 39, 0.5) 0%, rgba(5, 9, 39, 0.5) 50%, #050927 100%) !important;
+}
+
+/* ProgramCard text - theme aware */
+html:not(.dark) .text-primary-default.dark\:text-white {
+  color: #050927 !important;
+}
+
+.dark .text-primary-default.dark\:text-white {
+  color: #FFFFFF !important;
+}
+
+/* White button text - theme aware */
+html:not(.dark) .bg-button-white:not(.text-text-gray-2) {
+  color: #FFFFFF !important;
+}
+
+.dark .bg-button-white:not(.text-text-gray-2) {
+  color: #050927 !important;
+}
+
+/* ProfileCard image gradient - theme aware */
+html:not(.dark) .profile-card-image-gradient {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.6) 80%, rgba(255, 255, 255, 0.8) 100%) !important;
+}
+
+.dark .profile-card-image-gradient {
+  background: linear-gradient(to bottom, rgba(30, 37, 74, 0.2) 0%, rgba(30, 37, 74, 0.4) 50%, rgba(30, 37, 74, 0.7) 80%, #1E254A 100%) !important;
+}
+
+/* MembershipCard gradient - theme aware */
+html:not(.dark) .membership-card-gradient {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0.8) 80%, rgba(255, 255, 255, 0.9) 100%) !important;
+}
+
+.dark .membership-card-gradient {
+  background: linear-gradient(to bottom, rgba(17, 25, 71, 0.3) 0%, rgba(17, 25, 71, 0.5) 50%, rgba(17, 25, 71, 0.8) 80%, var(--color-primary-light, #111947) 100%) !important;
+}
+
+/* Burger menu dropdown - theme aware */
+html:not(.dark) .bg-white.dark\:bg-primary-default {
+  background-color: #FFFFFF !important;
+}
+
+.dark .bg-white.dark\:bg-primary-default {
+  background-color: #050927 !important;
+}
+
+html:not(.dark) .bg-white.dark\:bg-primary-default .text-primary-default.dark\:text-white {
+  color: #050927 !important;
+}
+
+.dark .bg-white.dark\:bg-primary-default .text-primary-default.dark\:text-white {
+  color: #FFFFFF !important;
+}
+
+html:not(.dark) .bg-primary-default.dark\:bg-white {
+  background-color: #050927 !important;
+}
+
+.dark .bg-primary-default.dark\:bg-white {
+  background-color: #FFFFFF !important;
 }
 
 /* Desktop Typography Classes */

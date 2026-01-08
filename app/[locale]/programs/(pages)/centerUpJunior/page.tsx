@@ -25,7 +25,7 @@ export default function CenterUpJunior() {
 
         <div className="relative z-10 w-full px-6">
           <h1 className="text-white title-sm mb-3">{t("heroSection.title")}</h1>
-          <div className="h-1.5 md:h-2 bg-secondary-orange-bright w-full rounded"></div>
+          <div className="h-1 md:h-2 bg-secondary-orange-bright w-full rounded"></div>
         </div>
       </section>
       <div className="px-6 pt-3">

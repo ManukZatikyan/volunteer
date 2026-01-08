@@ -45,11 +45,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
           priority
         />
         <div
-          className="absolute inset-0 rounded-xl"
-          style={{
-            background:
-              "linear-gradient(to bottom, rgba(30, 37, 74, 0.2) 0%, rgba(30, 37, 74, 0.4) 50%, rgba(30, 37, 74, 0.7) 80%, #1E254A 100%)",
-          }}
+          className="absolute inset-0 rounded-xl profile-card-image-gradient"
         />
         <div className="absolute inset-0 flex flex-col items-start justify-end p-3">
           <h3 className="text-white text-2xl font-bold leading-tight font-montserrat mb-0">

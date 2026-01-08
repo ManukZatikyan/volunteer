@@ -44,7 +44,7 @@ export const Button: React.FC<ButtonProps> = ({
       className={cn(
         "rounded-full px-8 py-3 button-sm cursor-pointer font-semibold",
         variantStyles[variant],
-        isDisabled ? "text-text-gray-2" : "text-primary-default",
+        isDisabled ? "text-text-gray-2" : "text-white dark:text-primary-default",
         isDisabled && "cursor-not-allowed",
         !isDisabled && "hover:opacity-90 transition-opacity",
         className

@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
+  darkMode: 'class',
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -16,7 +17,7 @@ const config: Config = {
         // Primary Colors
         primary: {
           default: "#050927",
-          light: "#111947",
+          light: "var(--color-primary-light, #111947)",
           dark: "#000418",
           gray: "#CACACA",
           purple: "#1F043E",
@@ -39,7 +40,7 @@ const config: Config = {
         text: {
           "dark-blue": "#050927",
           "gray-1": "#666666",
-          white: "#FFFFFF",
+          white: "var(--color-text-white, #FFFFFF)",
           "gray-2": "#999999",
           green: "#27AE60",
           red: "#E53935",
@@ -53,10 +54,10 @@ const config: Config = {
         info: "#2F80ED",
         // Button Variant Colors
         button: {
-          orange: "#FFA008",
+          orange: "var(--color-button-orange, #FFA008)",
           "orange-light": "#FFC966",
           "orange-dark": "#8B5800",
-          white: "#FFFFFF",
+          white: "var(--color-button-white, #FFFFFF)",
           "grey-light": "#D9D9D9",
           "grey-medium": "#CBCBCB",
           "grey-dark": "#999999",

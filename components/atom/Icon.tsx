@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { icons } from "@/public/svg/icon";
 
 export interface IconProps extends React.SVGProps<SVGSVGElement> {
-  name: keyof typeof icons;
+  name: any;
   size?: number | string;
   className?: string;
   alt?: string;

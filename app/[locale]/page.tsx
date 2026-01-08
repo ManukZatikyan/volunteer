@@ -25,15 +25,15 @@ export default function Home() {
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-primary-default/95 via-primary-default/40 to-primary-default"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-primary-default via-white/40 to-white dark:from-primary-default/95 dark:via-primary-default/40 dark:to-primary-default"></div>
         </div>
         <div className="relative z-20 text-center px-4 sm:px-6 lg:px-8 max-w-4xl">
-          <h1 className="title font-bold text-white mb-3">
-            <span className="text-secondary-orange-bright block">
+          <h1 className="title font-bold mb-3">
+            <span className="hero-title-line1 block">
               {t("heroSection.title.line1")}
             </span>
-            <span className="text-white block">{t("heroSection.title.line2")}</span>
-            <span className="text-secondary-orange-bright block">
+            <span className="hero-title-line2 block">{t("heroSection.title.line2")}</span>
+            <span className="hero-title-line3 block">
               {t("heroSection.title.line3")}
             </span>
           </h1>
@@ -48,15 +48,15 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full flex py-3 bg-white">
+      <section className="w-full flex py-3 bg-primary-default dark:bg-white">
         <Marquee direction="right" className="flex gap-6">
           {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((partner) => (
             <div
               key={partner.toString()}
               className="ml-3 flex items-center gap-3"
             >
-              <div className="w-1 h-1 bg-primary-default rounded-full"></div>
-              <div className="text-primary-default subtitle">Center Up</div>
+              <div className="w-1 h-1 bg-white dark:bg-primary-default rounded-full"></div>
+              <div className="text-white dark:text-primary-default subtitle">Center Up</div>
             </div>
           ))}
         </Marquee>

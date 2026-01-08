@@ -67,13 +67,14 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({
     <button
       onClick={toggleTheme}
       className={cn(
-        "relative flex items-center rounded-full cursor-pointer bg-primary-light",
+        "relative flex items-center rounded-full cursor-pointer",
         className
       )}
       style={{
         width: "76px",
         height: "36px",
         padding: "4px",
+        backgroundColor: "#111947",
       }}
       aria-label={`Switch to ${isDark ? "light" : "dark"} mode`}
     >

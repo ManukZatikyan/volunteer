@@ -40,11 +40,7 @@ export const MembershipCard: React.FC<MembershipCardProps> = ({
           priority
         />
         <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(to bottom, rgba(17, 25, 71, 0.3) 0%, rgba(17, 25, 71, 0.5) 50%, rgba(17, 25, 71, 0.8) 80%, #111947 100%)",
-          }}
+          className="absolute inset-0 membership-card-gradient"
         />
         <div className="absolute inset-0 flex flex-col items-center justify-end">
           <h3 className="text-white text-start mb-1.5 text-xl! font-bold! leading-6.5! font-montserrat! px-3">
