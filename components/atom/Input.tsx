@@ -24,11 +24,10 @@ export const Input: React.FC<InputProps> = ({
       {label && (
         <label
           htmlFor={inputId}
-          className="block mb-1.5 text-body-sm-mobile font-noto-sans!"
-          style={{ color: "#FFFFFF" }}
+          className="block mb-1.5 text-body-sm-mobile font-noto-sans! text-primary-default dark:text-white"
         >
           {label}
-          {required && <span className="text-error ml-0.5">*</span>}
+          {required && <span className="text-primary-default dark:text-error ml-0.5">*</span>}
         </label>
       )}
       <input
