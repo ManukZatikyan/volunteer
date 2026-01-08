@@ -81,7 +81,7 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
           </div>
           <div className="flex items-center gap-4">
              <ThemeToggle/>
-            <div className="relative h-8 w-8 flex items-center justify-center">
+            <div className="relative h-8 w-8 pl-[1px] flex items-center justify-center">
               <button
                 ref={globeButtonRef}
                 onClick={toggleLanguagePopup}
@@ -93,7 +93,7 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
               {isLanguagePopupOpen && (
                 <div
                   ref={languagePopupRef}
-                  className="absolute top-9.5 -right-9.5 mt-2 z-50 animate-fade-in-down"
+                  className="absolute top-9.5 -right-9.5 mt-3 z-50 animate-fade-in-down"
                 >
                   <LanguagePopup onLanguageChange={() => setIsLanguagePopupOpen(false)} />
                 </div>
@@ -111,28 +111,28 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
         </div>
         <div
           className={cn(
-            "overflow-hidden transition-all duration-300 ease-in-out",
+            "fixed left-0 right-0 top-[88px] md:top-[104px] overflow-hidden transition-all duration-300 ease-in-out z-[100]",
             isMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
           )}
         >
           <div
-            className="bg-primary-default"
+            className="bg-white dark:bg-primary-default shadow-lg"
           >
             {menuItems.map((item, index) => (
-              <React.Fragment key={item.href}>
+              <div key={item.href} className="w-full flex flex-col items-center">
                 {index > 0 && (
                   <div
-                    className="w-full h-px my-2 bg-white"
+                    className="w-[calc(100%-48px)] h-px bg-primary-default dark:bg-white"
                   />
                 )}
                 <Link
                   href={item.href}
                   onClick={handleMenuItemClick}
-                  className="w-full py-3 px-4 text-white font-montserrat text-center font-bold text-lg md:text-xl hover:opacity-80 transition-opacity block"
+                  className="w-full py-5 px-4 text-primary-default dark:text-white font-montserrat text-center font-bold text-lg md:text-xl hover:opacity-80 transition-opacity block"
                 >
                   {item.label}
                 </Link>
-              </React.Fragment>
+              </div>
             ))}
           </div>
         </div>

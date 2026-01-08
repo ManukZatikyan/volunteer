@@ -1,6 +1,6 @@
 "use client";
 
-import { IconProps, ProgramCard, MissionVision } from "@/components";
+import { IconProps, ProgramCard, MissionVision, Icon } from "@/components";
 import { StatsCard } from "@/components/molecule/StatsCard";
 import { useTranslations, useMessages } from "next-intl";
 import { partnerLines } from "@/data/aboutUs";
@@ -14,7 +14,7 @@ export default function AboutUs() {
 
   return (
     <div className="flex flex-col font-sans relative">
-      <section className="relative w-full  h-[246px] sm:h-[400px]  flex items-end">
+      <section className="relative w-full h-[246px] sm:h-[400px] flex items-end">
         <div className="absolute inset-0">
           <Image
             src="/image.png"
@@ -23,17 +23,17 @@ export default function AboutUs() {
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-primary-default/95 via-primary-default/40 to-primary-default"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-primary-default/60 via-transparent to-white dark:from-primary-default/95 dark:via-primary-default/40 dark:to-primary-default"></div>
         </div>
         
         <div className="relative z-10 w-full px-6 ">
           <h1 className="text-white title-sm mb-3">
             {t("heroSection.title")}
           </h1>
-          <div className="h-1.5 md:h-2 bg-secondary-orange-bright w-full rounded"></div>
+          <div className="h-1 md:h-2 bg-secondary-orange-bright w-full rounded"></div>
         </div>
       </section>
-      <section className="w-full flex flex-col items-center justify-center gap-6 px-6">
+      <section className="w-full flex flex-col items-center justify-center gap-12 px-6">
         <div className="max-w-4xl mx-auto">
           <p className="text-white body-xs mt-3">
             {t("description.text")}
@@ -52,11 +52,11 @@ export default function AboutUs() {
       </section>
       <section className="w-full py-12 px-6">
         <div className="max-w-6xl mx-auto">
-          <div className="mb-8">
-            <h2 className="text-white title-sm mb-3">
+          <div className="mb-3">
+            <h2 className="text-white subtitle mb-3">
               {t("programsSection.title")}
             </h2>
-            <div className="h-1.5 md:h-2 bg-secondary-orange-bright w-full rounded"></div>
+            <div className="h-1 md:h-2 bg-secondary-orange-bright w-full rounded"></div>
           </div>
           <div className="grid grid-cols-2 gap-x-4 gap-y-3 md:gap-y-6">
             {(aboutUsMessages?.programs || []).map((program: any, index: number) => (
@@ -75,12 +75,12 @@ export default function AboutUs() {
         mission={aboutUsMessages?.missionVision?.mission}
         vision={aboutUsMessages?.missionVision?.vision}
       />
-       <section className="w-full">
-          <div className="mb-8 px-11">
-            <h2 className="text-white title-sm mb-3">
+       <section className="w-full p-6">
+          <div className="mb-8">
+            <h2 className="text-white subtitle mb-3">
               {t("partnersSection.title")}
             </h2>
-            <div className="h-1.5 md:h-2 bg-secondary-orange-bright w-full rounded"></div>
+            <div className="h-1 md:h-2 bg-secondary-orange-bright w-full rounded"></div>
           </div>
             <div className="flex flex-col gap-10.5 mb-12">
                 {partnerLines.map(({ partners, direction }, index) => (
@@ -92,7 +92,7 @@ export default function AboutUs() {
                                     alt={partner.name}
                                     width={120}
                                     height={36}
-                                    className="h-9 w-auto object-contain"
+                                    className="h-9 w-auto object-contain partner-logo"
                                 />
                             </div>
                         ))}

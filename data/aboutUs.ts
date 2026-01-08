@@ -101,11 +101,11 @@ export const programs = [
 
 export const partnersLine1 = [
     {
-        name: "Partner 1",
+        name: "line1partner1",
         image: "/svg/partners/line1partner1.svg",
     },
     {
-        name: "Partner 2",
+        name: "line1partner2",
         image: "/svg/partners/line1partner2.svg",
     },
     {

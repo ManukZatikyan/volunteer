@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Icon } from "..";
 import { useMessages } from "next-intl";
@@ -18,10 +17,13 @@ export const Footer: React.FC<FooterProps> = ({ className }) => {
   return (
     <footer
       className={cn(
-        "w-full text-white border-t border-white bg-primary-default",
+        "w-full text-white border-t border-text-white",
         "flex flex-col gap-6",
         className
       )}
+      style={{
+        backgroundColor: "var(--footer-background, var(--background))",
+      }}
     >
       <div className="flex gap-6 pt-6 px-9">
         <div className="flex flex-col gap-3">
@@ -107,7 +109,7 @@ export const Footer: React.FC<FooterProps> = ({ className }) => {
           <h3 className="font-montserrat font-semibold text-base leading-6">
             {footer?.sectionTitles?.getInTouch}
           </h3>
-          <div className="flex flex-col gap-3 font-noto-sans font-normal text-base leading-6">
+          <div className="flex flex-col gap-1.5 font-noto-sans font-normal text-base leading-6">
             <div className="flex items-center gap-3">
               <Icon name="phone" size={24} className="text-white" />
               <span>{footer?.contactInfo?.phone}</span>
@@ -145,18 +147,12 @@ export const Footer: React.FC<FooterProps> = ({ className }) => {
         </div>
       </div>
       <div className="px-9 w-full">
-        <div className="w-full h-px bg-white" />
+        <div className="w-full h-px bg-text-white" />
       </div>
 
       <div className="flex flex-col items-center gap-4 px-[18px]">
         <div className="flex flex-col items-center">
-          <Image
-            src={footer?.logo?.src || "/svg/logoMobile.svg"}
-            alt={footer?.logo?.alt || "ENTER UP Logo"}
-            width={footer?.logo?.width || 96}
-            height={footer?.logo?.height || 52}
-            className="mb-2"
-          />
+        <Icon name="centerUpLogo" size={118} className="text-white" />
         </div>
 
         <p className="text-center font-noto-sans text-sm max-w-md leading-5">
