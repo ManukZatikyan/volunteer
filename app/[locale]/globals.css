@@ -271,6 +271,32 @@ html:not(.dark) .membership-card-gradient {
   background: linear-gradient(to bottom, rgba(17, 25, 71, 0.3) 0%, rgba(17, 25, 71, 0.5) 50%, rgba(17, 25, 71, 0.8) 80%, var(--color-primary-light, #111947) 100%) !important;
 }
 
+/* Contact Us page - theme aware */
+html:not(.dark) .contact-us-page {
+  background-color: #FFFFFF !important;
+}
+
+.dark .contact-us-page {
+  background-color: #050927 !important;
+}
+
+/* Input and Textarea labels - theme aware */
+html:not(.dark) label.text-primary-default.dark\:text-white {
+  color: #050927 !important;
+}
+
+.dark label.text-primary-default.dark\:text-white {
+  color: #FFFFFF !important;
+}
+
+html:not(.dark) label .text-primary-default.dark\:text-error {
+  color: #050927 !important;
+}
+
+.dark label .text-primary-default.dark\:text-error {
+  color: #E53935 !important;
+}
+
 /* Burger menu dropdown - theme aware */
 html:not(.dark) .bg-white.dark\:bg-primary-default {
   background-color: #FFFFFF !important;
@@ -409,6 +435,51 @@ body[data-page="centerUpJunior"] footer {
 
 body[data-page="futureUp"] footer {
   background-color: #000000 !important;
+}
+
+/* Force dark mode for centerUpJunior and futureUp pages */
+body[data-page="centerUpJunior"] *,
+body[data-page="futureUp"] * {
+  --color-text-white: #FFFFFF !important;
+  --color-primary-light: #111947 !important;
+  --color-button-orange: #F29C1B !important;
+  --color-button-white: #FFFFFF !important;
+}
+
+body[data-page="centerUpJunior"] .text-white,
+body[data-page="futureUp"] .text-white,
+body[data-page="centerUpJunior"] .text-primary-default.dark\:text-white,
+body[data-page="futureUp"] .text-primary-default.dark\:text-white {
+  color: #FFFFFF !important;
+}
+
+body[data-page="centerUpJunior"] .bg-primary-light,
+body[data-page="futureUp"] .bg-primary-light {
+  background-color: #111947 !important;
+}
+
+body[data-page="centerUpJunior"] .bg-button-orange,
+body[data-page="futureUp"] .bg-button-orange {
+  background-color: #F29C1B !important;
+}
+
+body[data-page="centerUpJunior"] .bg-button-white,
+body[data-page="futureUp"] .bg-button-white {
+  background-color: #FFFFFF !important;
+}
+
+body[data-page="centerUpJunior"] .bg-button-white:not(.text-text-gray-2),
+body[data-page="futureUp"] .bg-button-white:not(.text-text-gray-2) {
+  color: #050927 !important;
+}
+
+/* International Universities WorldMap section - theme aware */
+html:not(.dark) .bg-white.dark\:bg-primary-default {
+  background-color: #FFFFFF !important;
+}
+
+.dark .bg-white.dark\:bg-primary-default {
+  background-color: #050927 !important;
 }
 
 /* WorldMap centering */

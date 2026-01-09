@@ -44,13 +44,13 @@ export default function InternationalUniversities() {
       </div>
       <ProcessPhases phases={phases || []} />
 
-      <div className="w-full px-6 pb-8 bg-primary-default">
+      <div className="w-full px-6 pb-8 bg-white dark:bg-primary-default">
         <div className="relative z-10 w-full">
-          <h1 className="text-white title-sm mb-3">{t("studentsAroundWorld.title")}</h1>
+          <h1 className="text-primary-default dark:text-white title-sm mb-3">{t("studentsAroundWorld.title")}</h1>
           <div className="h-1 md:h-2 bg-secondary-orange-bright w-full rounded"></div>
         </div>
         <div className="pt-3">
-        <p className="text-white body-sm-mobile">{t("studentsAroundWorld.description")}</p>
+        <p className="text-primary-default dark:text-white body-sm-mobile">{t("studentsAroundWorld.description")}</p>
       </div>
         <WorldMap highlightedCountries={highlightedCountries || []} />
       </div>
