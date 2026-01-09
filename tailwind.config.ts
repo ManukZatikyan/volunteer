@@ -13,6 +13,9 @@ const config: Config = {
         montserrat: ["var(--font-montserrat)", "sans-serif"],
         "noto-sans": ["var(--font-noto-sans)", "sans-serif"],
       },
+      fontSize: {
+        hero: ["var(--text-hero)", { lineHeight: "var(--leading-hero)" }],
+      },
       colors: {
         // Primary Colors
         primary: {

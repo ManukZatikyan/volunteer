@@ -143,21 +143,20 @@ html:not(.dark) .text-white {
   color: var(--color-text-white) !important;
 }
 
-/* Hero title colors - theme aware */
-html:not(.dark) .hero-title-line1,
-html:not(.dark) .hero-title-line3 {
-  color: #050927 !important;
+section.relative .text-white,
+section[class*="relative"] .text-white {
+  color: #FFFFFF !important;
 }
 
+/* Hero title colors - theme aware */
+html:not(.dark) .hero-title-line1,
+html:not(.dark) .hero-title-line3,
 .dark .hero-title-line1,
 .dark .hero-title-line3 {
   color: #FFA008 !important;
 }
 
-html:not(.dark) .hero-title-line2 {
-  color: #FFA008 !important;
-}
-
+html:not(.dark) .hero-title-line2,
 .dark .hero-title-line2 {
   color: #FFFFFF !important;
 }
@@ -329,6 +328,21 @@ html:not(.dark) .bg-primary-default.dark\:bg-white {
   font-size: var(--text-title);
   font-weight: 700;
   line-height: var(--leading-title);
+}
+.hero {
+  font-family: var(--font-montserrat);
+  font-size: var(--text-hero);
+  font-weight: 700;
+  line-height: var(--leading-hero);
+}
+
+@media (min-width: 1280px) {
+  .xl\:hero {
+    font-family: var(--font-montserrat);
+    font-size: var(--text-hero);
+    font-weight: 700;
+    line-height: var(--leading-hero);
+  }
 }
 
 /* Mobile Typography Classes (from $typography-mobile) */

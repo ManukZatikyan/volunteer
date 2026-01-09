@@ -3,7 +3,7 @@ import { MarketingProfileCard } from "@/components";
 import { useTranslations, useMessages } from "next-intl";
 import Image from "next/image";
 
-export default function Marketing() {
+export default function cursesAndActivities() {
   const t = useTranslations("marketing");
   const messages = useMessages();
   const marketingMessages = messages.marketing as any;

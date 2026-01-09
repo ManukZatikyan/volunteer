@@ -326,17 +326,42 @@ export const Carousel = <T = any,>({
     };
   }, [isDragging, dragStart, dragOffset, infiniteTestimonials.length]);
 
-  // Calculate transform with drag offset
   const getTransform = () => {
-    const baseTransform = -currentIndex * slideWidth;
-    if (!isDragging || !containerRef.current || dragOffset === 0) {
-      return baseTransform;
+    if (!containerRef.current) {
+      return '0%';
     }
-    const dragPercent = (dragOffset / containerRef.current.clientWidth) * slideWidth;
+    
+    const containerWidth = containerRef.current.clientWidth;
+    
+    if (containerWidth === 0) {
+      return '0%';
+    }
+    
+    // Calculate gap size: 24px on desktop, 8px on mobile
+    const gapSizePx = containerWidth >= 768 ? 24 : 8;
+    const gapCount = slidesToShow > 1 ? slidesToShow - 1 : 0;
+    
+    // Calculate actual slide width accounting for gaps
+    const slideWidthPx = (containerWidth - gapCount * gapSizePx) / slidesToShow;
+    
+    // Transform: move by (slideWidth + gap) for each slide moved
+    const baseTransformPx = -currentIndex * (slideWidthPx + gapSizePx);
+    
+    const baseTransformPercent = (baseTransformPx / containerWidth) * 100;
+    
+    if (!isDragging || dragOffset === 0) {
+      return `${baseTransformPercent}%`;
+    }
+    
+    // Account for drag offset
+    // Drag should be proportional to the slide width + gap
+    const slideWidthWithGap = slideWidthPx + gapSizePx;
+    const dragRatio = dragOffset / slideWidthWithGap;
+    const dragPercent = dragRatio * ((slideWidthWithGap / containerWidth) * 100);
+    
     // Drag right (positive) = visually move right (less negative) = show previous slide
     // Drag left (negative) = visually move left (more negative) = show next slide
-    // So we add the dragPercent to make it move in the direction of the drag
-    return baseTransform + dragPercent;
+    return `${baseTransformPercent + dragPercent}%`;
   };
 
   // Get the real index for dots (subtract 1 because of duplicate at beginning)
@@ -353,7 +378,7 @@ export const Carousel = <T = any,>({
   return (
     <div className={cn("flex flex-col items-center gap-6 md:gap-8 w-full", className)}>
       {/* Carousel Container */}
-      <div className="relative w-full max-w-7xl">
+      <div className="relative w-full">
         {/* Navigation Arrows */}
         {showNavigationArrows && infiniteTestimonials.length > 1 && (
           <>
@@ -429,24 +454,42 @@ export const Carousel = <T = any,>({
             ref={slidesContainerRef}
             className="flex"
             style={{
-              transform: `translateX(${getTransform()}%)`,
+              gap: containerRef.current && containerRef.current.clientWidth >= 768 ? '24px' : '8px',
+              transform: `translateX(${getTransform()})`,
               transition: isDragging ? 'none' : 'transform 0.5s ease-in-out',
             }}
           >
-            {infiniteTestimonials.map((testimonial, index) => (
-              <div
-                key={`carousel-item-${index}`}
-                className="shrink-0 select-none"
-                style={{ 
-                  userSelect: 'none',
-                  width: `${slideWidth}%`,
-                  paddingLeft: '0.5rem',
-                  paddingRight: '0.5rem',
-                }}
-              >
-                {renderItem(testimonial, index)}
-              </div>
-            ))}
+            {infiniteTestimonials.map((testimonial, index) => {
+              // Calculate slide width accounting for gap
+              // For n slides with gap g, each slide width = (100% - (n-1)*g) / n
+              const containerWidth = containerRef.current?.clientWidth || 0;
+              const gapSizePx = containerWidth >= 768 ? 24 : 8;
+              const gapCount = slidesToShow > 1 ? slidesToShow - 1 : 0;
+              
+              // Calculate actual slide width in percentage
+              // Formula: (containerWidth - gapCount * gapSize) / slidesToShow
+              const slideWidthPx = containerWidth > 0 
+                ? (containerWidth - gapCount * gapSizePx) / slidesToShow 
+                : containerWidth / slidesToShow;
+              const slideWidthPercent = containerWidth > 0 
+                ? (slideWidthPx / containerWidth) * 100 
+                : slideWidth;
+              
+              return (
+                <div
+                  key={`carousel-item-${index}`}
+                  className="shrink-0 select-none"
+                  style={{ 
+                    userSelect: 'none',
+                    width: `${slideWidthPercent}%`,
+                    minWidth: 0,
+                    flexShrink: 0,
+                  }}
+                >
+                  {renderItem(testimonial, index)}
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

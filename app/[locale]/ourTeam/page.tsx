@@ -11,7 +11,7 @@ export default function OurTeam() {
 
   return (
     <div className="flex flex-col font-sans relative pb-12">
-      <section className="relative w-full  h-[246px] sm:h-[400px]  flex items-end">
+      <section className="relative w-full h-[246px] sm:h-[400px] flex items-end">
         <div className="absolute inset-0">
           <Image
             src="/image.png"
@@ -23,23 +23,27 @@ export default function OurTeam() {
           <div className="absolute inset-0 bg-gradient-to-b from-primary-default/60 via-transparent to-white dark:from-primary-default/95 dark:via-primary-default/40 dark:to-primary-default"></div>
         </div>
 
-        <div className="relative z-10 w-full px-6 ">
-          <h1 className="text-white title-sm mb-3">{t("heroSection.title")}</h1>
-          <div className="h-1 md:h-2 bg-secondary-orange-bright w-full rounded"></div>
+        <div className="relative z-10 w-full px-6">
+          <h1 className="text-white title-sm mb-3 md:text-center md:text-hero! md:text-secondary-orange-bright! md:mb-12!">
+            {t("heroSection.title")}
+          </h1>
+          <div className="h-1 md:h-1.5 bg-secondary-orange-bright w-full rounded md:hidden"></div>
         </div>
       </section>
-      <section className="w-full flex flex-col items-center justify-center gap-6 px-6 mb-12">
-        <div className="max-w-4xl mx-auto">
-          <p className="text-white body-xs mt-3">
+      <section className="w-full flex flex-col items-center justify-center gap-12 px-6 md:px-10 xl:px-30">
+        <div className="">
+          <p className="text-white body-xs mt-3 md:text-subtitle! md:leading-subtitle!">
             {t("description.text")}
           </p>
         </div>
-        </section>
-      
-      <section className="w-full p-6 pb-3!">
-        <div className="mb-6">
-          <h2 className="text-white title-sm mb-3">{t("founder.title")}</h2>
-          <div className="h-1 md:h-2 bg-secondary-orange-bright w-full rounded"></div>
+      </section>
+
+      <section className="w-full p-6 pb-3! md:px-10 xl:px-30 xl:pb-19!">
+        <div className="mb-3 xl:mb-16!">
+          <h2 className="text-white subtitle mb-3 md:text-headline! md:leading-headline! xl:text-title! xl:leading-title! xl:mb-6! xl:font-bold!">
+            {t("founder.title")}
+          </h2>
+          <div className="h-1 md:h-1.5 bg-secondary-orange-bright w-full rounded" />
         </div>
         <ProfileCardHorizontal
           name={ourTeamMessages?.founder?.name || ""}
@@ -48,23 +52,30 @@ export default function OurTeam() {
           imageAlt={ourTeamMessages?.founder?.imageAlt || "Founder"}
           buttonText={ourTeamMessages?.founder?.buttonText || ""}
           onClick={() => {}}
-          className="w-full max-w-[400px] mb-12"
+          className="mb-12"
         />
         <div>
-          <h2 className="text-white title-sm mb-6">{t("departments.title")}</h2>
+          <div className="mb-3 xl:mb-6!">
+            <h2 className="text-white subtitle mb-3 md:text-headline! md:leading-headline! xl:text-title! xl:leading-title! xl:mb-6! xl:font-bold!">
+              {t("departments.title")}
+            </h2>
+            <div className="h-1 md:h-1.5 bg-secondary-orange-bright w-full rounded" />
+          </div>
         </div>
-        <div className="flex flex-col gap-6">
-          {(ourTeamMessages?.departments?.items || []).map((department: any, index: number) => (
-            <ProfileCard
-              key={index}
-              name={department.name}
-              biography={department.biography}
-              imageSrc={'/department.png'}
-              imageAlt={department.imageAlt}
-              onClick={() => {}}
-              className="w-full max-w-[400px]"
-            />
-          ))}
+        <div className="flex flex-col items-center md:grid md:grid-cols-2 md:place-items-center xl:flex xl:flex-row xl:justify-center gap-6">
+          {(ourTeamMessages?.departments?.items || []).map(
+            (department: any, index: number) => (
+              <ProfileCard
+                key={index}
+                name={department.name}
+                biography={department.biography}
+                imageSrc={"/department.png"}
+                imageAlt={department.imageAlt}
+                onClick={() => {}}
+                className="w-full max-w-[400px]"
+              />
+            )
+          )}
         </div>
       </section>
     </div>
