@@ -4,11 +4,29 @@ import { Button, ContentCard, Carousel, TestimonialCard } from "@/components";
 import { useTranslations, useMessages } from "next-intl";
 import { futureUpTestimonials, type Testimonial } from "@/data/testimonials";
 import Image from "next/image";
+import { useState, useEffect } from "react";
 
 export default function FutureUp() {
   const t = useTranslations("futureUp");
   const messages = useMessages();
   const futureUpMessages = messages.futureUp as any;
+  const [slidesToShow, setSlidesToShow] = useState(1);
+
+  useEffect(() => {
+    const handleResize = () => {
+      // xl breakpoint in Tailwind is 1280px
+      setSlidesToShow(window.innerWidth >= 1280 ? 2 : 1);
+    };
+
+    // Set initial value
+    handleResize();
+
+    // Add event listener
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <div className="flex flex-col bg-black">
@@ -23,19 +41,22 @@ export default function FutureUp() {
           />
           <div className="absolute inset-0 bg-gradient-to-b from-primary-default/95 via-black/40 to-black"></div>
         </div>
-
         <div className="relative z-10 w-full px-6">
-          <h1 className="text-white title-sm mb-3">{t("heroSection.title")}</h1>
-          <div className="h-1 md:h-2 bg-secondary-orange-bright w-full rounded"></div>
+          <h1 className="text-white title-sm mb-3 md:text-center md:text-hero! md:text-secondary-orange-bright! md:mb-21!">
+            {t("heroSection.title")}
+          </h1>
+          <div className="h-1 md:h-1.5 bg-secondary-orange-bright w-full rounded md:hidden"></div>
         </div>
       </section>
-      <div className="px-6 pt-3">
-        <h2 className="text-white body-sm-mobile font-semibold! font-montserrat! mb-3">
+      <div className="px-6 pt-3 md:px-10 xl:px-30">
+        <h2 className="text-white body-sm-mobile font-semibold! font-montserrat! mb-3 md:text-headline! md:leading-headline! md:font-bold!">
           {t("description.heading")}
         </h2>
-        <p className="text-white body-xs">{t("description.text")}</p>
+        <p className="text-white body-xs md:text-body! md:leading-body!">
+          {t("description.text")}
+        </p>
       </div>
-      <div className="container mx-auto px-6 pt-12 pb-12">
+      <div className="md:px-4 xl:px-30 px-6 pt-12 pb-12">
         <div className="flex flex-col gap-6">
           {(futureUpMessages?.descriptionItems || []).map((item: any, index: number) => (
             <ContentCard
@@ -48,17 +69,18 @@ export default function FutureUp() {
         </div>
       </div>
       {futureUpTestimonials.length > 0 && (
-        <section className="w-full py-12 md:py-16 flex flex-col gap-6">
-          <div className="relative z-10 w-full px-6">
-            <h2 className="text-white subtitle font-bold mb-3">
-              {t("testimonialsSection.title")}
-            </h2>
-            <div className="h-1 md:h-2 bg-secondary-orange-bright w-full rounded"></div>
-          </div>
-          <div className="container mx-auto px-6">
+        <section className="md:px-4 xl:px-30 px-6 py-12 md:py-16 flex flex-col gap-6">
+          <div className="mb-3 xl:mb-16!">
+          <h2 className="text-white subtitle mb-3 md:text-headline! md:leading-headline! xl:text-title! xl:leading-title! xl:mb-6! xl:font-bold!">
+          {t("testimonialsSection.title")}
+          </h2>
+          <div className="h-1 md:h-1.5 bg-secondary-orange-bright w-full rounded" />
+        </div>
+          <div>
             <Carousel
               testimonials={futureUpTestimonials}
               autoPlay={false}
+              slidesToShow={slidesToShow}
               renderItem={(testimonial) => {
                 const item = testimonial as Testimonial;
                 return (

@@ -378,7 +378,7 @@ export const Carousel = <T = any,>({
   return (
     <div className={cn("flex flex-col items-center gap-6 md:gap-8 w-full", className)}>
       {/* Carousel Container */}
-      <div className="relative w-full max-w-7xl">
+      <div className="relative w-full">
         {/* Navigation Arrows */}
         {showNavigationArrows && infiniteTestimonials.length > 1 && (
           <>

@@ -23,7 +23,7 @@ export default function OurTeam() {
           <div className="absolute inset-0 bg-gradient-to-b from-primary-default/60 via-transparent to-white dark:from-primary-default/95 dark:via-primary-default/40 dark:to-primary-default"></div>
         </div>
 
-        <div className="relative z-10 w-full px-6 ">
+        <div className="relative z-10 w-full px-6">
           <h1 className="text-white title-sm mb-3 md:text-center md:text-hero! md:text-secondary-orange-bright! md:mb-12!">
             {t("heroSection.title")}
           </h1>

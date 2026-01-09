@@ -24,12 +24,12 @@ export const TestimonialCard: React.FC<TestimonialCardProps> = ({
   return (
     <div
       className={cn(
-        "bg-white rounded-3xl shadow-lg p-6 md:p-8 flex  md:flex-row gap-6 md:gap-8",
+        "bg-white rounded-3xl shadow-lg p-6 flex md:flex-row gap-6 md:gap-8",
         className
       )}
     >
-      <div className="flex flex-col items-center md:items-start shrink-0 md:w-1/3">
-        <div className="relative w-22 h-22 md:w-40 md:h-40 rounded-full overflow-hidden mb-4 shrink-0">
+      <div className="flex flex-col items-center md:items-start shrink-0">
+        <div className="relative w-22 h-22 rounded-full overflow-hidden mb-4 shrink-0">
           <Image
             src={imageSrc}
             alt={imageAlt || name}
@@ -38,7 +38,7 @@ export const TestimonialCard: React.FC<TestimonialCardProps> = ({
             sizes="(max-width: 768px) 86px, 160px"
           />
         </div>
-        <p className="text-black body-sm-mobile md:text-base font-noto-sans text-center md:text-left w-22 h-22 md:w-40 md:h-40">
+        <p className="text-black body-sm-mobile md:text-base font-noto-sans text-center md:text-left w-22">
           {role}
         </p>
       </div>

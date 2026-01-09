@@ -588,22 +588,70 @@
     "headOfMarketing": {
       "title": "Head of marketing",
       "name": "Anna Hakobyan",
-      "description": "Members take part in seven or more practical educational seminars, each ending with a certificate of participation. These seminars aim to provide hands-on knowledge and skill"
+      "description": "Members take part in seven or more practical educational seminars, each ending with a certificate of participation. These seminars aim to provide hands-on knowledge and skill",
+      "socialLinks": [
+        {
+          "name": "instagram",
+          "href": "https://instagram.com/annahakobyan",
+          "ariaLabel": "Anna Hakobyan Instagram"
+        },
+        {
+          "name": "linkedin",
+          "href": "https://linkedin.com/in/annahakobyan",
+          "ariaLabel": "Anna Hakobyan LinkedIn"
+        }
+      ]
     },
     "members": {
       "title": "Members",
       "items": [
         {
           "name": "Madlena Nazaryan",
-          "description": "Members take part in seven or more practical educational seminars, each ending with a certificate of participation. These seminars aim to provide hands-on knowledge and skill"
+          "description": "Members take part in seven or more practical educational seminars, each ending with a certificate of participation. These seminars aim to provide hands-on knowledge and skill",
+          "socialLinks": [
+            {
+              "name": "instagram",
+              "href": "https://instagram.com/madlenanazaryan",
+              "ariaLabel": "Madlena Nazaryan Instagram"
+            },
+            {
+              "name": "linkedin",
+              "href": "https://linkedin.com/in/madlenanazaryan",
+              "ariaLabel": "Madlena Nazaryan LinkedIn"
+            }
+          ]
         },
         {
           "name": "Narek Barseghyan",
-          "description": "Members take part in seven or more practical educational seminars, each ending with a certificate of participation. These seminars aim to provide hands-on knowledge and skill"
+          "description": "Members take part in seven or more practical educational seminars, each ending with a certificate of participation. These seminars aim to provide hands-on knowledge and skill",
+          "socialLinks": [
+            {
+              "name": "instagram",
+              "href": "https://instagram.com/narekbarseghyan",
+              "ariaLabel": "Narek Barseghyan Instagram"
+            },
+            {
+              "name": "linkedin",
+              "href": "https://linkedin.com/in/narekbarseghyan",
+              "ariaLabel": "Narek Barseghyan LinkedIn"
+            }
+          ]
         },
         {
           "name": "Madlena Nazaryan",
-          "description": "Members take part in seven or more practical educational seminars, each ending with a certificate of participation. These seminars aim to provide hands-on knowledge and skill"
+          "description": "Members take part in seven or more practical educational seminars, each ending with a certificate of participation. These seminars aim to provide hands-on knowledge and skill",
+          "socialLinks": [
+            {
+              "name": "instagram",
+              "href": "https://instagram.com/madlenanazaryan",
+              "ariaLabel": "Madlena Nazaryan Instagram"
+            },
+            {
+              "name": "linkedin",
+              "href": "https://linkedin.com/in/madlenanazaryan",
+              "ariaLabel": "Madlena Nazaryan LinkedIn"
+            }
+          ]
         }
       ]
     }
