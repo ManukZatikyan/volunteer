@@ -30,7 +30,7 @@ export const EventCard: React.FC<EventCardProps> = ({
   return (
     <div
       className={cn(
-        "relative flex flex-row gap-4 rounded-3xl w-full max-w-[400px] p-5",
+        "relative flex flex-row gap-4 rounded-3xl w-full p-5",
         "shadow-lg overflow-hidden",
         "bg-primary-light",
         className

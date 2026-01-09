@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "@/i18n/routing";
 import { useTranslations, useLocale } from "next-intl";
+import { usePathname } from "next/navigation";
 import { Icon } from "../atom/Icon";
 import { LanguagePopup } from "../atom/LanguagePopup";
 import { cn } from "@/lib/utils";
@@ -16,6 +17,7 @@ export interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ className }) => {
   const t = useTranslations("header");
   const locale = useLocale();
+  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLanguagePopupOpen, setIsLanguagePopupOpen] = useState(false);
   const languagePopupRef = useRef<HTMLDivElement>(null);
@@ -49,6 +51,10 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
     };
   }, [isLanguagePopupOpen]);
 
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [pathname]);
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -61,6 +67,11 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
     setIsMenuOpen(false);
   };
 
+  const isActive = (href: string) => {
+    const cleanPathname = pathname?.replace(`/${locale}`, "") || "/";
+    return cleanPathname === href || cleanPathname.startsWith(`${href}/`);
+  };
+
   return (
     <header
       className={cn(
@@ -69,19 +80,41 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
       )}
     >
       <div className="container mx-auto">
-        <div className="flex items-center justify-between h-16 md:h-20">
+        <div className="flex items-center justify-between h-16 md:h-20 xl:px-[92px] xl:py-[12px] lg:px-[10px] lg:py-[10px]">
           <div className="flex items-center gap-2">
-          <Image
-            src="/svg/logoMobile.svg"
-            alt="ENTER UP Logo"
-            width={96}
-            height={52}
-            className="mb-2"
-          />
+            <Link href="/" className="flex items-center">
+              <Image
+                src="/svg/logoMobile.svg"
+                alt="ENTER UP Logo"
+                width={96}
+                height={52}
+                className="mb-2 lg:w-[118px] lg:h-[64px]"
+              />
+            </Link>
           </div>
+
+          <nav className="hidden lg:flex items-center justify-center flex-1 px-8">
+            <ul className="flex items-center gap-8 xl:gap-12">
+              {menuItems.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className={cn(
+                      "text-white! subtitle tracking-wide transition-opacity hover:opacity-80",
+                      isActive(item.href) && "opacity-100",
+                      !isActive(item.href) && "opacity-90"
+                    )}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
           <div className="flex items-center gap-4">
-             <ThemeToggle/>
-            <div className="relative h-8 w-8 pl-[1px] flex items-center justify-center">
+            <ThemeToggle />
+            <div className="relative h-8 w-8 pl-px flex items-center justify-center">
               <button
                 ref={globeButtonRef}
                 onClick={toggleLanguagePopup}
@@ -101,7 +134,7 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
             </div>
             <button
               onClick={toggleMenu}
-              className="hover:opacity-80 transition-opacity"
+              className="lg:hidden hover:opacity-80 transition-opacity"
               aria-label="Toggle menu"
               aria-expanded={isMenuOpen}
             >
@@ -109,9 +142,10 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
             </button>
           </div>
         </div>
+
         <div
           className={cn(
-            "fixed left-0 right-0 top-[88px] md:top-[104px] overflow-hidden transition-all duration-300 ease-in-out z-[100]",
+            "lg:hidden fixed left-0 right-0 top-[88px] md:top-[104px] overflow-hidden transition-all duration-300 ease-in-out z-100",
             isMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
           )}
         >
