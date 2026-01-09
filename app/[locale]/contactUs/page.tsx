@@ -58,14 +58,14 @@ export default function ContactUs() {
   };
 
   return (
-    <div className="min-h-screen bg-primary-default p-6">
+    <div className="min-h-screen contact-us-page p-6">
       <div className="w-full max-w-7xl mx-auto">
         <div className="mb-12 text-center">
           <h1 className="hero-sm text-center mb-3">
-            <span className="text-white">{t("headerSection.title.line1")}</span>{" "}
+            <span className="text-primary-default dark:text-white">{t("headerSection.title.line1")}</span>{" "}
             <span className="text-[#FFA62B]">{t("headerSection.title.line2")}</span>
           </h1>
-          <p className="body-sm-mobile text-start font-montserrat! font-semibold!">
+          <p className="body-sm-mobile text-start font-montserrat! font-semibold! text-primary-default dark:text-white">
             {t("headerSection.description")}
           </p>
         </div>
@@ -127,36 +127,33 @@ export default function ContactUs() {
 
         <div className="p-6">
           <h2 className="hero-sm text-center mb-6">
-            <span className="text-white">{t("socialMediaSection.title.line1")}</span>{" "}
+            <span className="text-primary-default dark:text-white">{t("socialMediaSection.title.line1")}</span>{" "}
             <span className="text-[#FFA62B]">{t("socialMediaSection.title.line2")}</span>
           </h2>
 
           <div className="flex justify-between">
             <div className="space-y-6">
-              <div className="flex items-center gap-4 text-white">
+              <div className="flex items-center gap-4 text-primary-default dark:text-white">
                 <Icon
                   name="phone"
                   size={32}
-                  className="text-white shrink-0"
-                  color="#FFFFFF"
+                  className="text-primary-default dark:text-white shrink-0"
                 />
                 <span className="body-sm-mobile font-semibold!">{contactUsMessages?.contactInfo?.phone}</span>
               </div>
-              <div className="flex items-center gap-4 text-white">
+              <div className="flex items-center gap-4 text-primary-default dark:text-white">
                 <Icon
                   name="email"
                   size={32}
-                  className="text-white shrink-0"
-                  color="#FFFFFF"
+                  className="text-primary-default dark:text-white shrink-0"
                 />
                 <span className="body-sm-mobile font-semibold!">{contactUsMessages?.contactInfo?.email}</span>
               </div>
-              <div className="flex items-center gap-4 text-white">
+              <div className="flex items-center gap-4 text-primary-default dark:text-white">
                 <Icon
                   name="location"
                   size={32}
-                  className="text-white shrink-0"
-                  color="#FFFFFF"
+                  className="text-primary-default dark:text-white shrink-0"
                 />
                 <span className="body-sm-mobile font-semibold!">{contactUsMessages?.contactInfo?.location}</span>
               </div>
@@ -175,8 +172,7 @@ export default function ContactUs() {
                   <Icon
                     name={social.name as any}
                     size={42}
-                    className="text-white"
-                    color="#FFFFFF"
+                    className="text-primary-default dark:text-white"
                   />
                 </a>
               ))}
@@ -185,7 +181,7 @@ export default function ContactUs() {
         </div>
 
         <div className="w-full p-6">
-          <div className="rounded-xl overflow-hidden border-2 border-white/20">
+          <div className="rounded-xl overflow-hidden border-2 border-primary-default/20 dark:border-white/20">
             <iframe
               src={mapEmbed.src}
               width={mapEmbed.width}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import WorldMapComponent, { CountryContext } from "react-svg-worldmap";
 
 // Mapping from ISO_A3 (3-letter) to ISO_A2 (2-letter) codes
@@ -31,6 +31,22 @@ export function WorldMap({
     name: string;
     code: string;
   } | null>(null);
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    const checkTheme = () => {
+      setIsDark(document.documentElement.classList.contains("dark"));
+    };
+    
+    checkTheme();
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+    
+    return () => observer.disconnect();
+  }, []);
 
   // Convert ISO_A3 codes to ISO_A2 codes for checking
   const highlightedCountriesA2 = useMemo(() => {
@@ -61,8 +77,8 @@ export function WorldMap({
     const isHighlighted = highlightedCountriesA2.includes(countryCode);
     
     return {
-      fill: isHighlighted ? "#FFA008" : "#050927", // Orange for highlighted, dark blue for others
-      stroke: "#ffffff",
+      fill: isHighlighted ? "#FFA008" : (isDark ? "#050927" : "#FFFFFF"), // Orange for highlighted, theme-aware for others
+      stroke: isDark ? "#ffffff" : "#050927",
       strokeWidth: 1,
       strokeOpacity: 1, // Remove opacity, make borders fully visible
       cursor: "pointer",
@@ -74,21 +90,21 @@ export function WorldMap({
     <div className="relative w-full flex items-center justify-center" style={{ minHeight: '400px' }}>
       <div className="w-full worldmap-container flex justify-center items-center">
         <WorldMapComponent
-          color="#050927" // Default color (will be overridden by styleFunction)
+          color={isDark ? "#050927" : "#FFFFFF"} // Default color (will be overridden by styleFunction)
           size="responsive"
           data={[]} // Empty data - we use styleFunction to control colors
           onClickFunction={handleCountryClick}
           styleFunction={styleFunction}
           strokeOpacity={1} // Remove default opacity
-          tooltipBgColor="#ffffff"
+          tooltipBgColor={isDark ? "#ffffff" : "#050927"}
           tooltipTextColor="#FFA008"
-          borderColor="#ffffff"
-          backgroundColor="#050927"
+          borderColor={isDark ? "#ffffff" : "#050927"}
+          backgroundColor={isDark ? "#050927" : "#FFFFFF"}
           richInteraction
         />
       </div>
       {selectedCountry && (
-        <div className="absolute top-4 left-1/2 transform -translate-x-1/2 bg-white/95 text-secondary-orange-bright px-4 py-2 rounded-lg shadow-lg font-semibold z-10 pointer-events-none">
+        <div className={`absolute top-4 left-1/2 transform -translate-x-1/2 ${isDark ? "bg-white/95" : "bg-primary-default/95"} text-secondary-orange-bright px-4 py-2 rounded-lg shadow-lg font-semibold z-10 pointer-events-none`}>
           {selectedCountry.name}
         </div>
       )}
