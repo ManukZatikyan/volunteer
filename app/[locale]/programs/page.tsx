@@ -23,15 +23,16 @@ export default function Programs() {
       "Membership": "membership",
       "Center Up Junior": "centerUpJunior",
       "International Universities": "internationalUniversities",
-      "Courses & Activities": "cursesAndActivities",
-      "Conferences": "conferances",
+      "Courses & Activities": "coursesAndActivities",
+      "Conferences": "conferences",
       "Future Up": "futureUp",
       "Camps": "camps",
       "Event Organization": "eventOrganization",
+      "Upcoming Events": "upcomingEvents",
     };
     
-    const route = routeMap[programTitle] || programTitle.toLowerCase().replace(/\s+/g, "");
-    return `/programs/${route}`;
+    const route = routeMap[programTitle] || "";
+    return route ? `/programs/${route}` : "/programs";
   };
 
   return (
@@ -51,15 +52,15 @@ export default function Programs() {
             const programTitle = typeof program === "string" ? program : program.title;
             const programRoute = getProgramRoute(programTitle);
             return (
-              <MembershipCard
-                key={index}
+            <MembershipCard
+              key={index}
                 imageSrc={typeof program === "object" && program.imageSrc ? program.imageSrc : "/image.png"}
                 imageAlt={programTitle}
                 title={programTitle}
-                onClick={() => {
+              onClick={() => {
                   router.push(programRoute);
-                }}
-              />
+              }}
+            />
             );
           })}
         </div>

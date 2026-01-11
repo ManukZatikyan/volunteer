@@ -38,13 +38,17 @@ export const Textarea: React.FC<TextareaProps> = ({
           "border-2 transition-colors",
           "focus:outline-none",
           "resize-none",
-          "placeholder:text-text-gray-2",
+          "[&::placeholder]:text-[#CBCBCB]",
+          "[&::-webkit-input-placeholder]:text-[#CBCBCB]",
+          "[&::-moz-placeholder]:text-[#CBCBCB]",
+          "[&:-ms-input-placeholder]:text-[#CBCBCB]",
           hasError && "border-error focus:border-error",
           !hasError && "border-[#CBCBCB] focus:border-[#FFA500]",
           className
         )}
         style={{
           color: "#FFFFFF",
+          backgroundColor: "transparent",
         }}
         {...props}
       />

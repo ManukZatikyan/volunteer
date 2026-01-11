@@ -30,7 +30,7 @@
   --color-secondary-orange-bright: #FFA008;
   --color-secondary-orange-light: #FFBF48;
   --color-secondary-orange-dark: #CB8100;
-  --color-secondary-gray: #CACACA;
+  --color-secondary-gray: #CBCBCB;
   
   /* Background Colors */
   --color-background-white: #FFFFFF;
@@ -488,9 +488,14 @@ html:not(.dark) .bg-white.dark\:bg-primary-default {
   justify-content: center;
   align-items: center;
   width: 100%;
+  min-height: 600px;
 }
 
 .worldmap-container svg {
   display: block;
-  margin: 0 auto;
+  margin: 0;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 600px;
+  max-width: 100% !important;
 }

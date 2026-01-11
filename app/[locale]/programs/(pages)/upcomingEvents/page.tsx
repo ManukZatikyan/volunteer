@@ -5,10 +5,10 @@ import { useTranslations, useMessages } from "next-intl";
 import { useRouter } from "@/i18n/routing";
 import Image from "next/image";
 
-export default function Membership() {
-  const t = useTranslations("membership");
+export default function UpcomingEvents() {
+  const t = useTranslations("upcomingEvents");
   const messages = useMessages();
-  const membershipMessages = messages.membership as any;
+  const upcomingEventsMessages = messages.upcomingEvents as any;
   const router = useRouter();
 
   return (
@@ -17,12 +17,12 @@ export default function Membership() {
         <div className="absolute inset-0">
           <Image
             src="/image.png"
-            alt="Membership"
+            alt="Upcoming Events"
             fill
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-primary-default/60 via-transparent to-white dark:from-primary-default/95 dark:via-primary-default/40 dark:to-primary-default"></div>
+          <div className="absolute inset-0 bg-linear-to-b from-primary-default/60 via-transparent to-white dark:from-primary-default/95 dark:via-primary-default/40 dark:to-primary-default"></div>
         </div>
 
         <div className="relative z-10 w-full px-6">
@@ -42,11 +42,11 @@ export default function Membership() {
       </div>
       <div className="md:px-4 xl:px-30 px-6 pt-12 pb-12">
         <div className="flex flex-col gap-6">
-          {(membershipMessages?.descriptionItems || []).map((item: any, index: number) => (
+          {(upcomingEventsMessages?.descriptionItems || []).map((item: any, index: number) => (
             <ContentCard
               key={index}
               title={item.heading}
-              imageSrc={item.imageSrc  || "/users.png"}
+              imageSrc={item.imageSrc || "/image.png"}
               imagePosition={item.imagePosition || (index % 2 === 1 ? "end" : "start")}
               content={item.text}
               contentFontSize={item.contentFontSize}
@@ -62,3 +62,4 @@ export default function Membership() {
     </div>
   );
 }
+

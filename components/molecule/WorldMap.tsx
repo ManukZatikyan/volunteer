@@ -87,11 +87,11 @@ export function WorldMap({
   };
 
   return (
-    <div className="relative w-full flex items-center justify-center" style={{ minHeight: '400px' }}>
-      <div className="w-full worldmap-container flex justify-center items-center">
+    <div className="relative w-full" style={{ minHeight: '600px', height: 'auto' }}>
+      <div className="w-full worldmap-container" style={{ width: '100%', minHeight: '600px' }}>
         <WorldMapComponent
           color={isDark ? "#050927" : "#FFFFFF"} // Default color (will be overridden by styleFunction)
-          size="responsive"
+          size={1200}
           data={[]} // Empty data - we use styleFunction to control colors
           onClickFunction={handleCountryClick}
           styleFunction={styleFunction}

@@ -2,12 +2,14 @@
 
 import { Button, ContentCard } from "@/components";
 import { useTranslations, useMessages } from "next-intl";
+import { useRouter } from "@/i18n/routing";
 import Image from "next/image";
 
 export default function CenterUpJunior() {
   const t = useTranslations("junior");
   const messages = useMessages();
   const juniorMessages = messages.junior as any;
+  const router = useRouter();
 
   return (
     <div className="flex flex-col bg-primary-purple">
@@ -52,7 +54,9 @@ export default function CenterUpJunior() {
         </div>
       </div>
       <div className="md:px-4 xl:px-30 px-6 pb-12 flex justify-center">
-        <Button variant="white">{t("registrationButton.text")}</Button>
+        <Button variant="white" onClick={() => router.push("/registration")}>
+          {t("registrationButton.text")}
+        </Button>
       </div>
     </div>
   );
