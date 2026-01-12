@@ -9,12 +9,14 @@ import {
 import Image from "next/image";
 import Marquee from "react-fast-marquee";
 import { useTranslations, useMessages } from "next-intl";
+import { useRouter } from "@/i18n/routing";
 import { useState, useEffect } from "react";
 
 export default function Home() {
   const t = useTranslations("home");
   const messages = useMessages();
   const homeMessages = messages.home as any;
+  const router = useRouter();
   const [slidesToShow, setSlidesToShow] = useState(1);
 
   useEffect(() => {
@@ -26,6 +28,25 @@ export default function Home() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  // Map program titles to their routes
+  const getProgramRoute = (programTitle: string): string => {
+    const routeMap: Record<string, string> = {
+      "Membership": "membership",
+      "Center Up Junior": "centerUpJunior",
+      "International Universities": "internationalUniversities",
+      "Courses & Activities": "coursesAndActivities",
+      "Conferences": "conferences",
+      "Future Up": "futureUp",
+      "Camps": "camps",
+      "International Camp": "camps",
+      "Event Organization": "eventOrganization",
+      "Upcoming Events": "upcomingEvents",
+    };
+    
+    const route = routeMap[programTitle] || "";
+    return route ? `/programs/${route}` : "/programs";
+  };
   return (
     <div className="flex flex-col font-sans relative">
       <section className="relative w-full h-[618px] md:h-[700px] lg:h-[800px] flex items-center justify-center overflow-hidden">
@@ -107,7 +128,6 @@ export default function Home() {
           />
         </div>
       </section>
-
       <section className="w-full px-6 py-12 xl:px-50 xl:py-32">
         <div className="">
           <div className="mb-6">
@@ -156,6 +176,7 @@ export default function Home() {
                     imageAlt={item.title}
                     title={item.title}
                     description={item.description}
+                    onButtonClick={() => router.push(getProgramRoute(item.title))}
                   />
                 );
               }}
@@ -172,12 +193,13 @@ export default function Home() {
                   imageAlt={item.title}
                   title={item.title}
                   description={item.description}
+                  onButtonClick={() => router.push(getProgramRoute(item.title))}
                 />
               ))}
             </div>
             {(homeMessages?.programs?.items || []).length > 3 && (
               <div className="flex justify-center">
-                <Button variant="white" className="px-8 py-3">
+                <Button variant="white" className="px-8 py-3" onClick={() => router.push("/programs")}>
                   View all programs
                 </Button>
               </div>

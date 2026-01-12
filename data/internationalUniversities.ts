@@ -1,59 +1,46 @@
 // ISO 3166-1 alpha-3 country codes for countries to highlight in orange on the map
 export const highlightedCountries = [
+  // Europe
+  "AUT", // Austria
+  "BEL", // Belgium
+  "BGR", // Bulgaria
+  "CHE", // Switzerland
+  "CYP", // Cyprus
+  "CZE", // Czech Republic
+  "DNK", // Denmark
+  "EST", // Estonia
+  "FIN", // Finland
+  "FRA", // France
+  "DEU", // Germany
+  "GRC", // Greece
+  "HUN", // Hungary
+  "IRL", // Ireland
+  "ITA", // Italy
+  "LVA", // Latvia
+  "MLT", // Malta
+  "MDA", // Moldova
+  "NLD", // Netherlands
+  "NOR", // Norway
+  "POL", // Poland
+  "PRT", // Portugal
+  "ROU", // Romania
+  "SRB", // Serbia
+  "ESP", // Spain
+  "SWE", // Sweden
+  "GBR", // United Kingdom
   // North America
   "CAN", // Canada
   "USA", // United States
-  "MEX", // Mexico
   // South America
   "BRA", // Brazil
-  // Europe
-  "GBR", // United Kingdom
-  "IRL", // Ireland
-  "FRA", // France
-  "ESP", // Spain
-  "PRT", // Portugal
-  "BEL", // Belgium
-  "NLD", // Netherlands
-  "LUX", // Luxembourg
-  "DEU", // Germany
-  "CHE", // Switzerland
-  "AUT", // Austria
-  "ITA", // Italy
-  "DNK", // Denmark
-  "NOR", // Norway
-  "SWE", // Sweden
-  "FIN", // Finland
-  "EST", // Estonia
-  "LVA", // Latvia
-  "LTU", // Lithuania
-  "POL", // Poland
-  "CZE", // Czech Republic
-  "SVK", // Slovakia
-  "HUN", // Hungary
-  "ROU", // Romania
-  "BGR", // Bulgaria
-  "GRC", // Greece
-  "HRV", // Croatia
-  "SVN", // Slovenia
   // Asia
   "CHN", // China
   "JPN", // Japan
   "KOR", // South Korea
-  "TWN", // Taiwan
-  "PHL", // Philippines
-  "IDN", // Indonesia
-  "MYS", // Malaysia
-  "THA", // Thailand
-  "VNM", // Vietnam
-  "IND", // India
   "SGP", // Singapore
-  "ISR", // Israel
   "ARE", // United Arab Emirates
-  "SAU", // Saudi Arabia
-  "TUR", // Turkey
   // Oceania
   "AUS", // Australia
-  "NZL", // New Zealand
 ];
 
 export const heroSection = {
@@ -78,7 +65,7 @@ export const heroSection = {
       svgViewBox: "0 0 308 97",
       position: "left" as const,
       topPosition: "top-21",
-      rightPosition: "right-16.5",
+      rightPosition: "left-10.5",
     },
     {
       number: 2,
@@ -91,8 +78,8 @@ export const heroSection = {
       svgHeight: 95,
       svgViewBox: "0 0 288 95",
       position: "right" as const,
-      topPosition: "top-23",
-      rightPosition: "right-16.5",
+      topPosition: "top-24",
+      rightPosition: "right-9.5",
     },
     {
       number: 3,
@@ -106,7 +93,7 @@ export const heroSection = {
       svgViewBox: "0 0 297 75",
       position: "left" as const,
       topPosition: "top-17.5",
-      rightPosition: "right-19",
+      rightPosition: "left-10.5",
     },
     {
       number: 4,
@@ -120,7 +107,7 @@ export const heroSection = {
       svgViewBox: "0 0 292 80",
       position: "right" as const,
       topPosition: "top-17",
-      rightPosition: "right-16.5",
+      rightPosition: "right-9.5",
     },
     {
       number: 5,

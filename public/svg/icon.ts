@@ -16,6 +16,9 @@ import Triangle from "./triangle.svg";
 import CenterUpLogo from "./center_up_logo.svg";
 import Line1Partner1 from "./partners/line1partner1.svg";
 import Line1Partner2 from "./partners/line1partner2.svg";
+import FutureUp from "./futureUp.svg";
+import Junior from "./junior.svg";
+import Calendar from "./calendar.svg";
 
 
 
@@ -38,4 +41,7 @@ export const icons = {
   centerUpLogo: CenterUpLogo,
   line1Partner1: Line1Partner1,
   line1Partner2: Line1Partner2,
+  futureUp: FutureUp,
+  junior: Junior,
+  calendar: Calendar,
 };

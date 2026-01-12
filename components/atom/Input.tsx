@@ -44,7 +44,7 @@ export const Input: React.FC<InputProps> = ({
         className={cn(
           "w-full rounded-full p-4",
           "border-2",
-          "text-primary-light placeholder:text-secondary-gray",
+          "text-primary-default dark:text-white placeholder:text-secondary-gray",
           "focus:outline-none focus:border-button-orange transition-colors",
           "border-secondary-gray bg-transparent",
           hasError && "border-error focus:border-error",

@@ -76,7 +76,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
   return (
     <div className={cn("w-full relative", className)} ref={dropdownRef}>
       {label && (
-        <label className="block mb-2 text-body-sm-mobile font-noto-sans! text-white">
+        <label className="block mb-2 text-body-sm-mobile font-noto-sans! text-primary-default dark:text-white">
           {label}
           {required && (
             <span className="text-secondary-orange-bright ml-0.5">*</span>
@@ -88,19 +88,16 @@ export const Dropdown: React.FC<DropdownProps> = ({
           type="button"
           onClick={() => setIsOpen(!isOpen)}
           className={cn(
-            "w-full rounded-lg px-4 py-3 pr-5",
+            "w-full rounded-full px-4 py-4 pr-5",
             "border-2 transition-all duration-200",
             "flex items-center justify-between gap-3",
             "focus:outline-none focus:border-button-orange cursor-pointer min-h-[48px]",
             "bg-transparent",
             hasError && "border-error focus:border-error",
-            !hasError && "border-white"
+            !hasError && "border-secondary-gray"
           )}
-          style={{
-            color: "#FFFFFF",
-          }}
         >
-          <span className="text-white font-noto-sans! text-sm md:text-base truncate text-left flex-1">
+          <span className="text-primary-default dark:text-white font-noto-sans! text-sm md:text-base truncate text-left flex-1">
             {displayText}
           </span>
           <svg
@@ -110,14 +107,14 @@ export const Dropdown: React.FC<DropdownProps> = ({
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
             className={cn(
-              "shrink-0 transition-transform duration-200",
+              "shrink-0 transition-transform duration-200 text-primary-default dark:text-white",
               !isOpen && "rotate-0",
               isOpen && "rotate-180"
             )}
           >
             <path
               d="M2 4L6 8L10 4"
-              stroke="white"
+              stroke="#FFA008"
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -128,15 +125,12 @@ export const Dropdown: React.FC<DropdownProps> = ({
         {isOpen && (
           <div
             className={cn(
-              "absolute top-full left-0 right-0 mt-1 rounded-lg border-2 z-50 overflow-hidden",
+              "absolute top-full left-0 right-0 mt-1 rounded-3xl border-2 z-50 overflow-hidden",
               "max-h-64 overflow-y-auto",
+              "bg-background ",
               hasSelection && "border-secondary-orange-bright",
-              !hasSelection && "border-[#CACACA]"
+              !hasSelection && "border-secondary-gray dark:border-primary-gray"
             )}
-            style={{
-              backgroundColor: "#050927", // primary-default - dark gray background matching image
-              borderColor: hasSelection ? "#FFA008" : "#CACACA",
-            }}
           >
             {options.map((option, index) => (
               <React.Fragment key={option.value}>
@@ -144,43 +138,23 @@ export const Dropdown: React.FC<DropdownProps> = ({
                   type="button"
                   onClick={() => handleSelect(option.value)}
                   className={cn(
-                    "w-full px-4 py-3 text-left text-white font-noto-sans! text-sm md:text-base cursor-pointer",
+                    "w-full px-4 py-3 text-left font-noto-sans! text-sm md:text-base cursor-pointer",
                     "transition-all duration-150",
+                    "text-primary-default dark:text-white",
                     "relative",
-                    selectedValue === option.value && hasSelection && "bg-[rgba(255,160,8,0.1)]",
-                    selectedValue === option.value && !hasSelection && "bg-[rgba(202,202,202,0.1)]"
+                    selectedValue === option.value && hasSelection && "bg-secondary-orange-bright/10 dark:bg-secondary-orange-bright/10 hover:bg-secondary-orange-bright/20",
+                    selectedValue === option.value && !hasSelection && "bg-secondary-gray/10 dark:bg-secondary-gray/10 hover:bg-secondary-gray/20",
+                    selectedValue !== option.value && "hover:bg-background-light-1 dark:hover:bg-background-light-2/20"
                   )}
-                  style={{
-                    backgroundColor:
-                      selectedValue === option.value
-                        ? hasSelection
-                          ? "rgba(255, 160, 8, 0.1)"
-                          : "rgba(202, 202, 202, 0.1)"
-                        : "transparent",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = hasSelection
-                      ? "rgba(255, 160, 8, 0.2)"
-                      : "rgba(202, 202, 202, 0.2)";
-                  }}
-                  onMouseLeave={(e) => {
-                    if (selectedValue === option.value) {
-                      e.currentTarget.style.backgroundColor = hasSelection
-                        ? "rgba(255, 160, 8, 0.1)"
-                        : "rgba(202, 202, 202, 0.1)";
-                    } else {
-                      e.currentTarget.style.backgroundColor = "transparent";
-                    }
-                  }}
                 >
                   {option.label}
                 </button>
                 {index < options.length - 1 && (
                   <div
-                    className="h-px w-full"
-                    style={{
-                      backgroundColor: hasSelection ? "#FFA008" : "#CACACA",
-                    }}
+                    className={cn(
+                      "h-px w-full",
+                      hasSelection ? "bg-secondary-orange-bright" : "bg-secondary-gray dark:bg-secondary-gray"
+                    )}
                   />
                 )}
               </React.Fragment>

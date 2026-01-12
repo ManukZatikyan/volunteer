@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, ContentCard, Carousel, TestimonialCard } from "@/components";
+import { Button, ContentCard, Carousel, TestimonialCard, Icon } from "@/components";
 import { useTranslations, useMessages } from "next-intl";
 import { useRouter } from "@/i18n/routing";
 import { futureUpTestimonials, type Testimonial } from "@/data/testimonials";
@@ -44,13 +44,18 @@ export default function FutureUp() {
           <div className="absolute inset-0 bg-gradient-to-b from-primary-default/95 via-black/40 to-black"></div>
         </div>
         <div className="relative z-10 w-full px-6">
-          <h1 className="text-white title-sm mb-3 md:text-center md:text-hero! md:text-secondary-orange-bright! md:mb-21!">
-            {t("heroSection.title")}
-          </h1>
+          <div className="flex flex-col items-center md:items-center gap-4 md:gap-6 mb-3">
+            <div className="w-[145px] h-[126px] md:w-[268px] md:h-[233px] flex items-center justify-center">
+              <Icon name="futureUp" className="w-full h-full" auto={false} />
+            </div>
+            <h1 className="text-white title-sm md:text-center md:text-hero! md:text-secondary-orange-bright! md:mb-21!">
+              {t("heroSection.title")}
+            </h1>
+          </div>
           <div className="h-1 md:h-1.5 bg-secondary-orange-bright w-full rounded md:hidden"></div>
         </div>
       </section>
-      <div className="px-6 pt-3 md:px-10 xl:px-30">
+      <div className="container px-6 pt-3 md:px-10 xl:px-30">
         <h2 className="text-white body-sm-mobile font-semibold! font-montserrat! mb-3 md:text-headline! md:leading-headline! md:font-bold!">
           {t("description.heading")}
         </h2>
@@ -58,7 +63,7 @@ export default function FutureUp() {
           {t("description.text")}
         </p>
       </div>
-      <div className="md:px-4 xl:px-30 px-6 pt-12 pb-12">
+      <div className="container md:px-4 xl:px-30 px-6 pt-12 pb-12">
         <div className="flex flex-col gap-6">
           {(futureUpMessages?.descriptionItems || []).map((item: any, index: number) => (
             <ContentCard
@@ -71,7 +76,7 @@ export default function FutureUp() {
         </div>
       </div>
       {futureUpTestimonials.length > 0 && (
-        <section className="md:px-4 xl:px-30 px-6 py-12 md:py-16 flex flex-col gap-6">
+        <section className="container md:px-4 xl:px-30 px-6 py-12 md:py-16 flex flex-col gap-6">
           <div className="mb-3 xl:mb-16!">
           <h2 className="text-white subtitle mb-3 md:text-headline! md:leading-headline! xl:text-title! xl:leading-title! xl:mb-6! xl:font-bold!">
           {t("testimonialsSection.title")}
@@ -99,7 +104,7 @@ export default function FutureUp() {
           </div>
         </section>
       )}
-      <div className="container mx-auto px-6 pb-12 flex justify-center">
+      <div className="container px-6 pb-12 flex justify-center">
         <Button variant="orange" onClick={() => router.push("/registration")}>
           {t("registrationButton.text")}
         </Button>

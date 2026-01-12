@@ -43,7 +43,7 @@ export default function InternationalUniversities() {
           <div className="h-1 md:h-1.5 bg-secondary-orange-bright w-full rounded md:hidden"></div>
         </div>
       </section>
-      <div className="px-6 pt-3 md:px-10 xl:px-30">
+      <div className="container px-6 pt-3 md:px-10 xl:px-30">
         <h2 className="text-white body-sm-mobile font-semibold! font-montserrat! mb-3 md:text-headline! md:leading-headline! md:font-bold!">
           {t("description.heading")}
         </h2>
@@ -51,7 +51,7 @@ export default function InternationalUniversities() {
           {t("description.text")}
         </p>
       </div>
-      <div className="md:px-4 xl:px-30 px-6 pt-12 pb-12">
+      <div className="max-w-[1680px] w-full mx-auto md:px-4 xl:px-30 px-6 pt-12 pb-12">
         <ProcessPhases phases={phases || []} />
       </div>
 
@@ -61,7 +61,7 @@ export default function InternationalUniversities() {
             <h1 className="text-primary-default dark:text-white title-sm mb-3">{t("studentsAroundWorld.title")}</h1>
             <div className="h-1 md:h-1.5 bg-secondary-orange-bright w-full rounded"></div>
           </div>
-          <div className="pt-3">
+          <div className="pt-3 md:mb-8">
             <p className="text-primary-default dark:text-white body-sm-mobile md:text-body! md:leading-body!">
               {t("studentsAroundWorld.description")}
             </p>

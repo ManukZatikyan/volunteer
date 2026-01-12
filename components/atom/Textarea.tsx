@@ -37,13 +37,13 @@ export const Textarea: React.FC<TextareaProps> = ({
           "w-full rounded-3xl p-4",
           "border-2 transition-colors",
           "focus:outline-none",
-          "resize-none",
-          "[&::placeholder]:text-[#CBCBCB]",
-          "[&::-webkit-input-placeholder]:text-[#CBCBCB]",
-          "[&::-moz-placeholder]:text-[#CBCBCB]",
-          "[&:-ms-input-placeholder]:text-[#CBCBCB]",
+          "resize-none border-secondary-gray text-primary-default dark:text-white",
+          "[&::placeholder]:border-secondary-gray",
+          "[&::-webkit-input-placeholder]:border-secondary-gray",
+          "[&::-moz-placeholder]:border-secondary-gray",
+          "[&:-ms-input-placeholder]:border-secondary-gray",
           hasError && "border-error focus:border-error",
-          !hasError && "border-[#CBCBCB] focus:border-[#FFA500]",
+          !hasError && "focus:border-secondary-orange-bright",
           className
         )}
         style={{

@@ -4,6 +4,17 @@ import { ProfileCard, ProfileCardHorizontal } from "@/components";
 import { useTranslations, useMessages } from "next-intl";
 import Image from "next/image";
 
+// Helper function to map department names to routes
+const getDepartmentRoute = (departmentName: string): string | undefined => {
+  const routeMap: Record<string, string> = {
+    "Marketing": "/programs/marketing",
+    "PR and Partnership": "/programs", // Add specific route if available
+    "Event Management & Data Analytics": "/programs", // Add specific route if available
+    "Project Management": "/programs", // Add specific route if available
+  };
+  return routeMap[departmentName];
+};
+
 export default function OurTeam() {
   const t = useTranslations("ourTeam");
   const messages = useMessages();
@@ -30,7 +41,7 @@ export default function OurTeam() {
           <div className="h-1 md:h-1.5 bg-secondary-orange-bright w-full rounded md:hidden"></div>
         </div>
       </section>
-      <section className="w-full flex flex-col items-center justify-center gap-12 px-6 md:px-10 xl:px-30">
+      <section className="container w-full flex flex-col items-center justify-center gap-12 px-6 md:px-10 xl:px-30">
         <div className="">
           <p className="text-white body-xs mt-3 md:text-subtitle! md:leading-subtitle!">
             {t("description.text")}
@@ -38,7 +49,7 @@ export default function OurTeam() {
         </div>
       </section>
 
-      <section className="w-full p-6 pb-3! md:px-10 xl:px-30 xl:pb-19!">
+      <section className="container w-full p-6 pb-3! md:px-10 xl:px-30 xl:pb-19!">
         <div className="mb-3 xl:mb-16!">
           <h2 className="text-white subtitle mb-3 md:text-headline! md:leading-headline! xl:text-title! xl:leading-title! xl:mb-6! xl:font-bold!">
             {t("founder.title")}
@@ -64,17 +75,20 @@ export default function OurTeam() {
         </div>
         <div className="flex flex-col items-center md:grid md:grid-cols-2 md:place-items-center xl:flex xl:flex-row xl:justify-center gap-6">
           {(ourTeamMessages?.departments?.items || []).map(
-            (department: any, index: number) => (
-              <ProfileCard
-                key={index}
-                name={department.name}
-                biography={department.biography}
-                imageSrc={"/department.png"}
-                imageAlt={department.imageAlt}
-                onClick={() => {}}
-                className="w-full max-w-[400px]"
-              />
-            )
+            (department: any, index: number) => {
+              const departmentRoute = getDepartmentRoute(department.name);
+              return (
+                <ProfileCard
+                  key={index}
+                  name={department.name}
+                  biography={department.biography}
+                  imageSrc={"/department.png"}
+                  imageAlt={department.imageAlt}
+                  href={departmentRoute}
+                  className="w-full max-w-[400px]"
+                />
+              );
+            }
           )}
         </div>
       </section>

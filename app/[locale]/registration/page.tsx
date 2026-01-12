@@ -161,7 +161,7 @@ export default function Registration() {
   // Show Google sign-in if not logged in
   if (!isLoggedIn) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-primary-default px-6">
+      <div className="min-h-screen flex items-center justify-center  px-6">
         <div className="w-full max-w-md flex flex-col items-center justify-center text-center">
           <h1 className="text-white font-bold text-2xl md:text-3xl lg:text-4xl mb-6 md:mb-8 leading-tight">
             {t("signInPrompt")}{" "}
@@ -230,7 +230,7 @@ export default function Registration() {
   };
 
   return (
-    <div className="min-h-screen bg-primary-default px-6 py-6 md:py-8">
+    <div className="min-h-screen px-6 py-6 md:py-8">
       <div className="w-full max-w-6xl mx-auto">
         <h1 className="text-white font-bold text-2xl md:text-3xl lg:text-[54px] leading-[54px] mb-2 md:mb-9">
           {tInfo("title.your")}{" "}
