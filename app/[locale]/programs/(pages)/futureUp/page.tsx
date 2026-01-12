@@ -2,6 +2,7 @@
 
 import { Button, ContentCard, Carousel, TestimonialCard } from "@/components";
 import { useTranslations, useMessages } from "next-intl";
+import { useRouter } from "@/i18n/routing";
 import { futureUpTestimonials, type Testimonial } from "@/data/testimonials";
 import Image from "next/image";
 import { useState, useEffect } from "react";
@@ -10,6 +11,7 @@ export default function FutureUp() {
   const t = useTranslations("futureUp");
   const messages = useMessages();
   const futureUpMessages = messages.futureUp as any;
+  const router = useRouter();
   const [slidesToShow, setSlidesToShow] = useState(1);
 
   useEffect(() => {
@@ -73,9 +75,9 @@ export default function FutureUp() {
           <div className="mb-3 xl:mb-16!">
           <h2 className="text-white subtitle mb-3 md:text-headline! md:leading-headline! xl:text-title! xl:leading-title! xl:mb-6! xl:font-bold!">
           {t("testimonialsSection.title")}
-          </h2>
+            </h2>
           <div className="h-1 md:h-1.5 bg-secondary-orange-bright w-full rounded" />
-        </div>
+          </div>
           <div>
             <Carousel
               testimonials={futureUpTestimonials}
@@ -98,7 +100,9 @@ export default function FutureUp() {
         </section>
       )}
       <div className="container mx-auto px-6 pb-12 flex justify-center">
-        <Button variant="orange">{t("registrationButton.text")}</Button>
+        <Button variant="orange" onClick={() => router.push("/registration")}>
+          {t("registrationButton.text")}
+        </Button>
       </div>
     </div>
   );

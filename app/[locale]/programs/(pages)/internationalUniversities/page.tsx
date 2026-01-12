@@ -1,5 +1,6 @@
 "use client";
 import { useTranslations, useMessages } from "next-intl";
+import { useRouter } from "@/i18n/routing";
 import { ProcessPhases } from "@/components/molecule/ProcessPhases";
 import dynamic from "next/dynamic";
 import Image from "next/image";
@@ -17,6 +18,7 @@ const WorldMap = dynamic(
 
 export default function InternationalUniversities() {
   const t = useTranslations("internationalUniversities");
+  const router = useRouter();
   // const messages = useMessages();
   // const intlUniMessages = messages.internationalUniversities as any;
 
@@ -34,28 +36,45 @@ export default function InternationalUniversities() {
           <div className="absolute inset-0 bg-gradient-to-b from-primary-default/60 via-transparent to-white dark:from-primary-default/95 dark:via-primary-default/40 dark:to-primary-default"></div>
         </div>
 
-        <div className="relative z-10 w-full px-6 ">
-          <h1 className="text-white title-sm mb-3">{t("heroSection.title")}</h1>
-          <div className="h-1 md:h-2 bg-secondary-orange-bright w-full rounded"></div>
+        <div className="relative z-10 w-full px-6">
+          <h1 className="text-white title-sm mb-3 md:text-center md:text-hero! md:text-secondary-orange-bright! md:mb-21!">
+            {t("heroSection.title")}
+          </h1>
+          <div className="h-1 md:h-1.5 bg-secondary-orange-bright w-full rounded md:hidden"></div>
         </div>
       </section>
-      <div className="px-6 pt-3 pb-12">
-        <p className="text-white body-xs">{t("description.text")}</p>
+      <div className="px-6 pt-3 md:px-10 xl:px-30">
+        <h2 className="text-white body-sm-mobile font-semibold! font-montserrat! mb-3 md:text-headline! md:leading-headline! md:font-bold!">
+          {t("description.heading")}
+        </h2>
+        <p className="text-white body-xs md:text-body! md:leading-body!">
+          {t("description.text")}
+        </p>
       </div>
-      <ProcessPhases phases={phases || []} />
+      <div className="md:px-4 xl:px-30 px-6 pt-12 pb-12">
+        <ProcessPhases phases={phases || []} />
+      </div>
 
-      <div className="w-full px-6 pb-8 bg-white dark:bg-primary-default">
-        <div className="relative z-10 w-full">
-          <h1 className="text-primary-default dark:text-white title-sm mb-3">{t("studentsAroundWorld.title")}</h1>
-          <div className="h-1 md:h-2 bg-secondary-orange-bright w-full rounded"></div>
+      <div className="w-full pb-8 bg-white dark:bg-primary-default">
+        <div className="px-6 md:px-10 xl:px-30">
+          <div className="relative z-10 w-full">
+            <h1 className="text-primary-default dark:text-white title-sm mb-3">{t("studentsAroundWorld.title")}</h1>
+            <div className="h-1 md:h-1.5 bg-secondary-orange-bright w-full rounded"></div>
+          </div>
+          <div className="pt-3">
+            <p className="text-primary-default dark:text-white body-sm-mobile md:text-body! md:leading-body!">
+              {t("studentsAroundWorld.description")}
+            </p>
+          </div>
         </div>
-        <div className="pt-3">
-        <p className="text-primary-default dark:text-white body-sm-mobile">{t("studentsAroundWorld.description")}</p>
+        <div className="w-full">
+          <WorldMap highlightedCountries={highlightedCountries || []} />
+        </div>
       </div>
-        <WorldMap highlightedCountries={highlightedCountries || []} />
-      </div>
-      <div className="container mx-auto px-6 pb-12 flex justify-center">
-        <Button variant="orange">{t("registrationButton.text")}</Button>
+      <div className="md:px-4 xl:px-30 px-6 pb-12 flex justify-center">
+        <Button variant="orange" onClick={() => router.push("/registration")}>
+          {t("registrationButton.text")}
+        </Button>
       </div>
     </div>
   );

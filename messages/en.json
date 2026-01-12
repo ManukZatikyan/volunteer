@@ -141,39 +141,15 @@
         "value": "4+"
       }
     ],
-    "programs": [
-      {
-        "title": "International camp",
-        "imageSrc": "/image.png"
-      },
-      {
-        "title": "Membership",
-        "imageSrc": "/image.png"
-      },
-      {
-        "title": "Center Up junior",
-        "imageSrc": "/image.png"
-      },
-      {
-        "title": "international universities",
-        "imageSrc": "/image.png"
-      },
-      {
-        "title": "international universities",
-        "imageSrc": "/image.png"
-      },
-      {
-        "title": "International camp",
-        "imageSrc": "/image.png"
-      },
-      {
-        "title": "International camp",
-        "imageSrc": "/image.png"
-      },
-      {
-        "title": "international universities",
-        "imageSrc": "/image.png"
-      }
+    "items": [
+      "Membership",
+      "Center Up Junior",
+      "International Universities",
+      "Courses & Activities",
+      "Conferences",
+      "Future Up",
+      "Camps",
+      "Event Organization"
     ]
   },
   "contactUs": {
@@ -377,6 +353,7 @@
       "title": "International Universities"
     },
     "description": {
+      "heading": "Your Path to Global Education",
       "text": "Center Up provides comprehensive guidance for students pursuing higher education abroad. From selecting the right university to securing a student visa, we support every step of the journey. Our personalized approach includes strategic planning, document preparation, application submission, interview training, and visa assistance. With expert support and a proven process, we help students gain admission to top universities in over 40 countries worldwide."
     },
     "phases": [
@@ -516,6 +493,13 @@
     }
   },
   "camp": {
+    "heroSection": {
+      "title": "Camps"
+    },
+    "description": {
+      "heading": "Unforgettable Camp Experiences",
+      "text": "Center Up offers unique camp programs that combine learning, adventure, and personal growth. Whether you're interested in our Armenian Winter Camp or the International Camp experience, we provide an environment where young people can explore new interests, develop essential skills, and create lasting friendships."
+    },
     "tabs": [
       {
         "id": "armenian",
@@ -654,6 +638,349 @@
           ]
         }
       ]
+    }
+  },
+  "coursesAndActivities": {
+    "heroSection": {
+      "title": "Courses & Activities"
+    },
+    "description": {
+      "heading": "Explore Our Diverse Courses and Activities",
+      "text": "Center Up offers a wide range of courses and activities designed to enhance skills, foster creativity, and provide valuable learning experiences. Our programs cover various fields and interests to help participants discover their passions and develop new competencies."
+    },
+    "descriptionItems": [
+      {
+        "heading": "Course Offerings",
+        "text": "<p>Our courses are designed to be interactive, engaging, and practical. Participants learn through hands-on activities, group projects, and real-world applications. Each course is structured to provide both theoretical knowledge and practical skills.</p>"
+      },
+      {
+        "heading": "Activity Programs",
+        "text": "<p>Beyond traditional courses, we offer various activities including workshops, skill-building sessions, creative projects, and collaborative initiatives. These activities are designed to complement our educational programs and provide additional opportunities for growth.</p>"
+      },
+      {
+        "heading": "Duration and Participation",
+        "text": "<ul style=\"list-style-type: none!important;padding-left: 0!important;\"><li>Various program durations available</li><li>Flexible scheduling options</li><li>Certificates of participation provided</li></ul>",
+        "contentFontSize": "body-xs"
+      }
+    ],
+    "registrationButton": {
+      "text": "Registration"
+    }
+  },
+  "conferences": {
+    "heroSection": {
+      "title": "Conferences"
+    },
+    "description": {
+      "heading": "Join Our Educational Conferences",
+      "text": "Center Up organizes educational conferences that bring together experts, students, and professionals to share knowledge, discuss current trends, and explore opportunities in various fields. Our conferences provide valuable networking opportunities and insights into career paths and educational journeys."
+    },
+    "descriptionItems": [
+      {
+        "heading": "Conference Topics",
+        "text": "<p>Our conferences cover a wide range of topics including education, career development, technology, leadership, and personal growth. Each conference features expert speakers, panel discussions, and interactive sessions designed to provide valuable insights and practical knowledge.</p>"
+      },
+      {
+        "heading": "What to Expect",
+        "text": "<p>Attendees can expect engaging presentations, networking opportunities with peers and professionals, Q&A sessions with experts, and access to resources and materials. Our conferences are designed to inspire, educate, and connect participants with like-minded individuals.</p>"
+      },
+      {
+        "heading": "Conference Schedule",
+        "text": "<ul style=\"list-style-type: none!important;padding-left: 0!important;\"><li>Regular conference events throughout the year</li><li>Both in-person and online options available</li><li>Certificates of attendance provided</li></ul>",
+        "contentFontSize": "body-xs"
+      }
+    ],
+    "registrationButton": {
+      "text": "Registration"
+    }
+  },
+  "eventOrganization": {
+    "heroSection": {
+      "title": "Event Organization"
+    },
+    "description": {
+      "heading": "Professional Event Organization Services",
+      "text": "Center Up provides comprehensive event organization services for educational events, conferences, workshops, and community activities. Our experienced team ensures that every event is well-planned, executed smoothly, and creates memorable experiences for all participants."
+    },
+    "descriptionItems": [
+      {
+        "heading": "Event Planning Services",
+        "text": "<p>We offer full-service event planning including venue selection, logistics coordination, speaker management, marketing and promotion, registration handling, and on-site event management. Our team works closely with clients to understand their vision and bring it to life.</p>"
+      },
+      {
+        "heading": "Types of Events",
+        "text": "<p>Our event organization services cover educational seminars, conferences, workshops, community events, cultural activities, team-building events, and special occasions. We have experience organizing events of various sizes, from intimate workshops to large-scale conferences.</p>"
+      },
+      {
+        "heading": "Why Choose Us",
+        "text": "<ul style=\"list-style-type: none!important;padding-left: 0!important;\"><li>Experienced event management team</li><li>Comprehensive planning and execution</li><li>Attention to detail and quality</li></ul>",
+        "contentFontSize": "body-xs"
+      }
+    ],
+    "registrationButton": {
+      "text": "Contact Us"
+    }
+  },
+  "upcomingEvents": {
+    "heroSection": {
+      "title": "Upcoming Events"
+    },
+    "description": {
+      "heading": "Stay Updated with Our Upcoming Events",
+      "text": "Center Up regularly organizes events, workshops, and programs throughout the year. Stay informed about upcoming opportunities to learn, network, and grow. Check back regularly for new events and registration information."
+    },
+    "descriptionItems": [
+      {
+        "heading": "Event Calendar",
+        "text": "<p>Our events calendar includes educational workshops, conferences, seminars, networking events, and special programs. Each event is designed to provide value and opportunities for personal and professional development.</p>"
+      },
+      {
+        "heading": "Registration Information",
+        "text": "<p>Registration for upcoming events opens periodically. We recommend checking our website regularly or contacting us directly for information about registration deadlines, event details, and participation requirements.</p>"
+      },
+      {
+        "heading": "Stay Connected",
+        "text": "<ul style=\"list-style-type: none!important;padding-left: 0!important;\"><li>Follow us on social media for updates</li><li>Subscribe to our newsletter</li><li>Contact us for event inquiries</li></ul>",
+        "contentFontSize": "body-xs"
+      }
+    ],
+    "registrationButton": {
+      "text": "Learn More"
+    }
+  },
+  "camps": {
+    "heroSection": {
+      "title": "Camps"
+    },
+    "description": {
+      "heading": "Join Our Camp Programs",
+      "text": "Center Up offers diverse camp programs that provide unique opportunities for personal growth, skill development, and creating lasting friendships. Our camps are designed to inspire, educate, and create memorable experiences for participants of all ages."
+    },
+    "descriptionItems": [
+      {
+        "heading": "Camp Activities",
+        "text": "<p>Our camp programs include a variety of activities such as educational workshops, team-building exercises, creative projects, outdoor adventures, and cultural experiences. Each activity is carefully designed to foster learning, collaboration, and personal development.</p>"
+      },
+      {
+        "heading": "Camp Experience",
+        "text": "<p>Participants in our camps benefit from a supportive and inclusive environment where they can explore new interests, develop essential life skills, build confidence, and form meaningful connections with peers and mentors.</p>"
+      },
+      {
+        "heading": "Camp Details",
+        "text": "<ul style=\"list-style-type: none!important;padding-left: 0!important;\"><li>Various camp durations available</li><li>Age-appropriate programs</li><li>Certificates of participation provided</li></ul>",
+        "contentFontSize": "body-xs"
+      }
+    ],
+    "registrationButton": {
+      "text": "Registration"
+    }
+  },
+  "registration": {
+    "signInPrompt": "Please sign in with",
+    "google": "Google",
+    "toContinue": "to continue",
+    "sendButton": "Send",
+    "information": {
+      "title": {
+        "your": "Your",
+        "information": "Information"
+      },
+      "section": {
+        "personal": "Personal"
+      },
+      "fields": {
+        "email": {
+          "label": "Email",
+          "placeholder": "Email *"
+        },
+        "name": {
+          "label": "Name",
+          "placeholder": "Name *"
+        },
+        "phone": {
+          "label": "Phone",
+          "placeholder": "+37491008372 *"
+        },
+        "age": {
+          "label": "Age",
+          "placeholder": "mm/dd/yyyy"
+        },
+        "surname": {
+          "label": "Surname",
+          "placeholder": "Surname *"
+        },
+        "instagram": {
+          "label": "Instagram username",
+          "placeholder": "@center__up*"
+        },
+        "cityAndCountry": {
+          "label": "City and Country of Birth",
+          "placeholder": "Region"
+        }
+      },
+      "buttons": {
+        "logout": "Log out",
+        "previous": "Previous",
+        "next": "Next"
+      },
+      "options": {
+        "yerevan": "Yerevan",
+        "gyumri": "Gyumri",
+        "vanadzor": "Vanadzor"
+      },
+      "errors": {
+        "email": {
+          "required": "Email is required",
+          "invalid": "Please enter a valid email"
+        },
+        "name": {
+          "required": "Name is required"
+        },
+        "surname": {
+          "required": "Surname is required"
+        },
+        "phone": {
+          "required": "Phone is required"
+        }
+      },
+      "prefilled": {
+        "email": "",
+        "phone": "+37491008372",
+        "instagram": "@center__up"
+      }
+    },
+    "education": {
+      "title": {
+        "your": "Your",
+        "information": "Information"
+      },
+      "sections": {
+        "education": "Education",
+        "centerUp": "Center Up"
+      },
+      "fields": {
+        "education": {
+          "label": "Education",
+          "placeholder": "Education",
+          "options": [
+            { "value": "high_school", "label": "High School" },
+            { "value": "bachelor", "label": "Bachelor's Degree" },
+            { "value": "master", "label": "Master's Degree" },
+            { "value": "phd", "label": "PhD" }
+          ]
+        },
+        "university": {
+          "label": "University",
+          "placeholder": "University",
+          "options": [
+            { "value": "yerevan_state", "label": "Yerevan State University" },
+            { "value": "aua", "label": "American University of Armenia" },
+            { "value": "other", "label": "Other" }
+          ]
+        },
+        "firstApplication": {
+          "label": "Are you applying to Center Up for the first time?",
+          "placeholder": "Select",
+          "options": [
+            { "value": "yes", "label": "Yes" },
+            { "value": "no", "label": "No" }
+          ]
+        },
+        "howDidYouHear": {
+          "label": "How did you find out about \"Center Up\"?",
+          "placeholder": "Select",
+          "options": [
+            { "value": "social_media", "label": "Social Media" },
+            { "value": "friend", "label": "Friend" },
+            { "value": "website", "label": "Website" },
+            { "value": "other", "label": "Other" }
+          ]
+        },
+        "volunteerExperience": {
+          "label": "Do you have volunteer experience?",
+          "placeholder": "Select",
+          "options": [
+            { "value": "yes", "label": "Yes" },
+            { "value": "no", "label": "No" }
+          ]
+        },
+        "volunteerDescription": {
+          "label": "Tell us about your volunteer experience in a few words:",
+          "placeholder": "Describe your volunteer experience in a few words"
+        }
+      },
+      "buttons": {
+        "previous": "Previous",
+        "next": "Next"
+      }
+    },
+    "motivation": {
+      "title": {
+        "your": "Your",
+        "information": "Information"
+      },
+      "sections": {
+        "centerUp": "Center Up"
+      },
+      "fields": {
+        "whyJoinTeam": {
+          "label": "Why have you decided to become a member of the Center Up team?",
+          "placeholder": "Describe your volunteer experience in a few words"
+        },
+        "explainVolunteering": {
+          "label": "How would you explain volunteering to someone who is hearing about it for the first time?",
+          "placeholder": "Describe your volunteer experience in a few words"
+        },
+        "interestedPrograms": {
+          "label": "Which Center Up membership programs interest you the most?",
+          "placeholder": "Select",
+          "options": [
+            { "value": "membership", "label": "Membership" },
+            { "value": "junior", "label": "Center Up Junior" },
+            { "value": "future", "label": "Future Up" },
+            { "value": "courses", "label": "Courses & Activities" },
+            { "value": "conferences", "label": "Conferences" },
+            { "value": "camps", "label": "Camps" },
+            { "value": "events", "label": "Event Organization" },
+            { "value": "other", "label": "Other" }
+          ]
+        },
+        "memberOrLeader": {
+          "label": "Do you imagine yourself as a member of the team, or a leader?",
+          "placeholder": "Select",
+          "options": [
+            { "value": "member", "label": "Member" },
+            { "value": "leader", "label": "Leader" }
+          ]
+        },
+        "leaderSkills": {
+          "label": "Will you list 3 skills a leader should have?",
+          "placeholder": "Describe your volunteer experience in a few words"
+        }
+      },
+      "buttons": {
+        "previous": "Previous",
+        "next": "Next"
+      }
+    },
+    "additional": {
+      "title": {
+        "your": "Your",
+        "information": "Information"
+      },
+      "sections": {
+        "centerUp": "Center Up"
+      },
+      "fields": {
+        "additionalInfo": {
+          "label": "A section where, if desired, you can write whatever you want 💙💙",
+          "placeholder": "Describe your volunteer experience in a few words"
+        }
+      },
+      "buttons": {
+        "previous": "Previous",
+        "next": "Next"
+      }
     }
   }
 }

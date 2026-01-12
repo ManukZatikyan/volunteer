@@ -1,6 +1,7 @@
 export { Button, type ButtonProps, type ButtonVariant } from "./atom/Button";
 export { Input, type InputProps } from "./atom/Input";
 export { Textarea, type TextareaProps } from "./atom/Textarea";
+export { Dropdown, type DropdownProps, type DropdownOption } from "./atom/Dropdown";
 export { Card, type CardProps } from "./molecule/Card";
 export { MembershipCard, type MembershipCardProps } from "./atom/MembershipCard";
 export { ProfileCard, type ProfileCardProps } from "./molecule/ProfileCard";

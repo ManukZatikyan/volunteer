@@ -6,6 +6,7 @@ export interface InputProps
   label?: string;
   required?: boolean;
   error?: string;
+  asteriskColor?: "orange" | "red" | "default";
 }
 
 export const Input: React.FC<InputProps> = ({
@@ -14,10 +15,18 @@ export const Input: React.FC<InputProps> = ({
   error,
   className,
   id,
+  asteriskColor = "default",
   ...props
 }) => {
   const inputId = id || `input-${crypto.randomUUID().substring(0, 9)}`;
   const hasError = !!error;
+
+  const asteriskClass = cn(
+    "ml-0.5",
+    asteriskColor === "orange" && "text-secondary-orange-bright",
+    asteriskColor === "red" && "text-error",
+    asteriskColor === "default" && "text-primary-default dark:text-error"
+  );
 
   return (
     <div className="w-full">
@@ -27,7 +36,7 @@ export const Input: React.FC<InputProps> = ({
           className="block mb-1.5 text-body-sm-mobile font-noto-sans! text-primary-default dark:text-white"
         >
           {label}
-          {required && <span className="text-primary-default dark:text-error ml-0.5">*</span>}
+          {required && <span className={asteriskClass}>*</span>}
         </label>
       )}
       <input
@@ -37,7 +46,7 @@ export const Input: React.FC<InputProps> = ({
           "border-2",
           "text-primary-light placeholder:text-secondary-gray",
           "focus:outline-none focus:border-button-orange transition-colors",
-          "border-secondary-gray",
+          "border-secondary-gray bg-transparent",
           hasError && "border-error focus:border-error",
           className
         )}
