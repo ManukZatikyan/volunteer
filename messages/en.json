@@ -310,7 +310,7 @@
     "founder": {
       "title": "Founder",
       "name": "Inna Azizyan",
-      "biography": "I founded the organization when I was just 19 years old. The journey has had its challenges—many of them—but I've always had a clear goal",
+      "biography": "I founded the organization when I was just 19 years old. The journey has had its challenges—many of them—but I've always had a clear goal, I founded the organization when I was just 19 years old. The journey has had its challenges—many of them—but I've always had a clear goal",
       "buttonText": "Read more"
     },
     "departments": {
@@ -638,6 +638,72 @@
           ]
         }
       ]
+    }
+  },
+  "prAndPartnership": {
+    "heroSection": {
+      "title": "PR and Partnership Department"
+    },
+    "description": {
+      "heading": "Building Strong Relationships and Partnerships",
+      "text": "The PR and Partnership department is responsible for building and maintaining relationships with partners, stakeholders, and the community. We work to enhance Center Up's visibility and create meaningful connections that support our mission and programs."
+    },
+    "headOfDepartment": {
+      "title": "Head of PR and Partnership",
+      "name": "",
+      "description": "",
+      "imageSrc": "/user.png",
+      "imageAlt": "",
+      "imagePosition": "left",
+      "socialLinks": []
+    },
+    "members": {
+      "title": "Members",
+      "items": []
+    }
+  },
+  "eventManagementAndDataAnalytics": {
+    "heroSection": {
+      "title": "Event Management & Data Analytics Department"
+    },
+    "description": {
+      "heading": "Organizing Events and Analyzing Data",
+      "text": "The Event Management & Data Analytics department handles the planning and execution of events while also analyzing data to improve our programs and services. We ensure smooth event operations and use data-driven insights to enhance our offerings."
+    },
+    "headOfDepartment": {
+      "title": "Head of Event Management & Data Analytics",
+      "name": "",
+      "description": "",
+      "imageSrc": "/user.png",
+      "imageAlt": "",
+      "imagePosition": "left",
+      "socialLinks": []
+    },
+    "members": {
+      "title": "Members",
+      "items": []
+    }
+  },
+  "projectManagement": {
+    "heroSection": {
+      "title": "Project Management Department"
+    },
+    "description": {
+      "heading": "Leading Projects to Success",
+      "text": "The Project Management department oversees the planning, execution, and completion of various projects at Center Up. We ensure that all projects are delivered on time, within scope, and meet the highest quality standards."
+    },
+    "headOfDepartment": {
+      "title": "Head of Project Management",
+      "name": "",
+      "description": "",
+      "imageSrc": "/user.png",
+      "imageAlt": "",
+      "imagePosition": "left",
+      "socialLinks": []
+    },
+    "members": {
+      "title": "Members",
+      "items": []
     }
   },
   "coursesAndActivities": {

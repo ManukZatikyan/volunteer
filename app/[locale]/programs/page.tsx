@@ -47,7 +47,7 @@ export default function Programs() {
             <span className="text-white">{title}</span>
           )}
         </h1>
-        <div className="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-6 place-items-center">
+        <div className="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-6 place-items-center max-w-[1690px] mx-auto">
           {(programsMessages?.items || []).map((program: string | any, index: number) => {
             const programTitle = typeof program === "string" ? program : program.title;
             const programRoute = getProgramRoute(programTitle);

@@ -205,6 +205,12 @@ body {
   font-family: var(--font-montserrat), var(--font-noto-sans);
 }
 
+.container {
+  max-width: 1920px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* Ensure text-white uses the theme-aware color */
 html:not(.dark) .text-white {
   color: var(--color-text-white) !important;
@@ -562,11 +568,86 @@ html:not(.dark) .bg-white.dark\:bg-primary-default {
   min-height: 600px;
 }
 
+.worldmap-container > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
 .worldmap-container svg {
   display: block;
-  margin: 0;
+  margin: 0 auto;
   width: 100% !important;
   height: auto !important;
   min-height: 600px;
   max-width: 100% !important;
+  object-fit: contain;
+}
+
+/* Responsive WorldMap */
+@media (max-width: 768px) {
+  .worldmap-container {
+    min-height: 400px;
+    overflow: hidden;
+  }
+  
+  .worldmap-container > div {
+    overflow: hidden;
+    width: 100%;
+  }
+  
+  .worldmap-container svg {
+    min-height: 400px;
+    max-width: 100% !important;
+    width: 100% !important;
+    height: auto !important;
+    transform: scale(1);
+    transform-origin: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .worldmap-container {
+    min-height: 300px;
+    overflow: hidden;
+    padding: 0;
+    width: 100%;
+  }
+  
+  .worldmap-container > div {
+    overflow: hidden;
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .worldmap-container > div > div {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  .worldmap-container svg {
+    min-height: 300px;
+    max-width: 100% !important;
+    width: 100% !important;
+    height: auto !important;
+    transform: scale(1);
+    transform-origin: center;
+  }
+}
+
+/* WorldMap tooltip animation */
+.worldmap-tooltip {
+  animation: fadeInUp 0.2s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%, calc(-100% - 4px));
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -100%);
+  }
 }

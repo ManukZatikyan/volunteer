@@ -53,7 +53,7 @@ export default function AboutUs() {
           <div className="h-1 md:h-1.5 bg-secondary-orange-bright w-full rounded md:hidden"></div>
         </div>
       </section>
-      <section className="w-full flex flex-col items-center justify-center gap-12 px-6 md:px-10 xl:px-30">
+      <section className="container w-full flex flex-col items-center justify-center gap-12 px-6 md:px-10 xl:px-30">
         <div className="">
           <p className="text-white body-xs mt-3 md:text-subtitle! md:leading-subtitle!">
             {t("description.text")}
@@ -70,7 +70,7 @@ export default function AboutUs() {
             ))}
         </div>
       </section>
-      <section className="w-full py-12 px-6 md:px-10 xl:px-30">
+      <section className="container w-full py-12 px-6 md:px-10 xl:px-30">
         <div className="">
           <div className="mb-3 xl:mb-12!">
             <h2 className="text-white subtitle mb-3 md:text-headline! md:leading-headline!  xl:text-title! xl:leading-title! xl:mb-6! xl:font-bold!">
@@ -97,12 +97,14 @@ export default function AboutUs() {
           </div>
         </div>
       </section>
+      <div className="container">
       <MissionVision
         title={aboutUsMessages?.missionVision?.title || ""}
         mission={aboutUsMessages?.missionVision?.mission}
         vision={aboutUsMessages?.missionVision?.vision}
       />
-      <section className="w-full p-6 md:px-10 xl:px-30">
+      </div>
+      <section className=" w-full p-6 md:px-10 xl:px-30">
         <div className="mb-8 xl:mb-12!">
           <h2 className="text-white subtitle mb-3 md:text-headline! md:leading-headline!  xl:text-title! xl:leading-title! xl:mb-6! xl:font-bold!">
             {t("partnersSection.title")}

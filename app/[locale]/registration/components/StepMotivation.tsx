@@ -22,7 +22,7 @@ export function StepMotivation({
 
   return (
     <div className="mb-6">
-      <h2 className="text-white font-semibold text-lg md:text-[32px] leading-[24px] mb-6">
+      <h2 className="text-white dark:text-white font-semibold text-lg md:text-[32px] leading-[24px] mb-6">
         {t("sections.centerUp")}
       </h2>
       <div className="flex flex-col gap-6">
@@ -34,7 +34,7 @@ export function StepMotivation({
           value={formData.whyJoinTeam}
           onChange={onChange}
           rows={4}
-          className="rounded-lg border-white [&>label]:text-white"
+          className=""
         />
 
         {/* Question 2: Explain volunteering */}
@@ -45,7 +45,7 @@ export function StepMotivation({
           value={formData.explainVolunteering}
           onChange={onChange}
           rows={4}
-          className="rounded-lg border-white [&>label]:text-white"
+          className=""
         />
 
         {/* Question 3 and 4: Side by side dropdowns */}
@@ -87,7 +87,7 @@ export function StepMotivation({
           value={formData.leaderSkills}
           onChange={onChange}
           rows={4}
-          className="rounded-lg border-white [&>label]:text-white"
+          className=""
         />
       </div>
     </div>

@@ -24,7 +24,7 @@ export function StepEducation({
     <>
       {/* Education Section */}
       <div className="mb-8 md:mb-9">
-        <h2 className="text-white font-semibold text-lg md:text-[32px] leading-[24px] mb-6 mt-4">
+        <h2 className="text-white dark:text-white font-semibold text-lg md:text-[32px] leading-[24px] mb-6 mt-4">
           {t("sections.education")}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
@@ -61,7 +61,7 @@ export function StepEducation({
 
       {/* Center Up Section */}
       <div className="mb-6">
-        <h2 className="text-white font-semibold text-lg md:text-[32px] leading-[24px] mb-6">
+        <h2 className="ext-white font-semibold text-lg md:text-[32px] leading-[24px] mb-6">
           {t("sections.centerUp")}
         </h2>
         <div className="flex flex-col gap-6">
@@ -117,7 +117,7 @@ export function StepEducation({
             value={formData.volunteerDescription}
             onChange={onChange}
             rows={4}
-            className="rounded-lg border-white [&>label]:text-white"
+            className=""
           />
         </div>
       </div>

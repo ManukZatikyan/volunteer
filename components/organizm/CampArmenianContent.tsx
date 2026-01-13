@@ -16,11 +16,11 @@ export const CampArmenianContent: React.FC = ({}) => {
   return (
     <div className={cn("w-full py-12 px-6 bg-primary-light rounded-t-3xl")}>
       {/* Benefits Section */}
-      <div className="px-6">
+      <div className="container px-6">
         <h2 className="text-center title-sm mb-3">{t("title")}</h2>
         <p className="text-white body-xs">{t("description")}</p>
       </div>
-      <div className="flex flex-col gap-6">
+      <div className="container flex flex-col gap-6">
         {(campMessages?.armenianCamp?.descriptionItems || []).map((item: any, index: number) => (
           <ContentCard
             key={index}

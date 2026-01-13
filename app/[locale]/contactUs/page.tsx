@@ -129,33 +129,33 @@ export default function ContactUs() {
 
           <div className="p-6">
             <h2 className="hero-sm text-center mb-6">
-              <span className="text-primary-default! dark:text-white">{t("socialMediaSection.title.line1")}</span>{" "}
+              <span className="text-primary-default dark:text-white">{t("socialMediaSection.title.line1")}</span>{" "}
               <span className="text-[#FFA62B]">{t("socialMediaSection.title.line2")}</span>
             </h2>
 
             <div className="flex justify-between">
               <div className="space-y-6">
-                <div className="flex items-center gap-4 text-primary-default! dark:text-white">
+                <div className="flex items-center gap-4 text-primary-default dark:text-white">
                   <Icon
                     name="phone"
                     size={32}
-                    className="text-primary-default! dark:text-white shrink-0"
+                    className="text-primary-default dark:text-white shrink-0"
                   />
                   <span className="body-sm-mobile font-semibold!">{contactUsMessages?.contactInfo?.phone}</span>
                 </div>
-                <div className="flex items-center gap-4 text-primary-default! dark:text-white">
+                <div className="flex items-center gap-4 text-primary-default dark:text-white">
                   <Icon
                     name="email"
                     size={32}
-                    className="text-primary-default! dark:text-white shrink-0"
+                    className="text-primary-default dark:text-white shrink-0"
                   />
                   <span className="body-sm-mobile font-semibold!">{contactUsMessages?.contactInfo?.email}</span>
                 </div>
-                <div className="flex items-center gap-4 text-primary-default! dark:text-white">
+                <div className="flex items-center gap-4 text-primary-default dark:text-white">
                   <Icon
                     name="location"
                     size={32}
-                    className="text-primary-default! dark:text-white shrink-0"
+                    className="text-primary-default dark:text-white shrink-0"
                   />
                   <span className="body-sm-mobile font-semibold!">{contactUsMessages?.contactInfo?.location}</span>
                 </div>
@@ -174,7 +174,7 @@ export default function ContactUs() {
                     <Icon
                       name={social.name as any}
                       size={42}
-                      className="text-primary-default! dark:text-white"
+                      className="text-primary-default dark:text-white"
                     />
                   </a>
                 ))}

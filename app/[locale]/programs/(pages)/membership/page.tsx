@@ -67,7 +67,7 @@ export default function Membership() {
           <div className="h-1 md:h-1.5 bg-secondary-orange-bright w-full rounded md:hidden"></div>
         </div>
       </section>
-      <div className="px-6 pt-3 md:px-10 xl:px-30">
+      <div className="container px-6 pt-3 md:px-10 xl:px-30">
         <h2 className="text-white body-sm-mobile font-semibold! font-montserrat! mb-3 md:text-headline! md:leading-headline! md:font-bold!">
           {content.description?.heading || ""}
         </h2>
@@ -75,7 +75,7 @@ export default function Membership() {
           {content.description?.text || ""}
         </p>
       </div>
-      <div className="md:px-4 xl:px-30 px-6 pt-12 pb-12">
+      <div className="container md:px-4 xl:px-30 px-6 pt-12 pb-12">
         <div className="flex flex-col gap-6">
           {(content.descriptionItems || []).map((item: any, index: number) => (
             <ContentCard

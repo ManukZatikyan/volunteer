@@ -118,7 +118,7 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
               <button
                 ref={globeButtonRef}
                 onClick={toggleLanguagePopup}
-                className="hover:opacity-80 transition-opacity"
+                className="hover:opacity-80 transition-opacity cursor-pointer"
                 aria-label="Change language"
               >
                 <Icon name="globe" size={26} color="#FFFFFF" />

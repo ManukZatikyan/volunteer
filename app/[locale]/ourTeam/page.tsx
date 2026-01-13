@@ -3,9 +3,21 @@
 import { ProfileCard, ProfileCardHorizontal } from "@/components";
 import { useTranslations, useMessages } from "next-intl";
 import Image from "next/image";
+import { useRouter } from "@/i18n/routing";
+// Helper function to map department names to routes
+const getDepartmentRoute = (departmentName: string): string | undefined => {
+  const routeMap: Record<string, string> = {
+    "Marketing": "/programs/marketing",
+    "PR and Partnership": "/ourTeam/prAndPartnership",
+    "Event Management & Data Analytics": "/ourTeam/eventManagementAndDataAnalytics",
+    "Project Management": "/ourTeam/projectManagement",
+  };
+  return routeMap[departmentName];
+};
 
 export default function OurTeam() {
   const t = useTranslations("ourTeam");
+  const router = useRouter();
   const messages = useMessages();
   const ourTeamMessages = messages.ourTeam as any;
 
@@ -30,7 +42,7 @@ export default function OurTeam() {
           <div className="h-1 md:h-1.5 bg-secondary-orange-bright w-full rounded md:hidden"></div>
         </div>
       </section>
-      <section className="w-full flex flex-col items-center justify-center gap-12 px-6 md:px-10 xl:px-30">
+      <section className="container w-full flex flex-col items-center justify-center gap-12 px-6 md:px-10 xl:px-30">
         <div className="">
           <p className="text-white body-xs mt-3 md:text-subtitle! md:leading-subtitle!">
             {t("description.text")}
@@ -38,7 +50,7 @@ export default function OurTeam() {
         </div>
       </section>
 
-      <section className="w-full p-6 pb-3! md:px-10 xl:px-30 xl:pb-19!">
+      <section className="container w-full p-6 pb-3! md:px-10 xl:px-30 xl:pb-19!">
         <div className="mb-3 xl:mb-16!">
           <h2 className="text-white subtitle mb-3 md:text-headline! md:leading-headline! xl:text-title! xl:leading-title! xl:mb-6! xl:font-bold!">
             {t("founder.title")}
@@ -71,7 +83,12 @@ export default function OurTeam() {
                 biography={department.biography}
                 imageSrc={department.image || department.imageSrc || "/department.png"}
                 imageAlt={department.imageAlt || department.name || "Department"}
-                onClick={() => {}}
+                onClick={() => {
+                  const route = getDepartmentRoute(department.name);
+                  if (route) {
+                    router.push(route);
+                  }
+                }}
                 className="w-full max-w-[400px]"
               />
             )

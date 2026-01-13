@@ -16,7 +16,7 @@ export const CampInternationalContent: React.FC = ({}) => {
   return (
     <div className={cn("w-full py-12 px-6 bg-primary-light rounded-t-3xl")}>
       {/* Benefits Section */}
-      <div className="px-6">
+      <div className="container px-6">
         <h2 className="text-center title-sm mb-3">
           {t("title")}
         </h2>
@@ -24,7 +24,7 @@ export const CampInternationalContent: React.FC = ({}) => {
           {t("description")}
         </p>
       </div>
-      <div className="flex flex-col gap-6">
+      <div className="container flex flex-col gap-6">
         {(campMessages?.internationalCamp?.descriptionItems || []).map((item: any, index: number) => (
           <ContentCard
             key={index}
@@ -34,7 +34,7 @@ export const CampInternationalContent: React.FC = ({}) => {
           />
         ))}
       </div>
-      <div className="container mx-auto flex justify-center">
+      <div className="container flex justify-center">
         <Button variant="orange" onClick={() => router.push("/registration")}>
           {t("buttonText")}
         </Button>

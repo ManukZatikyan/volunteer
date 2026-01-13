@@ -34,7 +34,7 @@ const PhaseItem: React.FC<{
   const connectorDirection = showConnector ? (isLeftPosition ? "down-right" : "down-left") : null;
 
   return (
-    <div className={`relative flex gap-4 px-6 max-w-[830px] md:max-w-none md:px-0 ${isLeftPosition ? 'md:mr-auto md:max-w-[45%]' : 'md:ml-auto md:max-w-[45%]'}`}>
+    <div className={`relative flex gap-4  max-w-[830px] md:max-w-none md:px-0 ${isLeftPosition ? 'md:mr-auto md:max-w-[45%]' : 'md:ml-auto md:max-w-[45%]'}`}>
       {/* Mobile: Icon always on left, Desktop: Icon on left for left phases */}
       {isLeftPosition && (
         <div className="w-[86px]! flex items-center justify-center shrink-0">
@@ -45,8 +45,8 @@ const PhaseItem: React.FC<{
           </div>
         </div>
       )}
-      <div className="flex-1">
-        <h4 className="text-white body-sm-mobile md:text-base md:font-bold mb-1.5">{phase.title}</h4>
+      <div className="flex-1 max-w-[640px]">
+        <h4 className="text-white body-sm-mobile font-semibold! md:text-base md:font-bold mb-1.5">{phase.title}</h4>
         <p className="text-white body-xs md:text-sm md:leading-relaxed">{phase.description}</p>
       </div>
       {/* Mobile: Icon on right for right phases, Desktop: Icon on right for right phases */}
@@ -77,7 +77,7 @@ const PhaseItem: React.FC<{
       
       {/* Desktop connector lines - responsive */}
       {showConnector && connectorDirection && (
-        <div className={`absolute hidden md:block ${isLeftPosition && connectorDirection === "down-right" ? "top-[86px] left-[86px]" : !isLeftPosition && connectorDirection === "down-left" ? "top-[86px] right-[86px]" : ""} pointer-events-none z-0 overflow-hidden`} style={{ width: connectorDirection === "down-right" ? "calc(50vw - 43px)" : "calc(50vw - 43px)", maxWidth: connectorDirection === "down-right" ? "1071px" : "1255px", height: connectorDirection === "down-right" ? "128px" : "124px" }}>
+        <div className={`absolute hidden md:block ${isLeftPosition && connectorDirection === "down-right" ? "top-[84px] left-[40px]" : !isLeftPosition && connectorDirection === "down-left" ? "top-[84px] right-[-24px]" : ""} pointer-events-none z-0 overflow-hidden`} style={{ width: connectorDirection === "down-right" ? "calc(50vw - 43px)" : "calc(60vw - 43px)", maxWidth: connectorDirection === "down-right" ? "1071px" : "940px",minWidth: connectorDirection === "down-right" ? "680px" : "750px", height: connectorDirection === "down-right" ? "128px" : "124px" }}>
           <svg width="100%" height="100%" viewBox={connectorDirection === "down-right" ? "0 0 1071 128" : "0 0 1255 124"} fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
             {connectorDirection === "down-right" ? (
               <path d="M4 2C4 0.89543 3.10457 0 2 0C0.89543 0 0 0.89543 0 2H2H4ZM514.017 66.4262L513.612 64.4676L514.017 66.4262ZM1069.37 123.965C1070.46 123.759 1071.17 122.713 1070.96 121.627L1067.61 103.942C1067.41 102.857 1066.36 102.144 1065.27 102.35C1064.19 102.556 1063.48 103.602 1063.68 104.687L1066.66 120.408L1050.94 123.388C1049.86 123.593 1049.14 124.64 1049.35 125.725C1049.56 126.81 1050.6 127.523 1051.69 127.318L1069.37 123.965ZM2 2H0C0 10.1002 4.17287 17.9859 11.5557 25.4028C18.9445 32.8258 29.7078 39.9487 43.318 46.5773C70.5489 59.8394 109.55 71.3012 156.857 79.1574C251.496 94.8739 379.748 96.2217 514.422 68.3848L514.017 66.4262L513.612 64.4676C379.422 92.2045 251.666 90.8474 157.512 75.2114C110.423 67.3915 71.8319 56.0151 45.0695 42.9811C31.6831 36.4616 21.3495 29.572 14.3906 22.5809C7.42568 15.5838 4 8.65387 4 2H2ZM514.017 66.4262L514.422 68.3848C621.419 46.2685 737.568 44.9136 838.14 56.7054C938.794 68.507 1023.52 93.4387 1067.87 123.653L1069 122L1070.13 120.347C1024.96 89.5777 939.443 64.5556 838.606 52.7327C737.686 40.9001 621.1 42.25 513.612 64.4676L514.017 66.4262Z" fill="#FFA008"/>
@@ -96,7 +96,7 @@ export const ProcessPhases: React.FC<ProcessPhasesProps> = ({
   className = "",
 }) => {
   return (
-    <div className={`flex flex-col gap-12 md:gap-[140px] py-12 ${className}`}>
+    <div className={`flex flex-col gap-12 md:gap-[140px] py-12 ${className} w-[400px] mx-auto md:w-full`}>
       {phases.map((phase, index) => (
         <PhaseItem 
           key={phase.number} 

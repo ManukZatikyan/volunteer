@@ -1,10 +1,11 @@
 "use client";
-import { useTranslations, useMessages, useLocale } from "next-intl";
+import { useTranslations, useMessages } from "next-intl";
+import { useRouter } from "@/i18n/routing";
 import { ProcessPhases } from "@/components/molecule/ProcessPhases";
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import { highlightedCountries, phases } from "@/data/internationalUniversities";
 import { Button } from "@/components/atom/Button";
-import { useState, useEffect } from "react";
 
 // Dynamically import WorldMap to avoid SSR issues with d3-geo
 const WorldMap = dynamic(
@@ -17,46 +18,9 @@ const WorldMap = dynamic(
 
 export default function InternationalUniversities() {
   const t = useTranslations("internationalUniversities");
-  const locale = useLocale();
-  const [highlightedCountries, setHighlightedCountries] = useState<string[]>([]);
-  const [phases, setPhases] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    // Fetch content from API
-    const fetchContent = async () => {
-      try {
-        const response = await fetch(`/api/content/internationalUniversities?locale=${locale}`);
-        if (response.ok) {
-          const data = await response.json();
-          const content = data.content;
-          if (content) {
-            setHighlightedCountries(content.highlightedCountries || []);
-            setPhases(content.phases || []);
-          } else {
-            // Fallback to default data if API returns null
-            const { highlightedCountries: defaultCountries, phases: defaultPhases } = await import("@/data/internationalUniversities");
-            setHighlightedCountries(defaultCountries || []);
-            setPhases(defaultPhases || []);
-          }
-        }
-      } catch (error) {
-        console.error("Error fetching content:", error);
-        // Fallback to default data on error
-        try {
-          const { highlightedCountries: defaultCountries, phases: defaultPhases } = await import("@/data/internationalUniversities");
-          setHighlightedCountries(defaultCountries || []);
-          setPhases(defaultPhases || []);
-        } catch (fallbackError) {
-          console.error("Error loading fallback data:", fallbackError);
-        }
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchContent();
-  }, [locale]);
+  const router = useRouter();
+  // const messages = useMessages();
+  // const intlUniMessages = messages.internationalUniversities as any;
 
   return (
     <div className="flex flex-col">
@@ -79,7 +43,7 @@ export default function InternationalUniversities() {
           <div className="h-1 md:h-1.5 bg-secondary-orange-bright w-full rounded md:hidden"></div>
         </div>
       </section>
-      <div className="px-6 pt-3 md:px-10 xl:px-30">
+      <div className="container px-6 pt-3 md:px-10 xl:px-30">
         <h2 className="text-white body-sm-mobile font-semibold! font-montserrat! mb-3 md:text-headline! md:leading-headline! md:font-bold!">
           {t("description.heading")}
         </h2>
@@ -87,29 +51,30 @@ export default function InternationalUniversities() {
           {t("description.text")}
         </p>
       </div>
-      <div className="md:px-4 xl:px-30 px-6 pt-12 pb-12">
+      <div className="max-w-[1680px] w-full mx-auto md:px-4 xl:px-30 px-6 pt-12 pb-12">
         <ProcessPhases phases={phases || []} />
       </div>
-      {loading ? (
-        <div className="px-6 py-12 text-center text-white">Loading...</div>
-      ) : (
-        <>
-          <ProcessPhases phases={phases || []} />
 
-          <div className="w-full px-6 pb-8 bg-white dark:bg-primary-default">
-            <div className="relative z-10 w-full">
-              <h1 className="text-primary-default dark:text-white title-sm mb-3">{t("studentsAroundWorld.title")}</h1>
-              <div className="h-1 md:h-2 bg-secondary-orange-bright w-full rounded"></div>
-            </div>
-            <div className="pt-3">
-              <p className="text-primary-default dark:text-white body-sm-mobile">{t("studentsAroundWorld.description")}</p>
-            </div>
-            <WorldMap highlightedCountries={highlightedCountries || []} />
+      <div className="w-full pb-8 bg-white dark:bg-primary-default">
+        <div className="px-6 md:px-10 xl:px-30">
+          <div className="relative z-10 w-full">
+            <h1 className="text-primary-default dark:text-white title-sm mb-3">{t("studentsAroundWorld.title")}</h1>
+            <div className="h-1 md:h-1.5 bg-secondary-orange-bright w-full rounded"></div>
           </div>
-        </>
-      )}
-      <div className="container mx-auto px-6 pb-12 flex justify-center">
-        <Button variant="orange">{t("registrationButton.text")}</Button>
+          <div className="pt-3 md:mb-8">
+            <p className="text-primary-default dark:text-white body-sm-mobile md:text-body! md:leading-body!">
+              {t("studentsAroundWorld.description")}
+            </p>
+          </div>
+        </div>
+        <div className="w-full">
+          <WorldMap highlightedCountries={highlightedCountries || []} />
+        </div>
+      </div>
+      <div className="md:px-4 xl:px-30 px-6 pb-12 flex justify-center">
+        <Button variant="orange" onClick={() => router.push("/registration")}>
+          {t("registrationButton.text")}
+        </Button>
       </div>
     </div>
   );
