@@ -25,3 +25,4 @@ export { CampArmenianContent } from "./organizm/CampArmenianContent";
 export { EventCard, type EventCardProps } from "./molecule/EventCard";
 export { ProcessPhases, type ProcessPhasesProps, type ProcessPhase } from "./molecule/ProcessPhases";
 export { WorldMap, type WorldMapProps } from "./molecule/WorldMap";
+export { Loading, type LoadingProps } from "./atom/Loading";
