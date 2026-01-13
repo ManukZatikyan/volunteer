@@ -11,7 +11,7 @@ export const description = {
 export const founder = {
   title: "Founder",
   name: "Inna Azizyan",
-  biography: "I founded the organization when I was just 19 years old. The journey has had its challenges—many of them—but I've always had a clear goal",
+  biography: "I founded the organization when I was just 19 years old. The journey has had its challenges—many of them—but I've always had a clear goal, I founded the organization when I was just 19 years old. The journey has had its challenges—many of them—but I've always had a clear goal",
   imageSrc: "/user.png",
   imageAlt: "John Doe",
   buttonText: "Read more",

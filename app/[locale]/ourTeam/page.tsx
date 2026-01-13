@@ -8,9 +8,9 @@ import Image from "next/image";
 const getDepartmentRoute = (departmentName: string): string | undefined => {
   const routeMap: Record<string, string> = {
     "Marketing": "/programs/marketing",
-    "PR and Partnership": "/programs", // Add specific route if available
-    "Event Management & Data Analytics": "/programs", // Add specific route if available
-    "Project Management": "/programs", // Add specific route if available
+    "PR and Partnership": "/ourTeam/prAndPartnership",
+    "Event Management & Data Analytics": "/ourTeam/eventManagementAndDataAnalytics",
+    "Project Management": "/ourTeam/projectManagement",
   };
   return routeMap[departmentName];
 };
