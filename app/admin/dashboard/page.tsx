@@ -85,7 +85,7 @@ export default function AdminDashboard() {
               {t('title')}
             </h1>
             <div className="flex items-center gap-4">
-              {/* Language Switcher Links */}
+              {/* Language Switcher */}
               <div className="flex items-center gap-2 bg-gray-200 dark:bg-gray-700 rounded-md p-1">
                 <button
                   onClick={() => setLocale('en')}
@@ -110,7 +110,7 @@ export default function AdminDashboard() {
               </div>
               <button
                 onClick={handleLogout}
-                className="px-4 py-2 bg-red-600 !text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 cursor-pointer"
+                className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 cursor-pointer"
               >
                 {t('logout')}
               </button>
@@ -129,12 +129,20 @@ export default function AdminDashboard() {
               {t('pagesDescription')}
             </p>
           </div>
-          <Link
-            href="/admin/forms"
-            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-          >
-            {t('manageForms', { default: 'Manage Forms' })}
-          </Link>
+          <div className="flex gap-3">
+            <Link
+              href="/admin/forms"
+              className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 cursor-pointer"
+            >
+              {t('manageForms', { default: 'Manage Forms' })}
+            </Link>
+            <Link
+              href="/admin/submissions"
+              className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 cursor-pointer"
+            >
+              {t('viewSubmissions', { default: 'View Submissions' })}
+            </Link>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

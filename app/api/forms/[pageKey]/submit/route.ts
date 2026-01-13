@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { cookies } from 'next/headers';
 import connectDB from '@/lib/db';
 import Form from '@/lib/models/Form';
 import FormSubmission from '@/lib/models/FormSubmission';
@@ -33,10 +34,32 @@ export async function POST(
       );
     }
 
+    // Extract user info from cookie
+    let userEmail: string | undefined;
+    let userName: string | undefined;
+    
+    try {
+      const cookieStore = await cookies();
+      const googleUserCookie = cookieStore.get('google_user');
+      if (googleUserCookie?.value) {
+        try {
+          const userData = JSON.parse(decodeURIComponent(googleUserCookie.value));
+          userEmail = userData.email;
+          userName = userData.name;
+        } catch (e) {
+          console.error('Error parsing user cookie:', e);
+        }
+      }
+    } catch (e) {
+      console.error('Error reading cookies:', e);
+    }
+
     // Save submission
     const submission = new FormSubmission({
       formId: form._id,
       pageKey,
+      userEmail,
+      userName,
       data,
     });
 

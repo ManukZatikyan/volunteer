@@ -1064,7 +1064,16 @@
       "pages": "Pages",
       "pagesDescription": "Select a page to edit its content",
       "noPages": "No pages available",
-      "manageForms": "Manage Forms"
+      "manageForms": "Manage Forms",
+      "viewSubmissions": "View Submissions"
+    },
+    "submissions": {
+      "title": "Form Submissions",
+      "filterByPage": "Filter by Page",
+      "allPages": "All Pages",
+      "noSubmissions": "No submissions found",
+      "show": "Show Answers",
+      "hide": "Hide Answers"
     },
     "edit": {
       "backToDashboard": "← Back to Dashboard",
@@ -1201,6 +1210,6 @@
       "uploadFailed": "Failed to upload file",
       "invalidFileType": "Invalid file type. Only images are allowed.",
       "fileSizeExceeded": "File size exceeds 5MB limit"
-    }
+  }
 }
 
