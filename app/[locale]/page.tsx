@@ -6,18 +6,21 @@ import {
   Carousel,
   EventCard,
 } from "@/components";
+import { useRouter, Link } from "@/i18n/routing";
+import { useTranslations, useMessages, useLocale } from "next-intl";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Marquee from "react-fast-marquee";
-import { useTranslations, useMessages } from "next-intl";
-import { useRouter } from "@/i18n/routing";
-import { useState, useEffect } from "react";
 
 export default function Home() {
   const t = useTranslations("home");
   const messages = useMessages();
+  const locale = useLocale();
   const homeMessages = messages.home as any;
   const router = useRouter();
   const [slidesToShow, setSlidesToShow] = useState(1);
+  const [upcomingEvents, setUpcomingEvents] = useState<any[]>([]);
+  const [programs, setPrograms] = useState<any[]>([]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -47,6 +50,52 @@ export default function Home() {
     const route = routeMap[programTitle] || "";
     return route ? `/programs/${route}` : "/programs";
   };
+  useEffect(() => {
+    // Fetch content from API
+    const fetchContent = async () => {
+      try {
+        const response = await fetch(`/api/content/home?locale=${locale}`);
+        if (response.ok) {
+          const data = await response.json();
+          const content = data.content;
+          if (content) {
+            // Use API content if available
+            // Handle both structures: direct arrays (from data files) or nested (from messages)
+            if (content.upcomingEvents && Array.isArray(content.upcomingEvents)) {
+              setUpcomingEvents(content.upcomingEvents);
+            } else if (content.upcomingEvents?.events && Array.isArray(content.upcomingEvents.events)) {
+              setUpcomingEvents(content.upcomingEvents.events);
+            } else {
+              setUpcomingEvents(homeMessages?.upcomingEvents?.events || []);
+            }
+            
+            if (content.programs && Array.isArray(content.programs)) {
+              setPrograms(content.programs);
+            } else if (content.programs?.items && Array.isArray(content.programs.items)) {
+              setPrograms(content.programs.items);
+            } else {
+              setPrograms(homeMessages?.programs?.items || []);
+            }
+          } else {
+            // Fallback to messages
+            setUpcomingEvents(homeMessages?.upcomingEvents?.events || []);
+            setPrograms(homeMessages?.programs?.items || []);
+          }
+        } else {
+          // Fallback to messages on error
+          setUpcomingEvents(homeMessages?.upcomingEvents?.events || []);
+          setPrograms(homeMessages?.programs?.items || []);
+        }
+      } catch (error) {
+        console.error("Error fetching content:", error);
+        // Fallback to messages on error
+        setUpcomingEvents(homeMessages?.upcomingEvents?.events || []);
+        setPrograms(homeMessages?.programs?.items || []);
+      }
+    };
+
+    fetchContent();
+  }, [locale, homeMessages]);
   return (
     <div className="flex flex-col font-sans relative">
       <section className="relative w-full h-[618px] md:h-[700px] lg:h-[800px] flex items-center justify-center overflow-hidden">
@@ -79,9 +128,11 @@ export default function Home() {
             </p>
           </div>
           <div className="flex justify-center">
-            <Button variant="orange" className="text-base md:text-lg px-8 md:px-10 py-3 md:py-4">
-              {t("heroSection.buttonText")}
-            </Button>
+            <Link href="/ourTeam">
+              <Button variant="orange" className="text-base md:text-lg px-8 md:px-10 py-3 md:py-4">
+                {t("heroSection.buttonText")}
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -99,7 +150,6 @@ export default function Home() {
           ))}
         </Marquee>
       </section>
-
       <section className="w-full px-6 pt-12 xl:px-30 xl:pt-24">
         <div className="">
           <div className="mb-6">
@@ -108,9 +158,8 @@ export default function Home() {
               <span className="text-white"> {t("upcomingEvents.title").split(" ").slice(1).join(" ")}</span>
             </h2>
           </div>
-
           <Carousel
-            testimonials={homeMessages?.upcomingEvents?.events || []}
+            testimonials={upcomingEvents}
             autoPlay={false}
             slidesToShow={slidesToShow}
             renderItem={(testimonial) => {
@@ -119,7 +168,7 @@ export default function Home() {
                 <EventCard
                   title={item.title}
                   description={item.description}
-                  imageSrc="/image.png"
+                  imageSrc={item.image || "/image.png"}
                   imageAlt={item.title}
                   onClick={() => {}}
                 />
@@ -153,8 +202,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <section className="w-full px-6 pb-12 xl:px-12 xl:pb-24 xl:px-30">
+      <section className="w-full px-6 pb-12 pt-12 xl:px-12 xl:pb-24 xl:pt-24 xl:px-30">
         <div className="">
           <div className="mb-6">
             <h2 className="text-white title-sm mb-3 text-center xl:mb-12 xl:text-title! xl:leading-title!">
@@ -166,13 +214,13 @@ export default function Home() {
           {/* Mobile Carousel */}
           <div className="block xl:hidden">
             <Carousel
-              testimonials={homeMessages?.programs?.items || []}
+              testimonials={programs}
               autoPlay={false}
               renderItem={(testimonial) => {
                 const item = testimonial as any;
                 return (
                   <Card
-                    imageSrc="/image.png"
+                    imageSrc={item.image || "/image.png"}
                     imageAlt={item.title}
                     title={item.title}
                     description={item.description}
@@ -186,10 +234,10 @@ export default function Home() {
           {/* Desktop Grid */}
           <div className="hidden xl:block w-full">
             <div className="grid grid-cols-4 gap-6 mb-12 w-full">
-              {(homeMessages?.programs?.items || []).slice(0, 4).map((item: any, index: number) => (
+              {programs.slice(0, 4).map((item: any, index: number) => (
                 <Card
                   key={index}
-                  imageSrc="/image.png"
+                  imageSrc={item.image || "/image.png"}
                   imageAlt={item.title}
                   title={item.title}
                   description={item.description}
@@ -197,7 +245,7 @@ export default function Home() {
                 />
               ))}
             </div>
-            {(homeMessages?.programs?.items || []).length > 3 && (
+            {programs.length > 3 && (
               <div className="flex justify-center">
                 <Button variant="white" className="px-8 py-3" onClick={() => router.push("/programs")}>
                   View all programs

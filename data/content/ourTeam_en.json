@@ -1,0 +1,32 @@
+{
+  "departments": {
+    "title": "Departments",
+    "items": [
+      {
+        "name": "Marketing",
+        "biography": "I founded the organization when I was just 19 years old. The journey has had its challenges—many of them—but I've always had a clear goal: to help young people reach their dreams.\nOver the past 4 years of Center UP, we've created—and continue to create—programs that truly change lives for us and our participants. In the beginning, I did everything on my own—I was both the head of every department and the only employee. Year by year, month by month, we build and share new things with you.",
+        "image": ""
+      },
+      {
+        "name": "PR and Partnership",
+        "biography": "I founded the organization when I was just 19 years old. The journey has had its challenges—many of them—but I've always had a clear goal: to help young people reach their dreams.\nOver the past 4 years of Center UP, we've created—and continue to create—programs that truly change lives for us and our participants. In the beginning, I did everything on my own—I was both the head of every department and the only employee. Year by year, month by month, we build and share new things with you.",
+        "image": ""
+      },
+      {
+        "name": "Event Management & Data Analytics",
+        "biography": "I founded the organization when I was just 19 years old. The journey has had its challenges—many of them—but I've always had a clear goal: to help young people reach their dreams.\nOver the past 4 years of Center UP, we've created—and continue to create—programs that truly change lives for us and our participants. In the beginning, I did everything on my own—I was both the head of every department and the only employee. Year by year, month by month, we build and share new things with you.",
+        "image": ""
+      },
+      {
+        "name": "Project Management",
+        "biography": "I founded the organization when I was just 19 years old. The journey has had its challenges—many of them—but I've always had a clear goal: to help young people reach their dreams.\nOver the past 4 years of Center UP, we've created—and continue to create—programs that truly change lives for us and our participants. In the beginning, I did everything on my own—I was both the head of every department and the only employee. Year by year, month by month, we build and share new things with you.",
+        "image": ""
+      },
+      {
+        "name": "Test en",
+        "biography": "Desc EN",
+        "image": "/uploads/1768055820137_b06brx5jkv.png"
+      }
+    ]
+  }
+}

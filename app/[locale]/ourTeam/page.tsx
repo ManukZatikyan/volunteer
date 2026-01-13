@@ -3,7 +3,7 @@
 import { ProfileCard, ProfileCardHorizontal } from "@/components";
 import { useTranslations, useMessages } from "next-intl";
 import Image from "next/image";
-
+import { useRouter } from "@/i18n/routing";
 // Helper function to map department names to routes
 const getDepartmentRoute = (departmentName: string): string | undefined => {
   const routeMap: Record<string, string> = {
@@ -17,6 +17,7 @@ const getDepartmentRoute = (departmentName: string): string | undefined => {
 
 export default function OurTeam() {
   const t = useTranslations("ourTeam");
+  const router = useRouter();
   const messages = useMessages();
   const ourTeamMessages = messages.ourTeam as any;
 
@@ -75,20 +76,22 @@ export default function OurTeam() {
         </div>
         <div className="flex flex-col items-center md:grid md:grid-cols-2 md:place-items-center xl:flex xl:flex-row xl:justify-center gap-6">
           {(ourTeamMessages?.departments?.items || []).map(
-            (department: any, index: number) => {
-              const departmentRoute = getDepartmentRoute(department.name);
-              return (
-                <ProfileCard
-                  key={index}
-                  name={department.name}
-                  biography={department.biography}
-                  imageSrc={"/department.png"}
-                  imageAlt={department.imageAlt}
-                  href={departmentRoute}
-                  className="w-full max-w-[400px]"
-                />
-              );
-            }
+            (department: any, index: number) => (
+              <ProfileCard
+                key={index}
+                name={department.name}
+                biography={department.biography}
+                imageSrc={department.image || department.imageSrc || "/department.png"}
+                imageAlt={department.imageAlt || department.name || "Department"}
+                onClick={() => {
+                  const route = getDepartmentRoute(department.name);
+                  if (route) {
+                    router.push(route);
+                  }
+                }}
+                className="w-full max-w-[400px]"
+              />
+            )
           )}
         </div>
       </section>

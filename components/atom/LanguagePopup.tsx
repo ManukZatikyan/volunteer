@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { useLocale } from "next-intl";
 import { useRouter } from "@/i18n/routing";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { locales } from "@/i18n/request";
 import { cn } from "@/lib/utils";
 
@@ -19,6 +19,7 @@ export const LanguagePopup: React.FC<LanguagePopupProps> = ({
   const locale = useLocale() as "en" | "hy";
   const router = useRouter();
   const fullPathname = usePathname(); // Full pathname from Next.js (includes locale)
+  const searchParams = useSearchParams(); // Get current search params
   const [hoveredLanguage, setHoveredLanguage] = useState<"en" | "hy" | null>(
     null
   );
@@ -39,8 +40,12 @@ export const LanguagePopup: React.FC<LanguagePopupProps> = ({
       }
     }
     
-    // Use next-intl's router to navigate with clean pathname and new locale
-    router.push(cleanPathname, { locale: newLocale });
+    // Preserve query parameters
+    const queryString = searchParams?.toString();
+    const pathWithQuery = queryString ? `${cleanPathname}?${queryString}` : cleanPathname;
+    
+    // Use next-intl's router to navigate with clean pathname, query params, and new locale
+    router.push(pathWithQuery, { locale: newLocale });
     // Close the popup after navigation
     onLanguageChange?.();
   };
