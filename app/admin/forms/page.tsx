@@ -1,6 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { useAdminLocale } from '@/lib/admin-locale';
@@ -35,7 +36,8 @@ interface Form {
 export default function FormsPage() {
   const router = useRouter();
   const t = useTranslations('admin.forms');
-  const { locale: adminLocale } = useAdminLocale();
+  const tAdmin = useTranslations('admin');
+  const { locale, setLocale } = useAdminLocale();
   const [forms, setForms] = useState<Form[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -155,32 +157,77 @@ export default function FormsPage() {
     return forms.some(f => f.pageKey === pageKey);
   };
 
+  const handleLogout = async () => {
+    try {
+      await fetch('/api/admin/logout', { method: 'POST' });
+      router.push('/admin');
+    } catch (err) {
+      console.error('Logout error:', err);
+    }
+  };
+
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-100 dark:bg-gray-900 flex items-center justify-center">
-        <div className="text-gray-600 dark:text-gray-400">Loading...</div>
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-xl text-gray-600 dark:text-gray-400">Loading...</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="mb-6 flex items-center justify-between">
-          <div>
-            <button
-              onClick={() => router.push('/admin/dashboard')}
-              className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white cursor-pointer mb-2"
-            >
-              ← Back to Dashboard
-            </button>
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+      <div className="bg-white dark:bg-gray-800 shadow">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center py-6">
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
               {t('title', { default: 'Form Management' })}
             </h1>
-            <p className="text-gray-600 dark:text-gray-400 mt-2">
-              {t('description', { default: 'Manage registration forms for each page' })}
-            </p>
+            <div className="flex items-center gap-4">
+              {/* Language Switcher */}
+              <div className="flex items-center gap-2 bg-gray-200 dark:bg-gray-700 rounded-md p-1">
+                <button
+                  onClick={() => setLocale('en')}
+                  className={`px-3 py-1.5 rounded text-sm font-medium transition-colors cursor-pointer ${
+                    locale === 'en'
+                      ? 'bg-green-600 text-white'
+                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+                  }`}
+                >
+                  EN
+                </button>
+                <button
+                  onClick={() => setLocale('hy')}
+                  className={`px-3 py-1.5 rounded text-sm font-medium transition-colors cursor-pointer ${
+                    locale === 'hy'
+                      ? 'bg-green-600 text-white'
+                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+                  }`}
+                >
+                  HY
+                </button>
+              </div>
+              <Link
+                href="/admin/dashboard"
+                className="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 cursor-pointer"
+              >
+                {tAdmin('dashboard.title', { default: 'Dashboard' })}
+              </Link>
+              <button
+                onClick={handleLogout}
+                className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 cursor-pointer"
+              >
+                {tAdmin('dashboard.logout', { default: 'Logout' })}
+              </button>
+            </div>
           </div>
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="mb-6">
+          <p className="text-gray-600 dark:text-gray-400">
+            {t('description', { default: 'Manage registration forms for each page' })}
+          </p>
         </div>
 
 

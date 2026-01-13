@@ -1,9 +1,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useTranslations, useLocale } from 'next-intl';
 import { PAGES } from '@/lib/pages';
+import { Button } from '@/components';
 
 interface FormField {
   id: string;
@@ -36,9 +37,11 @@ interface DynamicFormProps {
 
 export default function DynamicForm({ pageKey }: DynamicFormProps) {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const locale = useLocale();
   const t = useTranslations('forms');
   const tReg = useTranslations('registration.information');
+  const tAuth = useTranslations('registration');
   
   const [form, setForm] = useState<Form | null>(null);
   const [pageContent, setPageContent] = useState<any>(null);
@@ -48,13 +51,11 @@ export default function DynamicForm({ pageKey }: DynamicFormProps) {
   const [formData, setFormData] = useState<Record<string, any>>({});
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [success, setSuccess] = useState(false);
-
-  useEffect(() => {
-    loadFormAndContent();
-  }, [pageKey, locale]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const loadFormAndContent = async () => {
     try {
+      setLoading(true);
       // Load both form and page content in parallel
       const [formResponse, contentResponse] = await Promise.all([
         fetch(`/api/forms/${pageKey}`),
@@ -91,6 +92,83 @@ export default function DynamicForm({ pageKey }: DynamicFormProps) {
       setLoading(false);
     }
   };
+
+  // Check authentication status
+  useEffect(() => {
+    // Check if user is already authenticated via cookie
+    const checkAuth = () => {
+      const cookies = document.cookie.split(';');
+      const googleUserCookie = cookies.find(c => c.trim().startsWith('google_user='));
+      if (googleUserCookie) {
+        try {
+          const userData = JSON.parse(decodeURIComponent(googleUserCookie.split('=')[1]));
+          if (userData.email) {
+            setIsLoggedIn(true);
+            return true;
+          }
+        } catch (e) {
+          console.error('Error parsing user cookie:', e);
+        }
+      }
+      return false;
+    };
+
+    // Check for auth success from callback
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('auth') === 'success') {
+      setIsLoggedIn(true);
+      // Clean up auth params from URL
+      urlParams.delete('auth');
+      urlParams.delete('email');
+      urlParams.delete('name');
+      const cleanUrl = new URL(window.location.href);
+      cleanUrl.search = urlParams.toString();
+      window.history.replaceState({}, '', cleanUrl.toString());
+    } else if (urlParams.get('error')) {
+      // Handle OAuth errors
+      const errorType = urlParams.get('error');
+      const errorDetails = urlParams.get('details');
+      let errorMessage = 'Authentication failed. Please try again.';
+      
+      if (errorType === 'token_exchange_failed') {
+        errorMessage = errorDetails 
+          ? `Authentication error: ${decodeURIComponent(errorDetails)}`
+          : 'Failed to complete authentication. Please check your Google OAuth configuration.';
+      } else if (errorType === 'config_error') {
+        const details = urlParams.get('details');
+        if (details === 'missing_client_id') {
+          errorMessage = 'Google OAuth Client ID is not configured. Please set NEXT_PUBLIC_GOOGLE_CLIENT_ID in your environment variables.';
+        } else if (details === 'missing_client_secret') {
+          errorMessage = 'Google OAuth Client Secret is not configured. Please set GOOGLE_CLIENT_SECRET in your environment variables.';
+        } else {
+          errorMessage = 'Authentication is not properly configured. Please check your environment variables.';
+        }
+      } else if (errorType === 'no_code') {
+        errorMessage = 'Authentication was cancelled or incomplete. Please try again.';
+      }
+      
+      alert(errorMessage);
+      
+      // Clean up error params from URL
+      urlParams.delete('error');
+      urlParams.delete('details');
+      const cleanUrl = new URL(window.location.href);
+      cleanUrl.search = urlParams.toString();
+      window.history.replaceState({}, '', cleanUrl.toString());
+    } else {
+      // Check cookie-based auth
+      checkAuth();
+    }
+  }, []);
+
+  // Load form when authenticated
+  useEffect(() => {
+    if (isLoggedIn) {
+      loadFormAndContent();
+    } else {
+      setLoading(false);
+    }
+  }, [isLoggedIn, pageKey, locale]);
 
   const getFieldLabel = (field: FormField): string => {
     return locale === 'hy' && field.labelHy ? field.labelHy : field.label;
@@ -182,6 +260,52 @@ export default function DynamicForm({ pageKey }: DynamicFormProps) {
     }
   };
 
+  const handleSignIn = async () => {
+    try {
+      const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
+      if (!clientId) {
+        console.error('Google Client ID not configured');
+        alert('Google authentication is not configured. Please contact support.');
+        return;
+      }
+
+      // Preserve pageKey and locale in redirect
+      const currentPageKey = searchParams?.get('pageKey') || pageKey;
+      // IMPORTANT: The redirect_uri must match EXACTLY what's configured in Google Cloud Console
+      // Use window.location.origin to ensure it matches the actual request URL
+      const redirectUri = `${window.location.origin}/api/auth/google/callback`;
+      const scope = 'openid email profile';
+      const responseType = 'code';
+      
+      // Create state parameter to preserve locale and pageKey
+      const state = JSON.stringify({
+        locale: locale,
+        pageKey: currentPageKey || null,
+      });
+      
+      console.log('Initiating Google OAuth with:', {
+        clientId: clientId.substring(0, 20) + '...',
+        redirectUri,
+        origin: window.location.origin,
+      });
+      
+      let authUrl = `https://accounts.google.com/o/oauth2/v2/auth?` +
+        `client_id=${encodeURIComponent(clientId)}&` +
+        `redirect_uri=${encodeURIComponent(redirectUri)}&` +
+        `response_type=${responseType}&` +
+        `scope=${encodeURIComponent(scope)}&` +
+        `access_type=offline&` +
+        `prompt=consent&` +
+        `state=${encodeURIComponent(state)}`;
+
+      // Redirect to Google OAuth
+      window.location.href = authUrl;
+    } catch (error) {
+      console.error("Google sign-in error:", error);
+      alert('Failed to initiate Google sign-in. Please try again.');
+    }
+  };
+
   const handleSubmit = async () => {
     if (!validateCurrentStep()) {
       return;
@@ -211,6 +335,29 @@ export default function DynamicForm({ pageKey }: DynamicFormProps) {
   };
 
   const page = PAGES.find(p => p.key === pageKey);
+
+  // Show Google sign-in if not logged in
+  if (!isLoggedIn) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-primary-default px-6">
+        <div className="w-full max-w-md flex flex-col items-center justify-center text-center">
+          <h1 className="text-white font-bold text-2xl md:text-3xl lg:text-4xl mb-6 md:mb-8 leading-tight">
+            {tAuth("signInPrompt")}{" "}
+            <span className="text-secondary-orange-bright">{tAuth("google")}</span>{" "}
+            {tAuth("toContinue")}
+          </h1>
+          
+          <Button
+            onClick={handleSignIn}
+            variant="orange"
+            className="px-6 py-3 md:px-16 md:py-4 text-base md:text-lg font-semibold mt-4"
+          >
+            {tAuth("sendButton")}
+          </Button>
+        </div>
+      </div>
+    );
+  }
 
   if (loading) {
     return (
@@ -254,7 +401,7 @@ export default function DynamicForm({ pageKey }: DynamicFormProps) {
   const stepData = formData[`step_${currentStep}`] || {};
 
   return (
-    <div className="min-h-screen bg-primary-default px-6 py-6 md:py-8">
+    <div className="!bg-primary-light dark:bg-primary-default px-6 py-6 md:py-8">
       <div className="w-full max-w-6xl mx-auto">
         <h1 className="text-white font-bold text-2xl md:text-3xl lg:text-[54px] leading-[54px] mb-2 md:mb-9">
           {tReg('title.your')} <span className="text-secondary-orange-bright">{tReg('title.information')}</span>
@@ -263,7 +410,11 @@ export default function DynamicForm({ pageKey }: DynamicFormProps) {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            handleNext();
+            if (currentStep < form.steps.length - 1) {
+              handleNext();
+            } else {
+              handleSubmit();
+            }
           }}
           className="w-full"
         >
@@ -274,7 +425,7 @@ export default function DynamicForm({ pageKey }: DynamicFormProps) {
                 {t('step', { default: 'Step' })} {currentStep + 1} {t('of', { default: 'of' })} {form.steps.length}
               </span>
             </div>
-            <div className="w-full bg-white/20 rounded-full h-2">
+            <div className="w-full bg-text-dark-blue/20 dark:bg-white/20 rounded-full h-2">
               <div
                 className="bg-secondary-orange-bright h-2 rounded-full transition-all duration-300"
                 style={{ width: `${((currentStep + 1) / form.steps.length) * 100}%` }}
