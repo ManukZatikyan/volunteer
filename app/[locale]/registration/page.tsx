@@ -1,13 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components";
-import { useTranslations, useMessages } from "next-intl";
-import { useRouter } from "@/i18n/routing";
+import { useTranslations, useMessages, useLocale } from "next-intl";
+import { useRouter, useSearchParams } from "next/navigation";
 import { StepInformation } from "./components/StepInformation";
 import { StepEducation } from "./components/StepEducation";
 import { StepMotivation } from "./components/StepMotivation";
 import { StepAdditional } from "./components/StepAdditional";
+import DynamicForm from "./DynamicForm";
 
 const TOTAL_STEPS = 4;
 
@@ -17,6 +18,9 @@ export default function Registration() {
   const messages = useMessages();
   const informationMessages = messages.registration?.information as any;
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const locale = useLocale();
+  const pageKey = searchParams?.get("pageKey");
 
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState({
@@ -48,15 +52,132 @@ export default function Registration() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  useEffect(() => {
+    // Check if user is already authenticated via cookie
+    const checkAuth = () => {
+      const cookies = document.cookie.split(';');
+      const googleUserCookie = cookies.find(c => c.trim().startsWith('google_user='));
+      if (googleUserCookie) {
+        try {
+          const userData = JSON.parse(decodeURIComponent(googleUserCookie.split('=')[1]));
+          if (userData.email) {
+            setIsLoggedIn(true);
+            // Pre-fill email if available
+            if (userData.email && !formData.email) {
+              setFormData(prev => ({ ...prev, email: userData.email }));
+            }
+          }
+        } catch (e) {
+          console.error('Error parsing user cookie:', e);
+        }
+      }
+    };
+
+    checkAuth();
+
+    // Check for auth success or error from callback
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('auth') === 'success') {
+      setIsLoggedIn(true);
+      const email = urlParams.get('email');
+      const name = urlParams.get('name');
+      if (email) {
+        setFormData(prev => ({ ...prev, email }));
+      }
+      
+      // Restore pageKey if it was stored
+      const pendingPageKey = sessionStorage.getItem('pending_pageKey');
+      if (pendingPageKey && !searchParams?.get('pageKey')) {
+        sessionStorage.removeItem('pending_pageKey');
+        const newUrl = new URL(window.location.href);
+        newUrl.searchParams.set('pageKey', pendingPageKey);
+        window.history.replaceState({}, '', newUrl.toString());
+      }
+      
+      // Clean up auth params from URL
+      urlParams.delete('auth');
+      urlParams.delete('email');
+      urlParams.delete('name');
+      const cleanUrl = new URL(window.location.href);
+      cleanUrl.search = urlParams.toString();
+      window.history.replaceState({}, '', cleanUrl.toString());
+    } else if (urlParams.get('error')) {
+      // Handle OAuth errors
+      const errorType = urlParams.get('error');
+      const errorDetails = urlParams.get('details');
+      let errorMessage = 'Authentication failed. Please try again.';
+      
+      if (errorType === 'token_exchange_failed') {
+        errorMessage = errorDetails 
+          ? `Authentication error: ${decodeURIComponent(errorDetails)}`
+          : 'Failed to complete authentication. Please check your Google OAuth configuration.';
+      } else if (errorType === 'config_error') {
+        const details = urlParams.get('details');
+        if (details === 'missing_client_id') {
+          errorMessage = 'Google OAuth Client ID is not configured. Please set NEXT_PUBLIC_GOOGLE_CLIENT_ID in your environment variables.';
+        } else if (details === 'missing_client_secret') {
+          errorMessage = 'Google OAuth Client Secret is not configured. Please set GOOGLE_CLIENT_SECRET in your environment variables.';
+        } else {
+          errorMessage = 'Authentication is not properly configured. Please check your environment variables.';
+        }
+      } else if (errorType === 'no_code') {
+        errorMessage = 'Authentication was cancelled or incomplete. Please try again.';
+      }
+      
+      alert(errorMessage);
+      
+      // Clean up error params from URL
+      urlParams.delete('error');
+      urlParams.delete('details');
+      const cleanUrl = new URL(window.location.href);
+      cleanUrl.search = urlParams.toString();
+      window.history.replaceState({}, '', cleanUrl.toString());
+    }
+  }, []);
+
   const handleSignIn = async () => {
-    // Simulate Google sign-in
     try {
-      setTimeout(() => {
-        setIsLoggedIn(true);
-        setCurrentStep(0);
-      }, 500);
+      const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
+      if (!clientId) {
+        console.error('Google Client ID not configured');
+        alert('Google authentication is not configured. Please contact support.');
+        return;
+      }
+
+      // Preserve pageKey and locale in redirect
+      const currentPageKey = searchParams?.get('pageKey');
+      // IMPORTANT: The redirect_uri must match EXACTLY what's configured in Google Cloud Console
+      // Use window.location.origin to ensure it matches the actual request URL
+      const redirectUri = `${window.location.origin}/api/auth/google/callback`;
+      const scope = 'openid email profile';
+      const responseType = 'code';
+      
+      // Create state parameter to preserve locale and pageKey
+      const state = JSON.stringify({
+        locale: locale,
+        pageKey: currentPageKey || null,
+      });
+      
+      console.log('Initiating Google OAuth with:', {
+        clientId: clientId.substring(0, 20) + '...',
+        redirectUri,
+        origin: window.location.origin,
+      });
+      
+      let authUrl = `https://accounts.google.com/o/oauth2/v2/auth?` +
+        `client_id=${encodeURIComponent(clientId)}&` +
+        `redirect_uri=${encodeURIComponent(redirectUri)}&` +
+        `response_type=${responseType}&` +
+        `scope=${encodeURIComponent(scope)}&` +
+        `access_type=offline&` +
+        `prompt=consent&` +
+        `state=${encodeURIComponent(state)}`;
+
+      // Redirect to Google OAuth
+      window.location.href = authUrl;
     } catch (error) {
       console.error("Google sign-in error:", error);
+      alert('Failed to initiate Google sign-in. Please try again.');
     }
   };
 
@@ -157,6 +278,11 @@ export default function Registration() {
     });
     setErrors({});
   };
+
+  // If pageKey is provided, show dynamic form instead
+  if (pageKey) {
+    return <DynamicForm pageKey={pageKey} />;
+  }
 
   // Show Google sign-in if not logged in
   if (!isLoggedIn) {

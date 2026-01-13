@@ -69,8 +69,8 @@ export default function OurTeam() {
                 key={index}
                 name={department.name}
                 biography={department.biography}
-                imageSrc={"/department.png"}
-                imageAlt={department.imageAlt}
+                imageSrc={department.image || department.imageSrc || "/department.png"}
+                imageAlt={department.imageAlt || department.name || "Department"}
                 onClick={() => {}}
                 className="w-full max-w-[400px]"
               />

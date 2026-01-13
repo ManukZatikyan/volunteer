@@ -1,0 +1,46 @@
+{
+  "upcomingEvents": [
+    {
+      "title": "International Universities",
+      "description": "A comprehensive program designed to guide students through the process of applying to international universities, including application preparation, visa assistance, and scholarship opportunities.",
+      "image": "/uploads/1768052157334_9yf5ljlr42.png"
+    },
+    {
+      "title": "Career Development Workshop",
+      "description": "A hands-on workshop series focused on helping participants discover their career path, develop professional skills, and build confidence for their future endeavors.",
+      "image": ""
+    },
+    {
+      "title": "Leadership Program",
+      "description": "An intensive program designed to develop leadership skills, critical thinking, and teamwork abilities through interactive activities and real-world projects.",
+      "image": ""
+    },
+    {
+      "title": "Test",
+      "description": "desc",
+      "image": "/uploads/1768053808419_7mf6ufp7vd7.png"
+    }
+  ],
+  "programs": [
+    {
+      "title": "International Universities",
+      "description": "A comprehensive program designed to guide students through the process of applying to international universities.",
+      "image": ""
+    },
+    {
+      "title": "Center Up Junior",
+      "description": "Educational programs designed specifically for younger participants to explore their interests and develop foundational skills.",
+      "image": ""
+    },
+    {
+      "title": "Future Up",
+      "description": "A forward-thinking program focused on preparing young people for future careers and personal development.",
+      "image": ""
+    },
+    {
+      "title": "International Camp",
+      "description": "An immersive camp experience that brings together young people from different backgrounds to learn and grow together.",
+      "image": ""
+    }
+  ]
+}
