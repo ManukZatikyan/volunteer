@@ -37,7 +37,7 @@ export const PAGES: PageMetadata[] = [
   { key: 'conferences', name: 'Conferences', route: '/programs/conferences' },
   { key: 'eventOrganization', name: 'Event Organization', route: '/programs/eventOrganization' },
   { key: 'upcomingEvents', name: 'Upcoming Events', route: '/programs/upcomingEvents' },
-  { key: 'marketing', name: 'Marketing', route: '/programs/marketing' },
+  { key: 'marketing', name: 'Marketing', route: '/ourTeam/marketing' },
   { key: 'ourTeam', name: 'Our Team', route: '/ourTeam' },
   { key: 'contactUs', name: 'Contact Us', route: '/contactUs' },
 ];

@@ -1,27 +1,64 @@
 "use client";
 
-import { useState } from "react";
-import { CampTab, CampArmenianContent } from "@/components";
+import { useState, useEffect } from "react";
+import { CampTab, CampArmenianContent, Loading } from "@/components";
 import { CampInternationalContent } from "@/components/organizm/CampInternationalContent";
-import { useTranslations, useMessages } from "next-intl";
+import { useLocale } from "next-intl";
 import Image from "next/image";
+import { useLoopedLoading } from "@/lib/useLoopedLoading";
 
 export default function CampPage() {
-  const t = useTranslations("camp");
-  const messages = useMessages();
-  const campMessages = messages.camp as any;
+  const locale = useLocale();
+  const [content, setContent] = useState<any>(null);
   const [activeCampId, setActiveCampId] = useState<string>("armenian");
+  const { loading, stopLoading } = useLoopedLoading({
+    initiallyLoading: true,
+  });
+
+  useEffect(() => {
+    const fetchContent = async () => {
+      try {
+        const response = await fetch(`/api/content/camps?locale=${locale}`);
+        if (response.ok) {
+          const data = await response.json();
+          setContent(data.content);
+        }
+      } catch (error) {
+        console.error("Error fetching camps content:", error);
+      } finally {
+        stopLoading();
+      }
+    };
+
+    fetchContent();
+  }, [locale, stopLoading]);
 
   const handleTabChange = (id: string) => {
     setActiveCampId(id);
   };
 
-  // Add imageSrc and imageAlt to tabs from translations
-  const tabsWithImages = (campMessages?.tabs || []).map((tab: any) => ({
+  // Add imageSrc and imageAlt to tabs from content
+  const tabsWithImages = (content?.tabs || []).map((tab: any) => ({
     ...tab,
     imageSrc: tab.imageSrc || "/image.png",
     imageAlt: tab.imageAlt || tab.label,
   }));
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <Loading size={300} loop />
+      </div>
+    );
+  }
+
+  if (!content) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <Loading size={300} loop />
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col">
@@ -40,7 +77,7 @@ export default function CampPage() {
 
         <div className="relative z-10 w-full px-6">
           <h1 className="text-white title-sm mb-3 md:text-center md:text-hero! md:text-secondary-orange-bright! md:mb-21!">
-            {t("heroSection.title")}
+            {content.heroSection?.title || ""}
           </h1>
           <div className="h-1 md:h-1.5 bg-secondary-orange-bright w-full rounded md:hidden"></div>
         </div>
@@ -49,10 +86,10 @@ export default function CampPage() {
       {/* Description Section - Similar to Membership */}
       <div className="px-6 pt-3 md:px-10 xl:px-30">
         <h2 className="text-white body-sm-mobile font-semibold! font-montserrat! mb-3 md:text-headline! md:leading-headline! md:font-bold!">
-          {t("description.heading")}
+          {content.description?.heading || ""}
         </h2>
         <p className="text-white body-xs md:text-body! md:leading-body!">
-          {t("description.text")}
+          {content.description?.text || ""}
         </p>
       </div>
 

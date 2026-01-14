@@ -4,11 +4,12 @@ import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useTranslations, useLocale } from 'next-intl';
 import { PAGES } from '@/lib/pages';
-import { Button } from '@/components';
+import { Button, Loading, Input, Textarea, Dropdown, DatePicker } from '@/components';
+import { useLoopedLoading } from '@/lib/useLoopedLoading';
 
 interface FormField {
   id: string;
-  type: 'input' | 'textarea' | 'select';
+  type: 'input' | 'textarea' | 'select' | 'date';
   label: string;
   labelHy?: string;
   placeholder?: string;
@@ -45,17 +46,17 @@ export default function DynamicForm({ pageKey }: DynamicFormProps) {
   
   const [form, setForm] = useState<Form | null>(null);
   const [pageContent, setPageContent] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState<Record<string, any>>({});
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [success, setSuccess] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { loading, startLoading, stopLoading } = useLoopedLoading();
 
   const loadFormAndContent = async () => {
     try {
-      setLoading(true);
+      startLoading();
       // Load both form and page content in parallel
       const [formResponse, contentResponse] = await Promise.all([
         fetch(`/api/forms/${pageKey}`),
@@ -89,7 +90,7 @@ export default function DynamicForm({ pageKey }: DynamicFormProps) {
     } catch (error) {
       console.error('Error loading form or content:', error);
     } finally {
-      setLoading(false);
+      stopLoading();
     }
   };
 
@@ -166,9 +167,9 @@ export default function DynamicForm({ pageKey }: DynamicFormProps) {
     if (isLoggedIn) {
       loadFormAndContent();
     } else {
-      setLoading(false);
+      stopLoading();
     }
-  }, [isLoggedIn, pageKey, locale]);
+  }, [isLoggedIn, pageKey, locale, stopLoading]);
 
   const getFieldLabel = (field: FormField): string => {
     return locale === 'hy' && field.labelHy ? field.labelHy : field.label;
@@ -339,7 +340,7 @@ export default function DynamicForm({ pageKey }: DynamicFormProps) {
   // Show Google sign-in if not logged in
   if (!isLoggedIn) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-primary-default px-6">
+      <div className="min-h-[calc(100vh-128px)] flex items-center justify-center bg-primary-default px-6">
         <div className="w-full max-w-md flex flex-col items-center justify-center text-center">
           <h1 className="text-white font-bold text-2xl md:text-3xl lg:text-4xl mb-6 md:mb-8 leading-tight">
             {tAuth("signInPrompt")}{" "}
@@ -361,15 +362,15 @@ export default function DynamicForm({ pageKey }: DynamicFormProps) {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-primary-default flex items-center justify-center">
-        <div className="text-white">{t('loading', { default: 'Loading...' })}</div>
+      <div className="min-h-[calc(100vh-128px)] bg-primary-default flex items-center justify-center">
+        <Loading size={320} loop />
       </div>
     );
   }
 
   if (!form) {
     return (
-      <div className="min-h-screen bg-primary-default flex items-center justify-center">
+      <div className="min-h-[calc(100vh-128px)] bg-primary-default flex items-center justify-center">
         <div className="text-white">{t('formNotFound', { default: 'Form not found' })}</div>
       </div>
     );
@@ -377,7 +378,7 @@ export default function DynamicForm({ pageKey }: DynamicFormProps) {
 
   if (success) {
     return (
-      <div className="min-h-screen bg-primary-default flex items-center justify-center">
+      <div className="min-h-[calc(100vh-128px)] bg-primary-default flex items-center justify-center">
         <div className="bg-white rounded-lg shadow-lg p-8 max-w-md w-full mx-4 text-center">
           <div className="text-green-600 text-5xl mb-4">✓</div>
           <h2 className="text-2xl font-bold text-gray-900 mb-2">
@@ -386,12 +387,13 @@ export default function DynamicForm({ pageKey }: DynamicFormProps) {
           <p className="text-gray-600 mb-6">
             {t('successMessage', { default: 'Your form has been submitted successfully.' })}
           </p>
-          <button
+          <Button
             onClick={() => router.push(page?.route || '/')}
-            className="px-6 py-2 bg-primary-default text-white rounded-md hover:bg-primary-dark cursor-pointer"
+            variant="orange"
+            className="px-6 py-2"
           >
             {t('backToPage', { default: 'Back to Page' })}
-          </button>
+          </Button>
         </div>
       </div>
     );
@@ -401,7 +403,7 @@ export default function DynamicForm({ pageKey }: DynamicFormProps) {
   const stepData = formData[`step_${currentStep}`] || {};
 
   return (
-    <div className="!bg-primary-light dark:bg-primary-default px-6 py-6 md:py-8">
+    <div className=" px-6 py-6 md:py-8">
       <div className="w-full max-w-6xl mx-auto">
         <h1 className="text-white font-bold text-2xl md:text-3xl lg:text-[54px] leading-[54px] mb-2 md:mb-9">
           {tReg('title.your')} <span className="text-secondary-orange-bright">{tReg('title.information')}</span>
@@ -425,7 +427,7 @@ export default function DynamicForm({ pageKey }: DynamicFormProps) {
                 {t('step', { default: 'Step' })} {currentStep + 1} {t('of', { default: 'of' })} {form.steps.length}
               </span>
             </div>
-            <div className="w-full bg-text-dark-blue/20 dark:bg-white/20 rounded-full h-2">
+            <div className="w-full bg-primary-gray! rounded-full h-2">
               <div
                 className="bg-secondary-orange-bright h-2 rounded-full transition-all duration-300"
                 style={{ width: `${((currentStep + 1) / form.steps.length) * 100}%` }}
@@ -448,64 +450,53 @@ export default function DynamicForm({ pageKey }: DynamicFormProps) {
 
               return (
                 <div key={field.id}>
-                  <label className="block text-white text-sm font-medium mb-2">
-                    {getFieldLabel(field)}
-                    {field.required && (
-                      <span className="text-red-400 ml-1">*</span>
-                    )}
-                  </label>
-                  
                   {field.type === 'input' && (
-                    <input
+                    <Input
                       type="text"
                       value={fieldValue}
                       onChange={(e) => handleFieldChange(currentStep, fieldIndex, e.target.value)}
                       placeholder={getFieldPlaceholder(field)}
-                      className={`w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-secondary-orange-bright focus:border-secondary-orange-bright bg-white text-gray-900 ${
-                        hasError
-                          ? 'border-red-500'
-                          : 'border-gray-300'
-                      }`}
+                      label={getFieldLabel(field)}
+                      required={field.required}
+                      error={hasError ? errors[errorKey] : undefined}
                     />
                   )}
 
                   {field.type === 'textarea' && (
-                    <textarea
+                    <Textarea
                       value={fieldValue}
                       onChange={(e) => handleFieldChange(currentStep, fieldIndex, e.target.value)}
                       placeholder={getFieldPlaceholder(field)}
-                      rows={4}
-                      className={`w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-secondary-orange-bright focus:border-secondary-orange-bright bg-white text-gray-900 ${
-                        hasError
-                          ? 'border-red-500'
-                          : 'border-gray-300'
-                      }`}
+                      label={getFieldLabel(field)}
+                      required={field.required}
+                      error={hasError ? errors[errorKey] : undefined}
                     />
                   )}
 
                   {field.type === 'select' && (
-                    <select
+                    <Dropdown
                       value={fieldValue}
-                      onChange={(e) => handleFieldChange(currentStep, fieldIndex, e.target.value)}
-                      className={`w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-secondary-orange-bright focus:border-secondary-orange-bright bg-white text-gray-900 cursor-pointer ${
-                        hasError
-                          ? 'border-red-500'
-                          : 'border-gray-300'
-                      }`}
-                    >
-                      <option value="">{t('selectOption', { default: 'Select an option...' })}</option>
-                      {getFieldOptions(field).map((option, optIndex) => (
-                        <option key={optIndex} value={option}>
-                          {option}
-                        </option>
-                      ))}
-                    </select>
+                      onChange={(value) => handleFieldChange(currentStep, fieldIndex, value)}
+                      placeholder={t('selectOption', { default: 'Select an option...' })}
+                      label={getFieldLabel(field)}
+                      required={field.required}
+                      error={hasError ? errors[errorKey] : undefined}
+                      options={getFieldOptions(field).map((option) => ({
+                        value: option,
+                        label: option,
+                      }))}
+                    />
                   )}
 
-                  {hasError && (
-                    <p className="mt-1 text-sm text-red-300">
-                      {errors[errorKey]}
-                    </p>
+                  {field.type === 'date' && (
+                    <DatePicker
+                      value={fieldValue || undefined}
+                      onChange={(date) => handleFieldChange(currentStep, fieldIndex, date)}
+                      placeholder={getFieldPlaceholder(field) || 'mm/dd/yyyy'}
+                      label={getFieldLabel(field)}
+                      required={field.required}
+                      error={hasError ? errors[errorKey] : undefined}
+                    />
                   )}
                 </div>
               );
@@ -522,24 +513,26 @@ export default function DynamicForm({ pageKey }: DynamicFormProps) {
           {/* Navigation Buttons */}
           <div className="flex w-full justify-between gap-4 mt-8 md:mt-12">
             {currentStep > 0 && (
-              <button
+              <Button
                 type="button"
                 onClick={handlePrevious}
-                className="px-8 py-3 md:px-12 md:py-4 text-base md:text-lg font-semibold bg-white text-primary-default rounded-md hover:bg-gray-100 cursor-pointer"
+                variant="white"
+                className=""
               >
                 {t('previous', { default: 'Previous' })}
-              </button>
+              </Button>
             )}
             {currentStep === 0 && <div></div>}
-            <button
+            <Button
               type="submit"
               disabled={currentStep < form.steps.length - 1 ? !isCurrentStepValid() : (submitting || !isCurrentStepValid())}
-              className="px-8 py-3 md:px-12 md:py-4 text-base md:text-lg font-semibold bg-secondary-orange-bright text-white rounded-md hover:bg-secondary-orange-bright/90 cursor-pointer ml-auto disabled:opacity-50 disabled:cursor-not-allowed"
+              variant={currentStep < form.steps.length - 1 ? (!isCurrentStepValid() ? 'disabled' : 'orange') : (submitting || !isCurrentStepValid() ? 'disabled' : 'orange')}
+              className=""
             >
               {currentStep < form.steps.length - 1
                 ? t('next', { default: 'Next' })
                 : (submitting ? t('submitting', { default: 'Submitting...' }) : t('submit', { default: 'Submit' }))}
-            </button>
+            </Button>
           </div>
         </form>
       </div>

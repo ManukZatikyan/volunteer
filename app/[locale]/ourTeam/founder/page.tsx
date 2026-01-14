@@ -5,7 +5,7 @@ import { useLocale } from "next-intl";
 import Image from "next/image";
 import { useLoopedLoading } from "@/lib/useLoopedLoading";
 
-export default function PRAndPartnership() {
+export default function Founder() {
   const locale = useLocale();
   const [content, setContent] = useState<any>(null);
   const { loading, stopLoading } = useLoopedLoading({
@@ -15,15 +15,15 @@ export default function PRAndPartnership() {
   useEffect(() => {
     const fetchContent = async () => {
       try {
-        // Note: 'prAndPartnership' might not be a valid pageKey, using 'ourTeam' as fallback
+        // Note: 'founder' might not be a valid pageKey, using 'ourTeam' as fallback
         const response = await fetch(`/api/content/ourTeam?locale=${locale}`);
         if (response.ok) {
           const data = await response.json();
-          // Extract prAndPartnership content from ourTeam response
-          setContent(data.content?.prAndPartnership || data.content);
+          // Extract founder content from ourTeam response
+          setContent(data.content?.founder || data.content);
         }
       } catch (error) {
-        console.error("Error fetching prAndPartnership content:", error);
+        console.error("Error fetching founder content:", error);
       } finally {
         stopLoading();
       }
@@ -54,7 +54,7 @@ export default function PRAndPartnership() {
         <div className="absolute inset-0">
           <Image
             src="/image.png"
-            alt="PR and Partnership"
+            alt="Founder"
             fill
             className="object-cover"
             priority
@@ -79,44 +79,22 @@ export default function PRAndPartnership() {
       </div>
       <div className="px-6 md:px-10 xl:px-30 pt-12">
         <div className="flex flex-col gap-6">
-          <div className="mb-3 xl:mb-6!">
-            <h2 className="text-white subtitle mb-3 md:text-headline! md:leading-headline! xl:text-title! xl:leading-title! xl:mb-6! xl:font-bold!">
-              {content.headOfDepartment?.title || ""}
-            </h2>
-            <div className="h-1 md:h-1.5 bg-secondary-orange-bright w-full rounded" />
-          </div>
-          <MarketingProfileCard
-            name={content?.headOfDepartment?.name || ""}
-            description={content?.headOfDepartment?.description || ""}
-            imageSrc={content?.headOfDepartment?.imageSrc || "/user.png"}
-            imageAlt={content?.headOfDepartment?.imageAlt || ""}
-            imagePosition={content?.headOfDepartment?.imagePosition || "left"}
-            socialLinks={content?.headOfDepartment?.socialLinks || []}
-          />
+          {content?.members?.items?.[0] && (
+            <MarketingProfileCard
+              name={content.members.items[0].name || ""}
+              description={content.members.items[0].description || ""}
+              imageSrc={content.members.items[0].imageSrc || "/user.png"}
+              imageAlt={content.members.items[0].imageAlt || ""}
+              imagePosition={content.members.items[0].imagePosition || "left"}
+              socialLinks={content.members.items[0].socialLinks || []}
+            />
+          )}
         </div>
       </div>
-      <div className="px-6 md:px-10 xl:px-30 py-12">
-        <div className="flex flex-col gap-6 md:gap-8 xl:gap-12">
-          <div className="mb-3 xl:mb-6!">
-            <h2 className="text-white subtitle mb-3 md:text-headline! md:leading-headline! xl:text-title! xl:leading-title! xl:mb-6! xl:font-bold!">
-              {content.members?.title || ""}
-            </h2>
-            <div className="h-1 md:h-1.5 bg-secondary-orange-bright w-full rounded" />
-          </div>
-          <div className="flex flex-col items-center lg:grid lg:grid-cols-2 lg:place-items-center gap-6 lg:gap-y-[48px]">
-            {(content?.members?.items || []).map((member: any, index: number) => (
-              <MarketingProfileCard
-                key={index}
-                name={member.name}
-                description={member.description}
-                imageSrc={member.imageSrc || "/user.png"}
-                imageAlt={member.imageAlt || ''}
-                imagePosition={member.imagePosition}
-                socialLinks={member.socialLinks || []}
-              />
-            ))}
-          </div>
-        </div>
+      <div className="px-6 md:px-10 xl:px-30 pt-12 pb-30">
+        <p className="text-white body-xs md:text-subtitle! md:leading-subtitle!">
+          {content.text || ""}
+        </p>
       </div>
     </div>
   );

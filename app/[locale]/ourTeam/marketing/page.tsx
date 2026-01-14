@@ -1,12 +1,51 @@
 "use client";
-import { MarketingProfileCard } from "@/components";
-import { useTranslations, useMessages } from "next-intl";
+import { useState, useEffect } from "react";
+import { MarketingProfileCard, Loading } from "@/components";
+import { useLocale } from "next-intl";
 import Image from "next/image";
+import { useLoopedLoading } from "@/lib/useLoopedLoading";
 
 export default function Marketing() {
-  const t = useTranslations("marketing");
-  const messages = useMessages();
-  const marketingMessages = messages.marketing as any;
+  const locale = useLocale();
+  const [content, setContent] = useState<any>(null);
+  const { loading, stopLoading } = useLoopedLoading({
+    initiallyLoading: true,
+  });
+
+  useEffect(() => {
+    const fetchContent = async () => {
+      try {
+        const response = await fetch(`/api/content/marketing?locale=${locale}`);
+        if (response.ok) {
+          const data = await response.json();
+          setContent(data.content);
+          console.log("data", data);
+        }
+      } catch (error) {
+        console.error("Error fetching marketing content:", error);
+      } finally {
+        stopLoading();
+      }
+    };
+
+    fetchContent();
+  }, [locale, stopLoading]);
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <Loading size={300} loop />
+      </div>
+    );
+  }
+  console.log("content", content);
+  if (!content) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <Loading size={300} loop />
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col">
@@ -24,34 +63,34 @@ export default function Marketing() {
 
         <div className="relative z-10 w-full px-6 ">
           <h1 className="text-white title-sm mb-3 md:text-center md:text-hero! md:text-secondary-orange-bright! md:mb-12!">
-            {t("heroSection.title")}
+            {content.heroSection?.title || ""}
           </h1>
           <div className="h-1 md:h-1.5 bg-secondary-orange-bright w-full rounded md:hidden"></div>
         </div>
       </section>
       <div className="px-6 md:px-10 xl:px-30 pt-3 md:pt-6 xl:pt-12">
         <h2 className="text-white body-sm-mobile md:text-subtitle! md:leading-subtitle! font-semibold! font-montserrat! mb-3 md:mb-6">
-          {t("description.heading")}
+          {content.description?.heading || ""}
         </h2>
         <p className="text-white body-xs md:text-subtitle! md:leading-subtitle!">
-          {t("description.text")}
+          {content.description?.text || ""}
         </p>
       </div>
       <div className="px-6 md:px-10 xl:px-30 pt-12">
         <div className="flex flex-col gap-6">
           <div className="mb-3 xl:mb-6!">
             <h2 className="text-white subtitle mb-3 md:text-headline! md:leading-headline! xl:text-title! xl:leading-title! xl:mb-6! xl:font-bold!">
-            {t("headOfMarketing.title")}
+            {content.headOfMarketing?.title || ""}
             </h2>
             <div className="h-1 md:h-1.5 bg-secondary-orange-bright w-full rounded" />
           </div>
           <MarketingProfileCard
-            name={marketingMessages?.headOfMarketing?.name || ""}
-            description={marketingMessages?.headOfMarketing?.description || ""}
-            imageSrc={marketingMessages?.headOfMarketing?.imageSrc || "/user.png"}
-            imageAlt={marketingMessages?.headOfMarketing?.imageAlt || ""}
-            imagePosition={marketingMessages?.headOfMarketing?.imagePosition || "left"}
-            socialLinks={marketingMessages?.headOfMarketing?.socialLinks || []}
+            name={content?.headOfMarketing?.name || ""}
+            description={content?.headOfMarketing?.description || ""}
+            imageSrc={content?.headOfMarketing?.imageSrc || "/user.png"}
+            imageAlt={content?.headOfMarketing?.imageAlt || ""}
+            imagePosition={content?.headOfMarketing?.imagePosition || "left"}
+            socialLinks={content?.headOfMarketing?.socialLinks || []}
           />
         </div>
       </div>
@@ -59,12 +98,12 @@ export default function Marketing() {
         <div className="flex flex-col gap-6 md:gap-8 xl:gap-12">
           <div className="mb-3 xl:mb-6!">
             <h2 className="text-white subtitle mb-3 md:text-headline! md:leading-headline! xl:text-title! xl:leading-title! xl:mb-6! xl:font-bold!">
-            {t("members.title")}
+            {content.members?.title || ""}
             </h2>
             <div className="h-1 md:h-1.5 bg-secondary-orange-bright w-full rounded" />
           </div>
           <div className="flex flex-col items-center lg:grid lg:grid-cols-2 lg:place-items-center gap-6 lg:gap-y-[48px]">
-          {(marketingMessages?.members?.items || []).map((member: any, index: number) => (
+          {(content?.members?.items || []).map((member: any, index: number) => (
             <MarketingProfileCard
               key={index}
               name={member.name}

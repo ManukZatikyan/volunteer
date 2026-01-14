@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useLocale } from 'next-intl';
+import { useLoopedLoading } from './useLoopedLoading';
 
 export function useContent<T>(pageKey: string): {
   content: T | null;
@@ -10,13 +11,13 @@ export function useContent<T>(pageKey: string): {
 } {
   const locale = useLocale();
   const [content, setContent] = useState<T | null>(null);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { loading, startLoading, stopLoading } = useLoopedLoading();
 
   useEffect(() => {
     const fetchContent = async () => {
       try {
-        setLoading(true);
+        startLoading();
         setError(null);
 
         // Try to fetch from API first
@@ -34,16 +35,16 @@ export function useContent<T>(pageKey: string): {
         // If not found in API, fall back to data files
         // This is handled server-side, so we'll import directly
         // For client components, we need to rely on API
-        setLoading(false);
       } catch (err: any) {
         console.error(`Error fetching content for ${pageKey}:`, err);
         setError(err.message || 'Failed to fetch content');
-        setLoading(false);
+      } finally {
+        stopLoading();
       }
     };
 
     fetchContent();
-  }, [pageKey, locale]);
+  }, [pageKey, locale, startLoading, stopLoading]);
 
   return { content, loading, error };
 }

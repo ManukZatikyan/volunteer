@@ -5,6 +5,8 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { useAdminLocale } from '@/lib/admin-locale';
+import { Loading } from '@/components';
+import { useLoopedLoading } from '@/lib/useLoopedLoading';
 
 interface PageMetadata {
   key: string;
@@ -16,9 +18,9 @@ export default function AdminDashboard() {
   const t = useTranslations('admin.dashboard');
   const { locale, setLocale } = useAdminLocale();
   const [pages, setPages] = useState<PageMetadata[]>([]);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const router = useRouter();
+  const { loading, startLoading, stopLoading } = useLoopedLoading();
 
   useEffect(() => {
     checkAuthAndLoadPages();
@@ -26,6 +28,7 @@ export default function AdminDashboard() {
 
   const checkAuthAndLoadPages = async () => {
     try {
+      startLoading();
       // Check authentication
       const authResponse = await fetch('/api/admin/check-auth');
       const authData = await authResponse.json();
@@ -47,7 +50,7 @@ export default function AdminDashboard() {
       setError(err.message || 'An error occurred');
       router.push('/admin');
     } finally {
-      setLoading(false);
+      stopLoading();
     }
   };
 
@@ -62,8 +65,8 @@ export default function AdminDashboard() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-xl text-gray-600 dark:text-gray-400">{t('edit.loading')}</div>
+      <div className="min-h-screen flex items-center justify-center dark:bg-gray-900">
+        <Loading size={240} loop />
       </div>
     );
   }
@@ -77,7 +80,7 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen  dark:bg-gray-900">
       <div className="bg-white dark:bg-gray-800 shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-6">

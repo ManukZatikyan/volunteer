@@ -1,13 +1,16 @@
 "use client";
 
-import { ProfileCard, ProfileCardHorizontal } from "@/components";
-import { useTranslations, useMessages } from "next-intl";
+import { useState, useEffect } from "react";
+import { ProfileCard, ProfileCardHorizontal, Loading } from "@/components";
+import { useLocale } from "next-intl";
 import Image from "next/image";
 import { useRouter } from "@/i18n/routing";
+import { useLoopedLoading } from "@/lib/useLoopedLoading";
+
 // Helper function to map department names to routes
 const getDepartmentRoute = (departmentName: string): string | undefined => {
   const routeMap: Record<string, string> = {
-    "Marketing": "/programs/marketing",
+    "Marketing": "/ourTeam/marketing",
     "PR and Partnership": "/ourTeam/prAndPartnership",
     "Event Management & Data Analytics": "/ourTeam/eventManagementAndDataAnalytics",
     "Project Management": "/ourTeam/projectManagement",
@@ -16,10 +19,46 @@ const getDepartmentRoute = (departmentName: string): string | undefined => {
 };
 
 export default function OurTeam() {
-  const t = useTranslations("ourTeam");
+  const locale = useLocale();
   const router = useRouter();
-  const messages = useMessages();
-  const ourTeamMessages = messages.ourTeam as any;
+  const [content, setContent] = useState<any>(null);
+  const { loading, stopLoading } = useLoopedLoading({
+    initiallyLoading: true,
+  });
+
+  useEffect(() => {
+    const fetchContent = async () => {
+      try {
+        const response = await fetch(`/api/content/ourTeam?locale=${locale}`);
+        if (response.ok) {
+          const data = await response.json();
+          setContent(data.content);
+        }
+      } catch (error) {
+        console.error("Error fetching ourTeam content:", error);
+      } finally {
+        stopLoading();
+      }
+    };
+
+    fetchContent();
+  }, [locale, stopLoading]);
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <Loading size={300} loop />
+      </div>
+    );
+  }
+
+  if (!content) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <Loading size={300} loop />
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col font-sans relative pb-12">
@@ -37,7 +76,7 @@ export default function OurTeam() {
 
         <div className="relative z-10 w-full px-6">
           <h1 className="text-white title-sm mb-3 md:text-center md:text-hero! md:text-secondary-orange-bright! md:mb-12!">
-            {t("heroSection.title")}
+            {content.heroSection?.title || ""}
           </h1>
           <div className="h-1 md:h-1.5 bg-secondary-orange-bright w-full rounded md:hidden"></div>
         </div>
@@ -45,7 +84,7 @@ export default function OurTeam() {
       <section className="container w-full flex flex-col items-center justify-center gap-12 px-6 md:px-10 xl:px-30">
         <div className="">
           <p className="text-white body-xs mt-3 md:text-subtitle! md:leading-subtitle!">
-            {t("description.text")}
+            {content.description?.text || ""}
           </p>
         </div>
       </section>
@@ -53,29 +92,31 @@ export default function OurTeam() {
       <section className="container w-full p-6 pb-3! md:px-10 xl:px-30 xl:pb-19!">
         <div className="mb-3 xl:mb-16!">
           <h2 className="text-white subtitle mb-3 md:text-headline! md:leading-headline! xl:text-title! xl:leading-title! xl:mb-6! xl:font-bold!">
-            {t("founder.title")}
+            {content.founder?.title || ""}
           </h2>
           <div className="h-1 md:h-1.5 bg-secondary-orange-bright w-full rounded" />
         </div>
         <ProfileCardHorizontal
-          name={ourTeamMessages?.founder?.name || ""}
-          biography={ourTeamMessages?.founder?.biography || ""}
-          imageSrc={ourTeamMessages?.founder?.imageSrc || "/user.png"}
-          imageAlt={ourTeamMessages?.founder?.imageAlt || "Founder"}
-          buttonText={ourTeamMessages?.founder?.buttonText || ""}
-          onClick={() => {}}
+          name={content?.founder?.name || ""}
+          biography={content?.founder?.biography || ""}
+          imageSrc={content?.founder?.imageSrc || "/user.png"}
+          imageAlt={content?.founder?.imageAlt || "Founder"}
+          buttonText={content?.founder?.buttonText || ""}
+          onClick={() => {
+            router.push("/ourTeam/founder");
+          }}
           className="mb-12"
         />
         <div>
           <div className="mb-3 xl:mb-6!">
             <h2 className="text-white subtitle mb-3 md:text-headline! md:leading-headline! xl:text-title! xl:leading-title! xl:mb-6! xl:font-bold!">
-              {t("departments.title")}
+              {content.departments?.title || ""}
             </h2>
             <div className="h-1 md:h-1.5 bg-secondary-orange-bright w-full rounded" />
           </div>
         </div>
         <div className="flex flex-col items-center md:grid md:grid-cols-2 md:place-items-center xl:flex xl:flex-row xl:justify-center gap-6">
-          {(ourTeamMessages?.departments?.items || []).map(
+          {(content?.departments?.items || []).map(
             (department: any, index: number) => (
               <ProfileCard
                 key={index}

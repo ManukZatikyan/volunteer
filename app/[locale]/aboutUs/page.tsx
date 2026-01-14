@@ -28,7 +28,12 @@ export default function AboutUs() {
       "Upcoming Events": "upcomingEvents",
     };
     
-    const route = routeMap[programTitle] || "";
+    // Use includes for partial matching (case-insensitive)
+    const normalizedTitle = programTitle.toLowerCase();
+    const route = Object.entries(routeMap).find(([key]) => 
+      normalizedTitle.includes(key.toLowerCase())
+    )?.[1] || "";
+    
     return route ? `/programs/${route}` : "/programs";
   };
 
@@ -62,7 +67,7 @@ export default function AboutUs() {
         <div className="grid grid-cols-3 gap-4 w-full md:gap-6">
           {(aboutUsMessages?.stats || []).map((stat: any, index: number) => (
                 <StatsCard
-              key={stat.icon || index}
+                    key={stat.icon || index}
                     icon={stat.icon as IconProps["name"]}
                     label={stat.label}
                     value={stat.value}

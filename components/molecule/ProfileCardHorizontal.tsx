@@ -38,23 +38,23 @@ export const ProfileCardHorizontal: React.FC<ProfileCardHorizontalProps> = ({
         // Get the computed styles to check the actual max-height
         const computedStyle = window.getComputedStyle(contentRef.current);
         const maxHeight = computedStyle.maxHeight;
-        
+
         // Temporarily remove max-height constraint to measure full text height
         const originalMaxHeight = contentRef.current.style.maxHeight;
-        contentRef.current.style.maxHeight = 'none';
-        
+        contentRef.current.style.maxHeight = "none";
+
         // Force a reflow to get accurate measurements
         void contentRef.current.offsetHeight;
-        
+
         // Get the actual scroll height of the text without constraints
         const textScrollHeight = textRef.current.scrollHeight;
-        
+
         // Restore the max-height
         contentRef.current.style.maxHeight = originalMaxHeight;
-        
+
         // Get the client height of the container with max-h-[180px] constraint
         const containerClientHeight = contentRef.current.clientHeight;
-        
+
         // Check if text overflows the container
         // Use a threshold of 3px to account for rounding and line-height differences
         const hasOverflow = textScrollHeight > containerClientHeight + 3;
@@ -93,7 +93,6 @@ export const ProfileCardHorizontal: React.FC<ProfileCardHorizontalProps> = ({
         "shadow-lg md:shadow-none",
         "bg-primary-light md:bg-transparent",
         "md:rounded-none md:gap-6",
-        "max-h-[420px]",
         className
       )}
     >
@@ -107,46 +106,50 @@ export const ProfileCardHorizontal: React.FC<ProfileCardHorizontalProps> = ({
           priority
         />
       </div>
-      <div className="flex flex-col flex-1 min-w-0 h-full max-h-[420px] overflow-hidden">
-        <h3 className="text-white text-2xl md:text-3xl xl:text-4xl font-bold leading-7.5 font-montserrat mb-3 flex-shrink-0">
-          {name}
-        </h3>
-        <div className="w-full h-1 bg-secondary-orange-bright mb-3 rounded-full flex-shrink-0" />
-        <div
-          ref={contentRef}
-          className={cn(
-            "flex-1 min-h-0 overflow-hidden",
-            !isExpanded && "max-h-[180px]"
-          )}
-        >
-          <p
-            ref={textRef}
+      <div className="flex flex-col justify-between flex-1 min-w-0 h-[243px] md:h-[350px] xl:h-[420px] overflow-hidden">
+        <div>
+          <h3 className="text-white text-2xl md:text-3xl xl:text-4xl font-bold leading-7.5 font-montserrat mb-3 flex-shrink-0">
+            {name}
+          </h3>
+          <div className="w-full h-1 bg-secondary-orange-bright mb-3 rounded-full flex-shrink-0" />
+          <div
+            ref={contentRef}
             className={cn(
-              "text-white text-sm md:text-base xl:text-lg leading-5 md:leading-6 xl:leading-7 font-noto-sans",
-              isExpanded && "overflow-y-auto h-full pr-2"
+              "flex-1 min-h-0 overflow-hidden",
+              !isExpanded && "max-h-[180px]"
             )}
           >
-            {biography}
-          </p>
-        </div>
-        {(showReadMore && !isExpanded) && (
-          <div className="flex justify-start mt-auto flex-shrink-0">
-            <Button
-              variant="white"
-              onClick={handleReadMore}
-              className="px-6 py-2 cursor-pointer"
+            <p
+              ref={textRef}
+              className={cn(
+                "text-white text-sm md:text-base xl:text-lg leading-5 md:leading-6 xl:leading-7 font-noto-sans",
+                isExpanded && "overflow-y-auto h-full pr-2"
+              )}
             >
-              {defaultButtonText}
-            </Button>
+              {biography}
+            </p>
           </div>
-        )}
-        {!showReadMore && onClick && (
-          <div className="flex justify-start mt-auto flex-shrink-0">
-            <Button variant="white" onClick={onClick} className="px-6 py-2">
-              {defaultButtonText}
-            </Button>
-          </div>
-        )}
+        </div>
+        <div>
+          {showReadMore && !isExpanded && (
+            <div className="flex justify-start mt-auto flex-shrink-0">
+              <Button
+                variant="white"
+                onClick={handleReadMore}
+                className="px-6 py-2 cursor-pointer"
+              >
+                {defaultButtonText}
+              </Button>
+            </div>
+          )}
+          {!showReadMore && onClick && (
+            <div className="flex justify-start mt-auto flex-shrink-0">
+              <Button variant="white" onClick={onClick} className="px-6 py-2">
+                {defaultButtonText}
+              </Button>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

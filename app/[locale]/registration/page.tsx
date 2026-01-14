@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useLocale } from "next-intl";
+import { Loading } from "@/components";
 import DynamicForm from "./DynamicForm";
 
 export default function Registration() {
@@ -21,8 +22,8 @@ export default function Registration() {
   // If no pageKey, show loading (will redirect)
   if (!pageKey) {
     return (
-      <div className="flex items-center justify-center bg-primary-default">
-        <div className="text-white">Loading...</div>
+      <div className="flex items-center justify-center min-h-screen bg-primary-default">
+        <Loading size={300} loop />
       </div>
     );
   }

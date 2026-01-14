@@ -640,6 +640,35 @@
       ]
     }
   },
+  "founder": {
+    "heroSection": {
+      "title": "Founder"
+    },
+    "description": {
+      "heading": "A 4-Month Journey of Education, Volunteering, and Personal Growth",
+      "text": "Center Up offers a structured four-month membership program designed for young individuals eager to grow academically, professionally, and personally. Throughout the program, members participate in a variety of enriching activities and events, including:"
+    },
+    "members": {
+      "title": "Founder",
+      "items": [
+        {
+          "name": "Inna Azizyan",
+          "description": "I founded the organization when I was just 19 years old. The journey has had its challenges—many of them—but I've always had a clear goal: to help young people reach their dreams. Over the past 4 years of Center UP, we've created—and continue to create—programs that truly change lives for us and our participants. In the beginning, I did everything on my own—I was both the head of every department and the only employee. Year by year, month by month, we build and share new things with you.",
+          "imageSrc": "/user.png",
+          "imageAlt": "Inna Azizyan",
+          "imagePosition": "left",
+          "socialLinks": [
+            {
+              "name": "linkedin",
+              "href": "https://linkedin.com/in/inna-azizyan",
+              "ariaLabel": "Inna Azizyan LinkedIn"
+            }
+          ]
+        }
+      ]
+    },
+    "text":"Members take part in seven or more practical educational seminars, each ending with a certificate of participation. These seminars aim to provide hands-on knowledge and skill "
+  },
   "prAndPartnership": {
     "heroSection": {
       "title": "PR and Partnership Department"
@@ -1160,6 +1189,7 @@
             "input": "Input",
             "textarea": "Textarea",
             "select": "Select",
+            "date": "Date",
             "required": "Required",
             "label": "Label",
             "placeholder": "Placeholder",

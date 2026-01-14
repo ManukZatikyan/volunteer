@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { NextIntlClientProvider } from 'next-intl';
+import { Loading } from '@/components';
 
 interface AdminLocaleContextType {
   locale: string;
@@ -56,7 +57,7 @@ export function AdminLocaleProvider({ children }: { children: ReactNode }) {
   if (loading || !messages) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-xl text-gray-600 dark:text-gray-400">Loading...</div>
+        <Loading size={240} loop />
       </div>
     );
   }
