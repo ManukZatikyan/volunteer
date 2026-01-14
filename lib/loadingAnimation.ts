@@ -1,0 +1,3 @@
+export const LOADING_ANIMATION_DURATION_MS = 2200;
+
+

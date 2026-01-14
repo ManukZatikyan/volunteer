@@ -15,7 +15,7 @@ export const Input: React.FC<InputProps> = ({
   error,
   className,
   id,
-  asteriskColor = "default",
+  asteriskColor = "red",
   ...props
 }) => {
   const inputId = id || `input-${crypto.randomUUID().substring(0, 9)}`;

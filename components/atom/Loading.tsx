@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
+import { LOADING_ANIMATION_DURATION_MS } from "@/lib/loadingAnimation";
 
 export interface LoadingProps {
   className?: string;
@@ -24,33 +25,20 @@ export const Loading: React.FC<LoadingProps> = ({
       const timer = setTimeout(() => {
         svgRef.current?.classList.add("active");
       }, 100);
-
       if (loop) {
         const restartAnimation = () => {
           const svg = svgRef.current;
           if (!svg) return;
-          
-          // Get all path elements that need to be reset
           const paths = svg.querySelectorAll('[class*="svg-elem"]');
-          
-          // Temporarily disable transitions for instant reset
           paths.forEach((path) => {
             (path as HTMLElement).style.transition = 'none';
           });
-          
-          // Remove active class
           svg.classList.remove("active");
-          
-          // Force reflow
           void svg.getBoundingClientRect();
-          
-          // Re-enable transitions and restart animation
           requestAnimationFrame(() => {
             paths.forEach((path) => {
               (path as HTMLElement).style.transition = '';
             });
-            
-            // Small delay then add active class to restart
             setTimeout(() => {
               if (svgRef.current) {
                 svgRef.current.classList.add("active");
@@ -58,14 +46,13 @@ export const Loading: React.FC<LoadingProps> = ({
             }, 50);
           });
         };
-
-        // Start looping after the first animation completes (5.5s)
-        // Then loop every 5.55s (5.5s animation + 0.05s reset)   
         const startLoop = setTimeout(() => {
           restartAnimation();
-          // Set up interval to continue looping
-          loopIntervalRef.current = setInterval(restartAnimation, 5550) as unknown as NodeJS.Timeout;
-        }, 5500);
+          loopIntervalRef.current = setInterval(
+            restartAnimation,
+            LOADING_ANIMATION_DURATION_MS
+          ) as unknown as NodeJS.Timeout;
+        }, LOADING_ANIMATION_DURATION_MS);
 
         return () => {
           clearTimeout(timer);
@@ -82,15 +69,15 @@ export const Loading: React.FC<LoadingProps> = ({
   }, [autoPlay, loop]);
 
   return (
-    <div className={cn("flex items-center justify-center", className)}>
+    <div className={cn("flex items-center justify-center w-[200px] sm:w-[200px] md:w-[250px] lg:w-[300px] xl:w-[350px] 2xl:w-[400px]", className)}>
       <style dangerouslySetInnerHTML={{ __html: `
         .loading-svg .svg-elem-1 {
           stroke-dashoffset: 556.9544677734375px;
           stroke-dasharray: 556.9544677734375px;
           fill: transparent;
           stroke: #FFA008;
-          transition: stroke-dashoffset 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0s,
-                      fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.5s;
+          transition: stroke-dashoffset 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 0s,
+                      fill 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 0.2s;
         }
         .loading-svg.active .svg-elem-1 {
           stroke-dashoffset: 0;
@@ -101,8 +88,8 @@ export const Loading: React.FC<LoadingProps> = ({
           stroke-dasharray: 554.8883056640625px;
           fill: transparent;
           stroke: #FFA008;
-          transition: stroke-dashoffset 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.25s,
-                      fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.75s;
+          transition: stroke-dashoffset 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 0.1s,
+                      fill 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 0.3s;
         }
         .loading-svg.active .svg-elem-2 {
           stroke-dashoffset: 0;
@@ -113,8 +100,8 @@ export const Loading: React.FC<LoadingProps> = ({
           stroke-dasharray: 816.2274780273438px;
           fill: transparent;
           stroke: #746EB2;
-          transition: stroke-dashoffset 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.5s,
-                      fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1s;
+          transition: stroke-dashoffset 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 0.2s,
+                      fill 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 0.4s;
         }
         .loading-svg.active .svg-elem-3 {
           stroke-dashoffset: 0;
@@ -125,8 +112,8 @@ export const Loading: React.FC<LoadingProps> = ({
           stroke-dasharray: 816.89208984375px;
           fill: transparent;
           stroke: #746EB2;
-          transition: stroke-dashoffset 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.75s,
-                      fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.25s;
+          transition: stroke-dashoffset 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 0.3s,
+                      fill 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 0.5s;
         }
         .loading-svg.active .svg-elem-4 {
           stroke-dashoffset: 0;
@@ -137,8 +124,8 @@ export const Loading: React.FC<LoadingProps> = ({
           stroke-dasharray: 110.06963348388672px;
           fill: transparent;
           stroke: #FFA008;
-          transition: stroke-dashoffset 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1s,
-                      fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.5s;
+          transition: stroke-dashoffset 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 0.4s,
+                      fill 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 0.6s;
         }
         .loading-svg.active .svg-elem-5 {
           stroke-dashoffset: 0;
@@ -149,8 +136,8 @@ export const Loading: React.FC<LoadingProps> = ({
           stroke-dasharray: 109.8570556640625px;
           fill: transparent;
           stroke: #FFA008;
-          transition: stroke-dashoffset 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.25s,
-                      fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.75s;
+          transition: stroke-dashoffset 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 0.5s,
+                      fill 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 0.7s;
         }
         .loading-svg.active .svg-elem-6 {
           stroke-dashoffset: 0;
@@ -161,8 +148,8 @@ export const Loading: React.FC<LoadingProps> = ({
           stroke-dasharray: 73.83320617675781px;
           fill: transparent;
           stroke: #FFA008;
-          transition: stroke-dashoffset 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.5s,
-                      fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2s;
+          transition: stroke-dashoffset 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 0.6s,
+                      fill 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 0.8s;
         }
         .loading-svg.active .svg-elem-7 {
           stroke-dashoffset: 0;
@@ -173,8 +160,8 @@ export const Loading: React.FC<LoadingProps> = ({
           stroke-dasharray: 73.85093688964844px;
           fill: transparent;
           stroke: #FFA008;
-          transition: stroke-dashoffset 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.75s,
-                      fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.25s;
+          transition: stroke-dashoffset 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 0.7s,
+                      fill 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 0.9s;
         }
         .loading-svg.active .svg-elem-8 {
           stroke-dashoffset: 0;
@@ -185,8 +172,8 @@ export const Loading: React.FC<LoadingProps> = ({
           stroke-dasharray: 292.3871765136719px;
           fill: transparent;
           stroke: #FFA008;
-          transition: stroke-dashoffset 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2s,
-                      fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.5s;
+          transition: stroke-dashoffset 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 0.8s,
+                      fill 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 1s;
         }
         .loading-svg.active .svg-elem-9 {
           stroke-dashoffset: 0;
@@ -197,8 +184,8 @@ export const Loading: React.FC<LoadingProps> = ({
           stroke-dasharray: 294.2164306640625px;
           fill: transparent;
           stroke: #FFA008;
-          transition: stroke-dashoffset 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.25s,
-                      fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.75s;
+          transition: stroke-dashoffset 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 0.9s,
+                      fill 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 1.1s;
         }
         .loading-svg.active .svg-elem-10 {
           stroke-dashoffset: 0;
@@ -209,8 +196,8 @@ export const Loading: React.FC<LoadingProps> = ({
           stroke-dasharray: 185.5143585205078px;
           fill: transparent;
           stroke: #FFA008;
-          transition: stroke-dashoffset 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.5s,
-                      fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 3s;
+          transition: stroke-dashoffset 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 1s,
+                      fill 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 1.2s;
         }
         .loading-svg.active .svg-elem-11 {
           stroke-dashoffset: 0;
@@ -221,8 +208,8 @@ export const Loading: React.FC<LoadingProps> = ({
           stroke-dasharray: 293.35260009765625px;
           fill: transparent;
           stroke: #FFA008;
-          transition: stroke-dashoffset 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.75s,
-                      fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 3.25s;
+          transition: stroke-dashoffset 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 1.1s,
+                      fill 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 1.3s;
         }
         .loading-svg.active .svg-elem-12 {
           stroke-dashoffset: 0;
@@ -233,8 +220,8 @@ export const Loading: React.FC<LoadingProps> = ({
           stroke-dasharray: 295.4228820800781px;
           fill: transparent;
           stroke: #FFA008;
-          transition: stroke-dashoffset 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 3s,
-                      fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 3.5s;
+          transition: stroke-dashoffset 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 1.2s,
+                      fill 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 1.4s;
         }
         .loading-svg.active .svg-elem-13 {
           stroke-dashoffset: 0;
@@ -245,8 +232,8 @@ export const Loading: React.FC<LoadingProps> = ({
           stroke-dasharray: 356.8117980957031px;
           fill: transparent;
           stroke: #FFA008;
-          transition: stroke-dashoffset 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 3.25s,
-                      fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 3.75s;
+          transition: stroke-dashoffset 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 1.3s,
+                      fill 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 1.5s;
         }
         .loading-svg.active .svg-elem-14 {
           stroke-dashoffset: 0;
@@ -257,8 +244,8 @@ export const Loading: React.FC<LoadingProps> = ({
           stroke-dasharray: 322.70281982421875px;
           fill: transparent;
           stroke: #FFA008;
-          transition: stroke-dashoffset 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 3.5s,
-                      fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 4s;
+          transition: stroke-dashoffset 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 1.4s,
+                      fill 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 1.6s;
         }
         .loading-svg.active .svg-elem-15 {
           stroke-dashoffset: 0;
@@ -269,8 +256,8 @@ export const Loading: React.FC<LoadingProps> = ({
           stroke-dasharray: 166.20608520507812px;
           fill: transparent;
           stroke: #FFA008;
-          transition: stroke-dashoffset 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 3.75s,
-                      fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 4.25s;
+          transition: stroke-dashoffset 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 1.5s,
+                      fill 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 1.7s;
         }
         .loading-svg.active .svg-elem-16 {
           stroke-dashoffset: 0;
@@ -281,8 +268,8 @@ export const Loading: React.FC<LoadingProps> = ({
           stroke-dasharray: 164.21603393554688px;
           fill: transparent;
           stroke: #FFA008;
-          transition: stroke-dashoffset 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 4s,
-                      fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 4.5s;
+          transition: stroke-dashoffset 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 1.6s,
+                      fill 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 1.8s;
         }
         .loading-svg.active .svg-elem-17 {
           stroke-dashoffset: 0;
@@ -293,8 +280,8 @@ export const Loading: React.FC<LoadingProps> = ({
           stroke-dasharray: 197.52371215820312px;
           fill: transparent;
           stroke: #746EB2;
-          transition: stroke-dashoffset 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 4.25s,
-                      fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 4.75s;
+          transition: stroke-dashoffset 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 1.7s,
+                      fill 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 1.9s;
         }
         .loading-svg.active .svg-elem-18 {
           stroke-dashoffset: 0;
@@ -305,8 +292,8 @@ export const Loading: React.FC<LoadingProps> = ({
           stroke-dasharray: 1816px;
           fill: transparent;
           stroke: white;
-          transition: stroke-dashoffset 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 4.5s,
-                      fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 5s;
+          transition: stroke-dashoffset 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 1.8s,
+                      fill 0.2s cubic-bezier(0.47, 0, 0.745, 0.715) 2s;
         }
         .loading-svg.active .svg-elem-19 {
           stroke-dashoffset: 0;
@@ -315,8 +302,8 @@ export const Loading: React.FC<LoadingProps> = ({
       `}} />
       <svg
         ref={svgRef}
-        width={size}
-        height={(size * 340) / 567}
+        width="100%"
+        height="auto"
         viewBox="0 0 567 340"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

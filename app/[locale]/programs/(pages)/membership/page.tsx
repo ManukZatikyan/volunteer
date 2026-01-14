@@ -1,20 +1,24 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Button, ContentCard } from "@/components";
+import { Button, ContentCard, Loading } from "@/components";
 import { useLocale } from "next-intl";
 import { useRouter } from "@/i18n/routing";
 import Image from "next/image";
+import { useLoopedLoading } from "@/lib/useLoopedLoading";
 
 export default function Membership() {
   const locale = useLocale();
   const router = useRouter();
   const [content, setContent] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
+  const { loading, stopLoading } = useLoopedLoading({
+    initiallyLoading: true,
+  });
 
   useEffect(() => {
     const fetchContent = async () => {
       try {
+        // Don't call startLoading() here because initiallyLoading: true already started it
         const response = await fetch(`/api/content/membership?locale=${locale}`);
         if (response.ok) {
           const data = await response.json();
@@ -23,17 +27,17 @@ export default function Membership() {
       } catch (error) {
         console.error("Error fetching membership content:", error);
       } finally {
-        setLoading(false);
+        stopLoading();
       }
     };
 
     fetchContent();
-  }, [locale]);
+  }, [locale, stopLoading]);
 
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <div className="text-white">Loading...</div>
+        <Loading size={300} loop />
       </div>
     );
   }
@@ -41,7 +45,7 @@ export default function Membership() {
   if (!content) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <div className="text-white">Content not found</div>
+        <Loading size={300} loop />
       </div>
     );
   }

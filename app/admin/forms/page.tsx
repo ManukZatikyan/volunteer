@@ -7,6 +7,8 @@ import { useTranslations } from 'next-intl';
 import { useAdminLocale } from '@/lib/admin-locale';
 import { getFormAllowedPages, PAGES, type PageKey } from '@/lib/pages';
 import AlertModal from '@/components/admin/AlertModal';
+import { Loading } from '@/components';
+import { useLoopedLoading } from '@/lib/useLoopedLoading';
 
 interface FormField {
   id: string;
@@ -39,7 +41,6 @@ export default function FormsPage() {
   const tAdmin = useTranslations('admin');
   const { locale, setLocale } = useAdminLocale();
   const [forms, setForms] = useState<Form[]>([]);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [deleteModal, setDeleteModal] = useState<{ open: boolean; pageKey: string | null; pageName: string }>({
     open: false,
@@ -53,13 +54,14 @@ export default function FormsPage() {
     title: '',
     message: '',
   });
+  const { loading, startLoading, stopLoading } = useLoopedLoading();
 
   useEffect(() => {
     checkAuthAndLoadForms();
   }, []);
 
   const checkAuthAndLoadForms = async () => {
-    setLoading(true);
+    startLoading();
     try {
       const authResponse = await fetch('/api/admin/check-auth');
       if (!authResponse.ok) {
@@ -88,7 +90,7 @@ export default function FormsPage() {
         message: err.message || t('loadFailed', { default: 'Failed to load forms' }),
       });
     } finally {
-      setLoading(false);
+      stopLoading();
     }
   };
 
@@ -169,7 +171,7 @@ export default function FormsPage() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-xl text-gray-600 dark:text-gray-400">Loading...</div>
+        <Loading size={240} loop />
       </div>
     );
   }

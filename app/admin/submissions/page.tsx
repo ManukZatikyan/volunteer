@@ -6,6 +6,8 @@ import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { useAdminLocale } from '@/lib/admin-locale';
 import { PAGES, FORM_ALLOWED_PAGES } from '@/lib/pages';
+import { Loading } from '@/components';
+import { useLoopedLoading } from '@/lib/useLoopedLoading';
 
 interface FormSubmission {
   _id: string;
@@ -23,11 +25,11 @@ export default function AdminSubmissions() {
   const tDashboard = useTranslations('admin.dashboard');
   const { locale, setLocale } = useAdminLocale();
   const [submissions, setSubmissions] = useState<FormSubmission[]>([]);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [selectedPageKey, setSelectedPageKey] = useState<string>('');
   const [expandedSubmission, setExpandedSubmission] = useState<string | null>(null);
   const router = useRouter();
+  const { loading, startLoading, stopLoading } = useLoopedLoading();
 
   useEffect(() => {
     checkAuthAndLoadSubmissions();
@@ -35,6 +37,7 @@ export default function AdminSubmissions() {
 
   const checkAuthAndLoadSubmissions = async () => {
     try {
+      startLoading();
       // Check authentication
       const authResponse = await fetch('/api/admin/check-auth');
       const authData = await authResponse.json();
@@ -59,7 +62,7 @@ export default function AdminSubmissions() {
     } catch (err: any) {
       setError(err.message || 'An error occurred');
     } finally {
-      setLoading(false);
+      stopLoading();
     }
   };
 
@@ -149,7 +152,7 @@ export default function AdminSubmissions() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-xl text-gray-600 dark:text-gray-400">Loading...</div>
+        <Loading size={240} loop />
       </div>
     );
   }

@@ -6,10 +6,11 @@ import { useTranslations } from 'next-intl';
 import { useAdminLocale } from '@/lib/admin-locale';
 import { PAGES, FORM_ALLOWED_PAGES, type PageKey } from '@/lib/pages';
 import AlertModal from '@/components/admin/AlertModal';
+import { Loading } from '@/components';
 
 interface FormField {
   id: string;
-  type: 'input' | 'textarea' | 'select';
+  type: 'input' | 'textarea' | 'select' | 'date';
   label: string;
   labelHy?: string;
   placeholder?: string;
@@ -366,7 +367,7 @@ export default function FormEditorPage() {
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-100 dark:bg-gray-900 flex items-center justify-center">
-        <div className="text-gray-600 dark:text-gray-400">Loading...</div>
+        <Loading size={240} loop />
       </div>
     );
   }
@@ -502,7 +503,7 @@ export default function FormEditorPage() {
                         <select
                           value={field.type}
                           onChange={(e) => {
-                            const newType = e.target.value as 'input' | 'textarea' | 'select';
+                            const newType = e.target.value as 'input' | 'textarea' | 'select' | 'date';
                             if (newType === 'select') {
                               // Initialize empty arrays if changing to select
                               handleUpdateField(step.id, field.id, { 
@@ -524,6 +525,7 @@ export default function FormEditorPage() {
                           <option value="input">{t('input', { default: 'Input' })}</option>
                           <option value="textarea">{t('textarea', { default: 'Textarea' })}</option>
                           <option value="select">{t('select', { default: 'Select' })}</option>
+                          <option value="date">{t('date', { default: 'Date' })}</option>
                         </select>
                       </div>
 

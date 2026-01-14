@@ -35,7 +35,7 @@ export const CampInternationalContent: React.FC = ({}) => {
         ))}
       </div>
       <div className="container flex justify-center">
-        <Button variant="orange" onClick={() => router.push("/registration")}>
+        <Button variant="orange" onClick={() => router.push("/registration?pageKey=camps")}>
           {t("buttonText")}
         </Button>
       </div>

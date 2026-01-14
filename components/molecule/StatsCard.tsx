@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { Icon, type IconProps } from "../atom/Icon";
 
@@ -17,8 +17,70 @@ export const StatsCard: React.FC<StatsCardProps> = ({
   value,
   className,
 }) => {
+  const [animatedValue, setAnimatedValue] = useState(0);
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  // Extract numeric value (remove "+" and any non-numeric characters except numbers)
+  const numericValue = parseInt(value.replace(/[^0-9]/g, ""), 10) || 0;
+  const hasPlus = value.includes("+");
+
+  useEffect(() => {
+    if (hasAnimated || numericValue === 0) return;
+
+    // Use Intersection Observer to trigger animation when card is visible
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasAnimated) {
+            setHasAnimated(true);
+            animateValue();
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    if (cardRef.current) {
+      observer.observe(cardRef.current);
+    }
+
+    return () => {
+      if (cardRef.current) {
+        observer.unobserve(cardRef.current);
+      }
+    };
+  }, [hasAnimated, numericValue]);
+
+  const animateValue = () => {
+    const duration = 2000; // 2 seconds
+    const startTime = performance.now();
+    const startValue = 0;
+    const endValue = numericValue;
+
+    const animate = (currentTime: number) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+
+      // Easing function (ease-out)
+      const easeOut = 1 - Math.pow(1 - progress, 3);
+
+      const currentValue = Math.floor(startValue + (endValue - startValue) * easeOut);
+      setAnimatedValue(currentValue);
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        setAnimatedValue(endValue);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  };
+
   return (
     <div
+      ref={cardRef}
       className={cn(
         "flex flex-col items-center justify-center min-w-[114px]",
         " md:min-w-[280px] md:rounded-lg md:py-8 md:px-6 md:max-w-[540px] md:w-full",
@@ -38,7 +100,7 @@ export const StatsCard: React.FC<StatsCardProps> = ({
       </h3>
       <div className="w-full h-1 bg-[#CBCBCB] mb-1.5 md:mb-6 rounded-full md:h-1.5 md:w-full" />
       <p className="text-secondary-orange-bright subtitle-sm font-bold! md:text-title! md:leading-title! md:font-bold">
-        {value}
+        {animatedValue.toLocaleString()}{hasPlus ? "+" : ""}
       </p>
     </div>
   );

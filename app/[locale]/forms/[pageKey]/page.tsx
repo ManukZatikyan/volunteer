@@ -5,7 +5,7 @@ import { useParams, useRouter } from 'next/navigation';
 import { useTranslations, useLocale } from 'next-intl';
 import { PAGES } from '@/lib/pages';
 import Image from 'next/image';
-import { ContentCard } from '@/components';
+import { ContentCard, Loading } from '@/components';
 
 interface FormField {
   id: string;
@@ -199,7 +199,7 @@ export default function FormPage() {
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
-        <div className="text-gray-600 dark:text-gray-400">{t('loading', { default: 'Loading...' })}</div>
+        <Loading size={240} loop />
       </div>
     );
   }

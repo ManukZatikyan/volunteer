@@ -31,7 +31,12 @@ export default function Programs() {
       "Upcoming Events": "upcomingEvents",
     };
     
-    const route = routeMap[programTitle] || "";
+    // Use includes for partial matching (case-insensitive)
+    const normalizedTitle = programTitle.toLowerCase();
+    const route = Object.entries(routeMap).find(([key]) => 
+      normalizedTitle.includes(key.toLowerCase())
+    )?.[1] || "";
+    
     return route ? `/programs/${route}` : "/programs";
   };
 

@@ -79,7 +79,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
         <label className="block mb-2 text-body-sm-mobile font-noto-sans! text-primary-default dark:text-white">
           {label}
           {required && (
-            <span className="text-secondary-orange-bright ml-0.5">*</span>
+            <span className="text-error ml-0.5">*</span>
           )}
         </label>
       )}
